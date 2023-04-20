@@ -3,8 +3,7 @@
 ### 마인드맵 & 사이트맵
 
 ![mindmap](https://user-images.githubusercontent.com/50220165/233423287-e0f01ace-6804-47ea-a2ac-0252a06de5fa.png)
-
-<img src="https://user-images.githubusercontent.com/50220165/233424006-7df2bb66-c1b5-4f4e-856e-5fd7cc1b3495.png" width="1200" height="470">
+![sitemap](https://user-images.githubusercontent.com/50220165/233424006-7df2bb66-c1b5-4f4e-856e-5fd7cc1b3495.png)
 
 
 ### [경매의 시작/진행]
