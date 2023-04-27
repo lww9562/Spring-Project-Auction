@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Gugi&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gugi&family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+* {font-family: 'Noto Sans KR', sans-serif; box-sizing : border-box; outline : none;
+    color : #000;}
+html {font-size : 15px; background-color:#fafafa;}
+
+body {margin : 0;}
+ul, ol {list-style-type : none; margin : 0; padding : 0;}
+li {margin : 0; padding : 0;}
+dl, dt, dd {margin : 0; padding : 0;}
+h2 {margin:0; padding : 0;}
+a {text-decoration : none; }
+img {border : 0;}
+p {margin : 0;}
+
+/** 상단 로고 S*/
+#header{text-align:center;}
+#header h1 {font-size:1.6rem; margin-bottom:30px;}
+/** 상단 로고 E*/
+
+
+#join{width : 460px; margin:0 auto;border:1px solid rgba(0,0,0,0.2); padding : 15px 15px;}
+#join .input div span{font-size : 0.9rem; color:#F84A71; margin-left:5px;}
+#join .require_item{margin-top : 19px; margin-bottom:8px;}
+#join input:not(#agree){width : 100%; padding:16px 16px; border : solid 1px #dadada;}
+
+#join .btns{margin-top:30px;}
+#join .btn_rewrite, #join .btn_submit{display:inline-block; text-align : center; width : 49.5%; height : 48px; line-height : 48px; border : 1px solid rgba(79,79,79,0.2); cursor:pointer;}
+#join .btn_submit{background-color: #4f4f4f; color:#fff;}

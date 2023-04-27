@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/main}">
+
+<head>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}">
+</head>
+
+
+<main layout:fragment="content">
+	<form method="post" th:action="@{/user/login}" autocomplete="off" id="login">
+		<h2 th:text="#{user.login}"></h2>
+		<div class="error" th:if="${session.field == 'global'}" th:text="${session.message}"></div>
+		<dl>
+			<dt th:text="#{userId}"></dt>
+			<div class = "requirement">
+				<dd>
+					<input type="text" name="userId" th:value="${userId}">
+					<div class="error" th:if="${session.field == 'userId'}" th:text="${session.message}"></div>
+				</dd>
+			</div>
+		</dl>
+		<br>
+		<dl>
+			<dt th:text="#{userPw}"></dt>
+			<div class = "requirement">
+				<dd>
+					<input type="password" name="userPw" th:value="${session.userPw}">
+					<div class="error" th:if="${session.field == 'userPw'}" th:text="${session.message}"></div>
+				</dd>
+			</div>
+		</dl>
+		<dl>
+			<dd>
+				<div class = "check-remember">
+					<input th:if="${saveId == null}"type="checkbox" name="saveId" value="true" id="saveId">
+					<input th:unless="${saveId == null}"type="checkbox" name="saveId" value="true" checked id="saveId">
+					<label for="saveId" th:text="#{user.saveId}" check-remember></label>
+				</div>
+			</dd>
+		</dl>
+		<div class="btns">
+			<button type="submit" th:text="#{user.login}"></button>
+		</div>
+
+		<div class = "register">
+			<a th:href="@{/user/join}">회원가입</a>
+		</div>
+
+	</form>
+</main>
+</html>

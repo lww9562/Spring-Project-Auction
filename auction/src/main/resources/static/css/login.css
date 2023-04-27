@@ -1,0 +1,19 @@
+dl, dt, dd {margin : 0; padding : 0;}
+/** 상단 로고 및 h2 영역 S */
+#header{text-align:center;}
+#header span {font-weight : 400; font-family: 'Gugi'; display:inline-block; height:44px; font-size:44px;}
+
+/** 상단 로고 및 h2 영역 E */
+h2 {font-size:1.6rem; margin-bottom:30px; text-align: center;}
+#login{width : 370px; margin:0 auto; border:1px solid rgba(0,0,0,0.2); padding : 15px 15px;}
+#login input:not(#saveId){width : 100%; padding : 12px 16px;border : 1px solid rgb(218,218,218); text-align:left;}
+#login .requirement{width : 90%; margin:0 auto; }
+
+#saveId{margin : 10px 17px;}
+
+.btns {text-align:center;}
+.btns:hover button{background-color : #4f4f4f; color:rgb(218,218,218);}
+.btns button{width : 90%; padding : 12px 16px; border : 1px solid rgb(218,218,218); background-color:white; cursor:pointer;
+    transition-duration : 0.3s; transition-property: background, color;}
+
+.register{display:flex; justify-content:space-between; padding : 10px 20px; font-size:0.8rem;}
