@@ -1,13 +1,8 @@
 package org.koreait.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.mapping.ToOne;
 
 @Entity
 @Builder
@@ -32,5 +27,8 @@ public class Products extends BaseEntity{
     private String userNm; //작성자
 
 //    private String category;
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private Users users;
 
 }
