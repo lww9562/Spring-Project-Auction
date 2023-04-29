@@ -3,7 +3,10 @@ package org.koreait.controllers.products;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.koreait.entities.Products;
-import org.koreait.models.Product.*;
+import org.koreait.models.Product.ProductDeleteService;
+import org.koreait.models.Product.ProductInfoService;
+import org.koreait.models.Product.ProductListService;
+import org.koreait.models.Product.ProductSaveService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,9 +26,6 @@ public class ProductController {
     private final ProductListService listService;
     private final ProductInfoService infoService;
     private final ProductSaveService saveService;
-
-    private final ProductSaveValidator validator;
-
     @GetMapping("/write") //게시글 작성 페이지 이동
     public String write(Model model){
         ProductForm  productForm = new ProductForm();
@@ -83,4 +83,5 @@ public class ProductController {
 
         return "redirect:/product/list";
     }
+
 }
