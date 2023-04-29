@@ -1,8 +1,6 @@
 package org.koreait.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,10 +15,12 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity {
+	@Temporal(TemporalType.TIMESTAMP)
 	@CreatedDate
 	@Column(updatable = false)
 	private LocalDateTime regDt;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	@Column(insertable = false)
 	private LocalDateTime modDt;
