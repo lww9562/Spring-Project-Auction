@@ -1,10 +1,9 @@
 package org.koreait.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.mapping.ToOne;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +41,6 @@ public class Products extends BaseUserEntity{
     //하나의 Sellers는 여러 판매 물품을 등록할 수  있으므로, @ManyToOne 매핑
     @JoinColumn(name="sellerNo")
     private Sellers sellers;
-
-
-
+    
 //    private String category;
 }
