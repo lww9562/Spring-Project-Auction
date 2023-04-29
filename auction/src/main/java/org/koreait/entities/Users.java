@@ -36,5 +36,11 @@ public class Users extends BaseEntity {
 	@Column(length=20, nullable = false)
 	private UserType userType = UserType.USER;	//권한 - 기본값 : USER
 
-	//추가될 부분 : 판매 및 구매 물품의 번호 (List자료형, @OneToMany)
+	@OneToOne
+	@JoinColumn(name="bidderNo")
+	private Bidders bidder;
+
+	@OneToOne
+	@JoinColumn(name="sellerNo")
+	private Sellers seller;
 }

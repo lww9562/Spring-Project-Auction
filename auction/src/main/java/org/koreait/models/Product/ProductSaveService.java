@@ -39,6 +39,7 @@ public class ProductSaveService {
             products = productForm.of(productForm);
         }
 
-        repository.saveAndFlush(products);
+        products = repository.saveAndFlush(products);
+        productForm.setId(products.getId());
     }
 }

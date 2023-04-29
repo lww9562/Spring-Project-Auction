@@ -2,8 +2,8 @@ package org.koreait.controllers.users;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.mapping.Join;
-import org.koreait.models.user.UserSaveService;
+import org.koreait.models.user.UserJoinValidator;
+import org.koreait.models.user.UserJoinService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
-	private final JoinValidator validator;
+	private final UserJoinValidator validator;
 
-	private final UserSaveService saveService;
+	private final UserJoinService saveService;
 
 	@GetMapping("/join")
 	public String join(Model model) {
