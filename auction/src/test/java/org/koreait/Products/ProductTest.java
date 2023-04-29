@@ -115,7 +115,8 @@ public class ProductTest {
     @WithMockUser("user1")
     void updateTest2(){
         assertThrows(ProductValidationException.class,()->{
-
+            saveService.save(productForm);
+            log.info(productForm.toString());
             productForm.setId(3L);
             productForm.setMode("update");
             productForm.setPrSubject("(수정)제목");
