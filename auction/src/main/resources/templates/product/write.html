@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/main}">
+	<head>
+		<script src="//code.jquery.com/jquery-latest.min.js"></script>
+		<script th:src="@{/js/file.js}"></script>
+
+		<style>
+			textarea {
+			width: 500px;
+			height: 15em;
+			resize: none;
+			}
+		</style>
+	</head>
+
+	<main layout:fragment="content">
+		<br>
+		<br>
+		<br>
+		<form method="post" th:action="@{/product/write}" autocomplete="off" id="write" th:object="${productForm}" name="write">
+			<div class="error global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+			<dl>
+				<dt th:text="#{product.subject}"></dt>
+				<dd>
+					<input type="text" name="prSubject" th:field="*{prSubject}">
+					<div class='error' th:each="err : ${#fields.errors('prSubject')}" th:text="${err}"></div>
+				</dd>
+			</dl>
+			<dl>
+				<dt th:text="#{product.startPrice}"></dt>
+				<dd>
+					<input type="text" name="startPrice" th:field="*{startPrice}">
+					<div class='error' th:each="err : ${#fields.errors('startPrice')}" th:text="${err}"></div>
+				</dd>
+			</dl>
+			<dl>
+				<dt th:text="#{product.risingPrice}"></dt>
+				<dd>
+					<input type="text" name="risingPrice" th:field="*{risingPrice}">
+					<div class='error' th:each="err : ${#fields.errors('risingPrice')}" th:text="${err}"></div>
+				</dd>
+			</dl>
+			<dl>
+				<dt th:text="#{product.baroPrice}"></dt>
+				<dd>
+					<input type="text" name="baroPrice" th:field="*{baroPrice}">
+					<div class='error' th:each="err : ${#fields.errors('baroPrice')}" th:text="${err}"></div>
+				</dd>
+			</dl>
+
+			<dl>
+				<dt th:text="#{product.picture}"></dt>
+				<dd>
+					<div class="form-group">
+						<div class="imgs_wrap"></div>
+					</div>
+					<div class="form-group">
+						<input type="file" id="input_imgs" name="uploadFile" multiple />
+					</div>
+
+				</dd>
+			</dl>
+
+			<dl>
+				<dt th:text="#{product.content}"></dt>
+				<dd>
+					<textarea name="prContent" th:field="*{prContent}"></textarea>
+					<div class='error' th:each="err : ${#fields.errors('prContent')}" th:text="${err}"></div>
+				</dd>
+			</dl>
+			<div class="btns">
+				<button type="submit" th:text="#{product.write}" class = btn_submit></button>
+				<button type="reset" th:text="#{reset} " class = btn_rewrite onClick="clearForm(event);"></button>
+			</div>
+		</form>
+	</main>
+
+</html>

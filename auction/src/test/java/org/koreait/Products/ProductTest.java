@@ -1,19 +1,29 @@
 package org.koreait.Products;
 
 import lombok.extern.java.Log;
+import org.aspectj.apache.bcel.Repository;
+import org.hibernate.mapping.Join;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.koreait.controllers.products.ProductForm;
+import org.koreait.controllers.users.JoinForm;
 import org.koreait.entities.Products;
+import org.koreait.entities.Users;
 import org.koreait.models.Product.*;
+import org.koreait.models.user.UserJoinService;
+import org.koreait.repositories.ProductRepository;
+import org.koreait.repositories.UsersRepository;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -32,12 +42,18 @@ public class ProductTest {
     private ProductInfoService infoService;
     @Autowired
     private ProductDeleteService deleteService;
+    @Autowired
+    private UserJoinService userJoinService;
+    @Autowired
+    private ProductRepository productRepository;
+    @Autowired
+    private UsersRepository usersRepository;
     private ProductForm productForm;
 
+    private JoinForm joinForm;
 
     @BeforeEach
     public void init(){
-
         productForm = ProductForm.builder()
                 .id(1L)
                 .prSubject("제목")
@@ -45,6 +61,14 @@ public class ProductTest {
                 .startPrice(123L)
                 .risingPrice(13L)
                 .baroPrice(123L)
+                .build();
+
+        joinForm = JoinForm.builder()
+                .userId("user01")
+                .userPw("12345678")
+                .userPwRe("12345678")
+                .userNm("사용자01")
+                .agree(true)
                 .build();
 
     }
@@ -56,6 +80,8 @@ public class ProductTest {
         assertDoesNotThrow(()->{
             saveService.save(productForm);
             log.info(productForm.toString());
+            saveService.save(productForm);
+            log.info(productRepository.findById(1L).toString());
         });
 
     }
@@ -106,16 +132,20 @@ public class ProductTest {
             productForm.setId(productForm.getId());
             productForm.setMode("update");
             productForm.setPrSubject("(수정)제목");
+            log.info(productForm.toString());
             saveService.save(productForm);
             log.info(productForm.toString());
+            log.info(productRepository.findById(1L).toString());
         });
     }
     @Test
     @DisplayName("mode update 상태, 제품 id가 다를시 예외 발생")
+    @Transactional
     @WithMockUser("user1")
     void updateTest2(){
         assertThrows(ProductValidationException.class,()->{
-
+            saveService.save(productForm);
+            log.info(productForm.toString());
             productForm.setId(3L);
             productForm.setMode("update");
             productForm.setPrSubject("(수정)제목");
@@ -131,6 +161,8 @@ public class ProductTest {
             saveService.save(productForm);
             listService.gets();
             log.info(listService.gets().toString());
+            List<Products> products = listService.gets();
+            log.info(products.toString());
         });
     }
     @Test
@@ -154,7 +186,27 @@ public class ProductTest {
             deleteService.delete(productForm.getId());
             listService.gets();
             log.info(listService.gets().toString());
+
+            List<Products> products = listService.gets();
+            log.info(products.toString());
         });
     }
+    /* - product와 user가 아닌, bidder / seller 와 매핑되어있습니다
+    @Test
+    @DisplayName("게시글 추가시 Users의 정보도 함께 출력되면 예외 발생 x")
+    @WithMockUser("user1")
+    void outerJoinTest(){
+        assertDoesNotThrow(()->{
+            userSaveService.save(joinForm);
+            Users user = usersRepository.findByUserId("user01");
+            log.info(user.toString());
 
+            saveService.save(productForm);
+            Products product = infoService.get(1L);
+            product.setUsers(user);
+            log.info(product.toString());
+        }); //기능을 추가해야함. 지금은 안됨
+    }
+
+     */
 }
