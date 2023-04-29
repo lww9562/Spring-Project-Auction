@@ -1,8 +1,9 @@
-package org.koreait.controllers.users;
+package org.koreait.models.user;
 
 import lombok.RequiredArgsConstructor;
 import org.koreait.commons.validators.EmailValidator;
 import org.koreait.commons.validators.MobileValidator;
+import org.koreait.controllers.users.JoinForm;
 import org.koreait.repositories.UsersRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -10,7 +11,7 @@ import org.springframework.validation.Validator;
 
 @Component
 @RequiredArgsConstructor
-public class JoinValidator implements Validator, MobileValidator, EmailValidator {
+public class UserJoinValidator implements Validator, MobileValidator, EmailValidator {
 	private final UsersRepository repository;
 
 	@Override
