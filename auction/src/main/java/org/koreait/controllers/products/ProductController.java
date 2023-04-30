@@ -1,5 +1,6 @@
 package org.koreait.controllers.products;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.koreait.entities.Products;
@@ -26,14 +27,17 @@ public class ProductController {
     private final ProductListService listService;
     private final ProductInfoService infoService;
     private final ProductSaveService saveService;
+
+
     @GetMapping("/write") //게시글 작성 페이지 이동
     public String write(Model model){
         ProductForm  productForm = new ProductForm();
         model.addAttribute("productForm",productForm);
         return "product/write";
     }
+
     @PostMapping("/save")
-    public String save(@Valid ProductForm productForm, Errors errors){
+    public String save(@Valid ProductForm productForm, Errors errors, HttpSession session){
         try{
             saveService.save(productForm, errors);
         }catch (Exception e){
@@ -45,13 +49,14 @@ public class ProductController {
         if (errors.hasErrors()) {
             Long id = productForm.getId();
             if (id == null) {
-                return "board/write";
+                return "product/write";     // board/write로 쓴 부분 수정
             } else {
-                return "board/update";
+                return "product/update";    // board/write로 쓴 부분 수정
             }
         }
         return "redirect:/product/list"; //우선 목록 페이지도 있어야 할 것 같아서 목록으로 보냄
     }
+
     @GetMapping("/update/{id}") //수정 페이지 이동
     public String update(@PathVariable("id") Long id, Model model){
         Products products = infoService.get(id);
@@ -60,6 +65,7 @@ public class ProductController {
         model.addAttribute("productForm",productForm);
         return "product/update";
     }
+
     @GetMapping("/view/{id}") //상세 페이지 이동
     public String view(@PathVariable("id") Long id, Model model) {
 
@@ -68,6 +74,7 @@ public class ProductController {
 
         return "product/view";
     }
+
     @GetMapping("/list") //게시글 목록 이동
     public String list(Model model) {
         List<Products> list = listService.gets();

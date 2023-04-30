@@ -14,6 +14,7 @@ import org.modelmapper.ModelMapper;
 @Builder
 @NoArgsConstructor @AllArgsConstructor
 public class ProductForm {
+    private String writer;  //작성자 추가
     private Long id;
     private String mode;
     @NotBlank
@@ -25,6 +26,7 @@ public class ProductForm {
     @NotNull
     private Long risingPrice;
     private Long baroPrice;
+
 
     public static Products of(ProductForm productForm) {
         return new ModelMapper().map(productForm, Products.class);

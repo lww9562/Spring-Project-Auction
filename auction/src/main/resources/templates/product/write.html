@@ -20,7 +20,7 @@
 		<br>
 		<br>
 		<br>
-		<form method="post" th:action="@{/product/write}" autocomplete="off" id="write" th:object="${productForm}" name="write">
+		<form method="post" th:action="@{/product/save}" autocomplete="off" id="write" th:object="${productForm}" name="write">
 			<div class="error global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
 			<dl>
 				<dt th:text="#{product.subject}"></dt>
