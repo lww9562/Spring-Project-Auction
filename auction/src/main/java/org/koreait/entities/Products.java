@@ -43,6 +43,7 @@ public class Products extends BaseUserEntity{
     @JoinColumn(name="seller")
     private Sellers sellers;
 
-    @Column(nullable = false)
-    private String category;
+    @ManyToOne
+    @JoinColumn(name="category")
+    private Categories categories;
 }

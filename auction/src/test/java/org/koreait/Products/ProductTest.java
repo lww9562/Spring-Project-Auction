@@ -67,7 +67,6 @@ public class ProductTest {
                 .startPrice(123L)
                 .risingPrice(13L)
                 .baroPrice(123L)
-                .category("가전제품")
                 .build();
 
         joinForm = JoinForm.builder()

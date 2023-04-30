@@ -23,6 +23,17 @@
 		<form method="post" th:action="@{/product/save}" autocomplete="off" id="write" th:object="${productForm}" name="write">
 			<div class="error global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
 			<dl>
+				<dt>카테고리</dt>
+				<dd valgn="top">
+					<select style="width: 150px;">
+						<option value="">카테고리를 선택하세요</option>
+						<option th:each="category : ${categoryMap}" th:value="${category.key}" th:text="${category.value}"/>
+					</select>
+				</dd>
+			</dl>
+
+
+			<dl>
 				<dt th:text="#{product.subject}"></dt>
 				<dd>
 					<input type="text" name="prSubject" th:field="*{prSubject}">

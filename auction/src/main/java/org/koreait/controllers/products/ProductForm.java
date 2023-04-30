@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.koreait.entities.Categories;
 import org.koreait.entities.Products;
 import org.modelmapper.ModelMapper;
 
@@ -27,7 +28,7 @@ public class ProductForm {
     private Long risingPrice;
     private Long baroPrice;
     @NotBlank
-    private String category;
+    private Categories category;
 
 
     public static Products of(ProductForm productForm) {
