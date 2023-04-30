@@ -35,6 +35,8 @@ public class JoinForm {
 	private boolean agree;
 
 	public static Users of(JoinForm joinForm){
-		return new ModelMapper().map(joinForm, Users.class);
+		ModelMapper modelMapper = new ModelMapper();
+		modelMapper.getConfiguration().setSkipNullEnabled(true);
+		return joinForm == null ? null : modelMapper.map(joinForm, Users.class);
 	}
 }
