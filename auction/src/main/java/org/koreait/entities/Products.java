@@ -42,6 +42,7 @@ public class Products extends BaseUserEntity{
     //하나의 Sellers는 여러 판매 물품을 등록할 수  있으므로, @ManyToOne 매핑
     @JoinColumn(name="seller")
     private Sellers sellers;
-    
-//    private String category;
+
+    @Column(nullable = false)
+    private String category;
 }

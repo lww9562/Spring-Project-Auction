@@ -8,7 +8,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.koreait.controllers.products.ProductForm;
 import org.koreait.controllers.users.JoinForm;
+import org.koreait.controllers.users.UserInfoService;
 import org.koreait.entities.Products;
+import org.koreait.entities.Sellers;
 import org.koreait.entities.Users;
 import org.koreait.models.Product.*;
 import org.koreait.models.user.UserJoinService;
@@ -19,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.parameters.P;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,6 +51,9 @@ public class ProductTest {
     private ProductRepository productRepository;
     @Autowired
     private UsersRepository usersRepository;
+    @Autowired
+    private UserInfoService userInfoService;
+
     private ProductForm productForm;
 
     private JoinForm joinForm;
@@ -61,6 +67,7 @@ public class ProductTest {
                 .startPrice(123L)
                 .risingPrice(13L)
                 .baroPrice(123L)
+                .category("가전제품")
                 .build();
 
         joinForm = JoinForm.builder()
@@ -191,22 +198,32 @@ public class ProductTest {
             log.info(products.toString());
         });
     }
-    /* - product와 user가 아닌, bidder / seller 와 매핑되어있습니다
+
     @Test
-    @DisplayName("게시글 추가시 Users의 정보도 함께 출력되면 예외 발생 x")
+    @DisplayName("게시글 추가시 판매자의 정보도 함께 출력, 게시글의 판매자와 일치하면 예외 발생 x")
     @WithMockUser("user1")
-    void outerJoinTest(){
+    void sellerJoinTest(){
         assertDoesNotThrow(()->{
-            userSaveService.save(joinForm);
-            Users user = usersRepository.findByUserId("user01");
-            log.info(user.toString());
+            userJoinService.save(joinForm);
+            UserDetails userDetails = userInfoService.loadUserByUsername("user01");
+            log.info(userDetails.toString());
 
             saveService.save(productForm);
-            Products product = infoService.get(1L);
-            product.setUsers(user);
+
+            Products product = infoService.get(productForm.getId());
+            log.info(product.getSellers().getUser().toString());
+            if(!userDetails.getUsername().equals(product.getSellers().getUser().getUserId())){
+                throw new ProductValidationException("판매자가 일치하지 않습니다.");
+            }
             log.info(product.toString());
+
         }); //기능을 추가해야함. 지금은 안됨
     }
+    @Test
+    @DisplayName("물품 구매시 게시글의 구매자와 일치하면 예외발생 x")
+    void bidderJoinTest(){
 
-     */
+    }
+
+
 }
