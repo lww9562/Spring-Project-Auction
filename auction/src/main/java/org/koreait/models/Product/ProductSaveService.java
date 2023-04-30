@@ -2,14 +2,18 @@ package org.koreait.models.Product;
 
 import lombok.RequiredArgsConstructor;
 import org.koreait.controllers.products.ProductForm;
+import org.koreait.entities.Bidders;
 import org.koreait.entities.Products;
 import org.koreait.entities.Sellers;
 import org.koreait.entities.Users;
+import org.koreait.repositories.BiddersRepository;
 import org.koreait.repositories.ProductRepository;
 import org.koreait.repositories.SellersRepository;
 import org.koreait.repositories.UsersRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -18,6 +22,7 @@ public class ProductSaveService {
     private final SellersRepository sellersRepository;
     private final UsersRepository usersRepository;
     private final ProductSaveValidator validator;
+    private final BiddersRepository biddersRepository;
 
     public void save(ProductForm productForm){
         save(productForm, null);
@@ -46,6 +51,14 @@ public class ProductSaveService {
             products.setEndPrice(productForm.getStartPrice());
             products.setSellers(sellersRepository.findByUser(usersRepository.findByUserId(products.getCreatedBy())));
         }
+
+//        List<Bidders> bidders = biddersRepository.findByProductOrderByEndPriceDesc(products); // 해당 상품에 대한 입찰 정보를 내림차순으로 가져옴
+//        if (!bidders.isEmpty()) {
+//            Bidders highestBidder = bidders.get(0); // 가장 높은 입찰가를 제시한 입찰 정보를 가져옴
+//            Users users = highestBidder.getUser(); // 해당 입찰 정보를 제시한 구매자 정보를 가져옴
+//            products.setBidders(users); // 해당 상품의 구매자 정보를 설정
+//            products.setEndPrice(highestBid.getBidPrice()); // 해당 상품의 최종 입찰가를 설정
+//        }
 
         products = repository.saveAndFlush(products);
 

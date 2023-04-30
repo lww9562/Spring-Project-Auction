@@ -26,6 +26,8 @@ public class ProductForm {
     @NotNull
     private Long risingPrice;
     private Long baroPrice;
+    @NotBlank
+    private String category;
 
 
     public static Products of(ProductForm productForm) {
