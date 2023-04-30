@@ -5,6 +5,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.koreait.controllers.users.UserInfo;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
@@ -38,5 +39,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {	//로
 		//3. 성공시 이동 URL
 		String url = request.getContextPath();	// contextPath를 main페이지로 둘 것
 		response.sendRedirect(url);
+
+		//UserInfo userinfo = (UserInfo) authentication.getPrincipal();
+		//session.setAttribute("userNo", userinfo.getUserNo());
 	}
 }
