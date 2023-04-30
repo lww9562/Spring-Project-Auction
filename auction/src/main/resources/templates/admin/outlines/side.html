@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<aside th:fragment="menus">
+		<a th:href="@{/admin/users}" th:classappend="${menuCode}=='users'? 'on'">회원정보 관리</a>
+		<br>
+		<a th:href="@{/admin/products}" th:classappend="${menuCode}=='products'? 'on'">판매물품 관리</a>
+	</aside>
+</html>
