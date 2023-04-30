@@ -4,7 +4,7 @@ import org.koreait.commons.CommonException;
 import org.springframework.http.HttpStatus;
 
 public class ProductValidationException extends CommonException {
-    private  String field;
+    private String field;
 
     public ProductValidationException(String message) {
         super(message);

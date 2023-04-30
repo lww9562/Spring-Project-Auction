@@ -11,7 +11,7 @@ import org.koreait.controllers.users.JoinForm;
 import org.koreait.entities.Products;
 import org.koreait.entities.Users;
 import org.koreait.models.Product.*;
-import org.koreait.models.user.UserSaveService;
+import org.koreait.models.user.UserJoinService;
 import org.koreait.repositories.ProductRepository;
 import org.koreait.repositories.UsersRepository;
 import org.mockito.Mock;
@@ -43,7 +43,7 @@ public class ProductTest {
     @Autowired
     private ProductDeleteService deleteService;
     @Autowired
-    private UserSaveService userSaveService;
+    private UserJoinService userJoinService;
     @Autowired
     private ProductRepository productRepository;
     @Autowired
@@ -54,7 +54,6 @@ public class ProductTest {
 
     @BeforeEach
     public void init(){
-
         productForm = ProductForm.builder()
                 .id(1L)
                 .prSubject("제목")
@@ -79,6 +78,7 @@ public class ProductTest {
     @WithMockUser("user1")
     void saveSuccessTest(){
         assertDoesNotThrow(()->{
+            saveService.save(productForm);
             log.info(productForm.toString());
             saveService.save(productForm);
             log.info(productRepository.findById(1L).toString());
@@ -92,6 +92,7 @@ public class ProductTest {
         assertThrows(ProductValidationException.class,()->{
             productForm.setPrSubject(null);
             saveService.save(productForm);
+            log.info(productForm.toString());
         });
     }
     @Test
@@ -149,6 +150,7 @@ public class ProductTest {
             productForm.setMode("update");
             productForm.setPrSubject("(수정)제목");
             saveService.save(productForm);
+            log.info(productForm.toString());
         });
     }
     @Test
@@ -157,6 +159,8 @@ public class ProductTest {
     void listTest(){
         assertDoesNotThrow(()->{
             saveService.save(productForm);
+            listService.gets();
+            log.info(listService.gets().toString());
             List<Products> products = listService.gets();
             log.info(products.toString());
         });
@@ -180,12 +184,14 @@ public class ProductTest {
             saveService.save(productForm);
             log.info(productForm.toString());
             deleteService.delete(productForm.getId());
+            listService.gets();
+            log.info(listService.gets().toString());
 
             List<Products> products = listService.gets();
             log.info(products.toString());
         });
     }
-
+    /* - product와 user가 아닌, bidder / seller 와 매핑되어있습니다
     @Test
     @DisplayName("게시글 추가시 Users의 정보도 함께 출력되면 예외 발생 x")
     @WithMockUser("user1")
@@ -202,6 +208,5 @@ public class ProductTest {
         }); //기능을 추가해야함. 지금은 안됨
     }
 
-
-
+     */
 }

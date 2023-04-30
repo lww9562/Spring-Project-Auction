@@ -1,1 +1,45 @@
-게시판 목록 페이지
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/boardlist.css}">
+</head>
+
+<body>
+<div class="container">
+	<h1>게시글 목록</h1>
+
+	<br/><br/><br/>
+
+	<div id="mainHide">
+		<table class="board_table">
+			<thead>
+			<tr>
+				<th class="th_num">번호</th>
+				<th class="th_subject">제목</th>
+				<th class="th_writer">판매자</th>
+				<th class="th_price">현재 가격</th>
+				<th class="th_regDt">작성날짜</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="board : ${list}" th:object="${board}">
+				<td class="td_num" th:text="*{id}"></td>
+				<td class="td_subject">
+					<a th:href="@{/product/view/{id}(id=*{id})}" th:text="*{prSubject}"></a>
+				</td>
+				<td class="td_createdBy" th:text="*{createdBy}"></td>
+				<td class="td_price" th:text="*{endPrice}"></td>
+				<td class="td_regDt" th:text="*{#temporals.format(regDt, 'yyyy-MM-dd HH:mm:ss')}"></td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+	<div>
+		<a th:href="@{/product/write}">글쓰기</a>
+	</div>
+</div>
+<br/>
+
+</body>
+</html>

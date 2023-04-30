@@ -1,0 +1,63 @@
+	a:link {
+		color: black;
+		text-decoration: none;
+	}
+	a:visited {
+		color: black;
+		text-decoration: none;
+	}
+	.board_table {
+		margin-left:auto;
+		margin-right:auto;
+		font-size: 13px;
+		width: 80%;
+		border-top: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+	}
+	.board_table th {
+		text-align: center;
+	}
+	.board_table td {
+		text-align: center;
+	}
+
+	.th_num{
+		width : 50px;
+		text-align:center;
+	}
+
+	.th_subject {
+		width : 400px;
+		text-align:center;
+	}
+
+	.th_writer {
+    	width : 10px;
+    	text-align:right;
+    }
+
+    .th_price {
+    	width : 10px;
+    	text-align:right;
+    }
+
+	.th_regDt{
+		width : 200px;
+		text-align:right;
+	}
+
+
+
+	.td_num{
+		width : 50px;
+		text-align:center;
+	}
+
+	.td_subject{
+		width : 400px;
+		text-aligh:center;
+	}
+	.td_regDt{
+		width : 200px;
+		text-align:right;
+	}

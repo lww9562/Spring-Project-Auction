@@ -1,6 +1,8 @@
 package org.koreait.controllers.products;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,17 +14,19 @@ import org.modelmapper.ModelMapper;
 @Builder
 @NoArgsConstructor @AllArgsConstructor
 public class ProductForm {
+    private String writer;  //작성자 추가
     private Long id;
     private String mode;
     @NotBlank
     private String prSubject;
     @NotBlank
     private String prContent;
-    @NotBlank
+    @NotNull
     private Long startPrice;
-    @NotBlank
+    @NotNull
     private Long risingPrice;
     private Long baroPrice;
+
 
     public static Products of(ProductForm productForm) {
         return new ModelMapper().map(productForm, Products.class);
