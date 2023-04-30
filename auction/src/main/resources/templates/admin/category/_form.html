@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<th:block th:fragment="form" th:object="${categoryForm}">
+		<div class="error global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+		<dl>
+			<dt>카테고리 ID</dt>
+			<dd>
+				<input type="text" name="cateId" th:field="*{cateId}">
+				<div class='error' th:each="err : ${#fields.errors('cateId')}" th:text="${err}"></div>
+			</dd>
+		</dl>
+
+		<dl>
+			<dt>사용여부</dt>
+			<dd>
+				<input type="radio" name="use" value="true" id="use_o" th:field="*{use}" class="radio">
+				<label for="use_o">사용</label>
+
+				<input type="radio" name="use" value="false" id="use_x" th:field="*{use}" class="radio">
+				<label for="use_o">사용 안함</label>
+				<div class="error" th:each="err : ${#fields.errors('use')}" th:text="${err}"></div>
+			</dd>
+		</dl>
+
+		<dl>
+			<dt>카테고리 이름</dt>
+			<dd>
+				<input type="text" name="cateNm" th:field="*{cateNm}">
+				<div class="error" th:each="err : ${#fields.errors('cateId')}" th:text="${err}"></div>
+			</dd>
+		</dl>
+
+		<dl>
+			<dt>순서</dt>
+			<dd>
+				<input type="number" name="orderNo" th:field="*{orderNo}">
+			</dd>
+		</dl>
+	</th:block>
+</html>
