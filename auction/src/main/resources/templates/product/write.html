@@ -27,7 +27,7 @@
 				<dd valgn="top">
 					<select style="width: 150px;">
 						<option value="">카테고리를 선택하세요</option>
-						<option th:each="category : ${categoryMap}" th:value="${category.key}" th:text="${category.value}"/>
+						<option th:each="category : ${categoryMap}" th:value="*{categoryId}" th:text="${category.value}"/>
 					</select>
 				</dd>
 			</dl>

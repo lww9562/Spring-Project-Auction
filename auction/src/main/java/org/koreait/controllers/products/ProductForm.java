@@ -27,8 +27,8 @@ public class ProductForm {
     @NotNull
     private Long risingPrice;
     private Long baroPrice;
-    @NotBlank
-    private Categories category;
+    @NotNull
+    private Long categoryId;
 
 
     public static Products of(ProductForm productForm) {
