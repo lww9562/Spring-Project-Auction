@@ -8,6 +8,8 @@ import org.koreait.models.Product.ProductInfoService;
 import org.koreait.models.Product.ProductListService;
 import org.koreait.models.Product.ProductSaveService;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 @Controller
@@ -70,6 +73,7 @@ public class ProductController {
     }
     @GetMapping("/list") //게시글 목록 이동
     public String list(Model model) {
+
         List<Products> list = listService.gets();
 
         model.addAttribute("list", list);
