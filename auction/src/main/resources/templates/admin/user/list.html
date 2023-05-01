@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{admin/layouts/main}">
+
+<head>
+	<style>
+		table {
+			margin-left:auto;
+			margin-right:auto;
+			font-size: 13px;
+			width: 80%;
+			border-top: 1px solid #ccc;
+			border-bottom: 1px solid #ccc;
+		}
+
+		td {
+  			text-align: center;
+		}
+
+		button{
+			width:100%;
+		}
+	</style>
+</head>
+
+	<section layout:fragment="content" th:object="${userList}">
+		<table>
+			<col width="50"><col width="100"><col width="100">
+			<col width="150"><col width="200"><col width="50"><col width="100"><col width="100">
+			<tr>
+				<th>NO</th>
+				<th>ID</th>
+				<th>NAME</th>
+				<th>PHONE</th>
+				<th>EMAIL</th>
+				<th>ROLE</th>
+				<th>MONEY</th>
+				<th>회원정보 변경</th>
+			</tr>
+
+			<tr th:each="user : ${userList}" th:object="${user}">
+				<td th:text="*{userNo}"></td>
+				<td th:text="*{userId}"></td>
+				<td th:text="*{userNm}"></td>
+				<td th:text="*{mobile}"></td>
+				<td th:text="*{email}"></td>
+				<td th:text="*{userType}"></td>
+				<td align="right" th:text="*{money}"></td>
+				<td align="center"><button id="modify">변경</button></td>
+			</tr>
+
+		</table>
+
+	</section>
+
+</html>
