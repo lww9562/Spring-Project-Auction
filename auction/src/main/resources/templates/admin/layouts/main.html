@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
+
 		<meta name="_csrf" th:content="${_csrf.token}">
 		<meta name="_csrf_header" th:content="${_csrf.headerName}">
 		<title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
@@ -11,14 +12,32 @@
 		<script th:src="@{/js/common.js}"></script>
 		<script th:each="jsFile : ${addScript}" th:src="@{/js/{file}.js(file=${jsFile})}"></script>
 		<th:block layout:fragment="addScript"></th:block>
+
+		<style>
+			aside {
+				display : table-cell;
+				width : 15%;
+				min-width : 200px;
+				background-color : #B9CEAC;
+				vertical-align: top;
+				margin-left : 20px;
+				padding-bottom:100%;
+			}
+
+			#main_content {
+				display:table-cell;
+				width: 85%;
+				padding-left: 10%;
+			}
+		</style>
+
 	</head>
 
 	<body>
 		<header th:replace="~{admin/outlines/header::common}"></header>
 		<main>
-			<aside th:replace="~{admin/outlines/side::menus}"></aside>
+			<aside id="sidebar" th:replace="~{admin/outlines/side::menus}"></aside>
 
-			<!-- 이곳이 메인 부분 -> 이곳에 넣어주여야 함 -->
 			<section id="main_content" layout:fragment="content"></section>
 		</main>
 	</body>
