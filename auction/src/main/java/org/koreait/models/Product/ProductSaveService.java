@@ -2,14 +2,8 @@ package org.koreait.models.Product;
 
 import lombok.RequiredArgsConstructor;
 import org.koreait.controllers.products.ProductForm;
-import org.koreait.entities.Bidders;
-import org.koreait.entities.Products;
-import org.koreait.entities.Sellers;
-import org.koreait.entities.Users;
-import org.koreait.repositories.BiddersRepository;
-import org.koreait.repositories.ProductRepository;
-import org.koreait.repositories.SellersRepository;
-import org.koreait.repositories.UsersRepository;
+import org.koreait.entities.*;
+import org.koreait.repositories.*;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 
@@ -23,6 +17,8 @@ public class ProductSaveService {
     private final UsersRepository usersRepository;
     private final ProductSaveValidator validator;
     private final BiddersRepository biddersRepository;
+
+    private final CategoryRepository categoryRepository;
 
     public void save(ProductForm productForm){
         save(productForm, null);
@@ -38,20 +34,31 @@ public class ProductSaveService {
         //게시글 수정
         Products products = null;
 
+        Categories categories = categoryRepository.findById(productForm.getCategoryId()).orElse(null);
+        System.out.println("============================================");
+        System.out.println(categories);
+        System.out.println("============================================");
+
         String mode = productForm.getMode();
         Long id = productForm.getId();
+        System.out.println("Before");
         if (mode != null && mode.equals("update") && id != null) {
             products = repository.findById(id).orElse(null);
             products.setPrSubject(productForm.getPrSubject());
             products.setPrContent(productForm.getPrContent());
+            products.setCategories(categories);
         }
 
+        System.out.println("============================================");
+        System.out.println(productForm);
+        System.out.println("============================================");
         if (products == null) { // 게시글 추가
             products = productForm.of(productForm);
             repository.save(products);
             products.setEndPrice(productForm.getStartPrice());
             System.out.println(products.getCreatedBy());
             products.setSellers(sellersRepository.findByUser(usersRepository.findByUserId(products.getCreatedBy())));
+            products.setCategories(categories);
         }
 
 //        List<Bidders> bidders = biddersRepository.findByProductOrderByEndPriceDesc(products); // 해당 상품에 대한 입찰 정보를 내림차순으로 가져옴

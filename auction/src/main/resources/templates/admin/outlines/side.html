@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<aside th:fragment="menus">
+		<ul class="sidebar">
+			<a class="sidebar_name" th:href="@{/admin/user}" style="font-size:2.0em;">
+				<div>
+					<i style="margin-left: 15px;"></i>
+					<span><h5>회원정보 관리</h5></span>
+				</div>
+			</a>
+			<a class="sidebar_name" th:href="@{/admin/products}" style="font-size:2.0em;">
+				<div>
+					<i style="margin-left: 15px;"></i>
+					<span><h5>판매물품 관리</h5></span>
+				</div>
+			</a>
+			<a class="sidebar_name" th:href="@{/admin/category/register}" style="font-size:2.0em;">
+				<div>
+					<i style="margin-left: 15px;"></i>
+					<span><h5>카테고리 관리</h5></span>
+				</div>
+			</a>
+		</ul>
+	</aside>
+</html>

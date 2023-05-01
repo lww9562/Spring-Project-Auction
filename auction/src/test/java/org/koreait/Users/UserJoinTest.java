@@ -26,7 +26,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -42,13 +41,8 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
-import static org.hamcrest.Matchers.containsString;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 
 
 @TestPropertySource(locations = "classpath:application-test.properties")
@@ -56,7 +50,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 @Transactional
 @AutoConfigureMockMvc(addFilters = false)
 @Log
-public class UserTest {
+public class UserJoinTest {
 	@Autowired
 	private UsersRepository usersRepository;
 
@@ -217,7 +211,6 @@ public class UserTest {
 	@WithMockUser("user01")
 	void duplicatedIdCheckTest() throws Exception {
 		joinService.save(joinForm);
-		System.out.println("여기서부터 본 테스트");
 
 		mockMvc.perform(post("/user/join")
 						.param("userId", joinForm.getUserId())

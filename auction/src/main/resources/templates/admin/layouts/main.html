@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+
+		<meta name="_csrf" th:content="${_csrf.token}">
+		<meta name="_csrf_header" th:content="${_csrf.headerName}">
+		<title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+		<link rel="stylesheet" type="text/css" th:each="cssFile : ${addCss}" th:href="@{/css/{file}.css(file=${cssFile})}">
+		<th:block layout:fragment="addCss"></th:block>
+		<script th:src="@{/js/common.js}"></script>
+		<script th:each="jsFile : ${addScript}" th:src="@{/js/{file}.js(file=${jsFile})}"></script>
+		<th:block layout:fragment="addScript"></th:block>
+
+		<style>
+			aside {
+				display : table-cell;
+				width : 15%;
+				min-width : 200px;
+				background-color : #B9CEAC;
+				vertical-align: top;
+				margin-left : 20px;
+				padding-bottom:100%;
+			}
+
+			#main_content {
+				display:table-cell;
+				width: 85%;
+				padding-left: 10%;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<header th:replace="~{admin/outlines/header::common}"></header>
+		<main>
+			<aside id="sidebar" th:replace="~{admin/outlines/side::menus}"></aside>
+
+			<section id="main_content" layout:fragment="content"></section>
+		</main>
+	</body>
+
+</html>

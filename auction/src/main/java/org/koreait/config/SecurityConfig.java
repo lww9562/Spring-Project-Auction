@@ -31,6 +31,7 @@ public class SecurityConfig {
 
 		http.authorizeHttpRequests()
 				.requestMatchers("/mypage/**").authenticated()
+				.requestMatchers("/product/write").authenticated()
 				//로그인한 회원만 가능한 URL 패턴
 				.requestMatchers("/admin/**").hasAuthority("ADMIN")
 				//권한이 ADMIN인 사용자만 접근 가능한 URL 패턴

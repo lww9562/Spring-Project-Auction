@@ -9,10 +9,12 @@ import org.junit.jupiter.api.Test;
 import org.koreait.controllers.products.ProductForm;
 import org.koreait.controllers.users.JoinForm;
 import org.koreait.controllers.users.UserInfoService;
+import org.koreait.entities.Bidders;
 import org.koreait.entities.Products;
 import org.koreait.entities.Sellers;
 import org.koreait.entities.Users;
 import org.koreait.models.Product.*;
+import org.koreait.models.bidder.BidderSaveService;
 import org.koreait.models.user.UserJoinService;
 import org.koreait.repositories.ProductRepository;
 import org.koreait.repositories.UsersRepository;
@@ -20,6 +22,7 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -53,6 +56,8 @@ public class ProductTest {
     private UsersRepository usersRepository;
     @Autowired
     private UserInfoService userInfoService;
+    @Autowired
+    private BidderSaveService bidderSaveService;
 
     private ProductForm productForm;
 
@@ -64,10 +69,10 @@ public class ProductTest {
                 .id(1L)
                 .prSubject("제목")
                 .prContent("내용")
+                .categoryId(1L)
                 .startPrice(123L)
                 .risingPrice(13L)
                 .baroPrice(123L)
-                .category("가전제품")
                 .build();
 
         joinForm = JoinForm.builder()
@@ -219,10 +224,34 @@ public class ProductTest {
 
         }); //기능을 추가해야함. 지금은 안됨
     }
-    @Test
-    @DisplayName("물품 구매시 게시글의 구매자와 일치하면 예외발생 x")
-    void bidderJoinTest(){
+//    @Test
+//    @DisplayName("물품 구매시 게시글의 구매자와 일치하면 예외발생 x")
+//    void bidderJoinTest(){
+//
+//    }
 
+    @Test
+    @DisplayName("사용자가 보유한 money가 입찰가격보다 적으면 예외 발생")
+    @WithMockUser("user1")
+    void bitterTest(){
+        assertDoesNotThrow(()->{
+            userJoinService.save(joinForm);
+            saveService.save(productForm);
+            Users user= usersRepository.findByUserId(joinForm.getUserId());
+            Products products =  infoService.get(productForm.getId());
+            System.out.println(user);
+
+            Bidders bidder = user.getBidder();
+
+            bidder.setBidProduct(products);
+
+            bidder.getUser().setMoney(10000L);
+
+            bidderSaveService.saveBidder(bidder.getBidderNo());
+
+            log.info(user.getMoney().toString());
+
+        });
     }
 
 

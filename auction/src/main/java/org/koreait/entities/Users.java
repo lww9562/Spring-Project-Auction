@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.koreait.constants.UserType;
 
 @Data @Builder @Entity
@@ -32,15 +33,19 @@ public class Users extends BaseEntity {
 	@Column(length=11)
 	private String mobile;			//전화번호
 
+	@Column(length=20)
+	@ColumnDefault("0")
+	private Long money;
+
 	@Enumerated(value = EnumType.STRING)
 	@Column(length=20, nullable = false)
 	private UserType userType = UserType.USER;	//권한 - 기본값 : USER
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="bidderNo")
 	private Bidders bidder;
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="sellerNo")
 	private Sellers seller;
 }

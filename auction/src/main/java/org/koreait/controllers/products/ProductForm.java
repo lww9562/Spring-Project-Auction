@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.koreait.entities.Categories;
 import org.koreait.entities.Products;
 import org.modelmapper.ModelMapper;
 
@@ -26,12 +27,15 @@ public class ProductForm {
     @NotNull
     private Long risingPrice;
     private Long baroPrice;
-    @NotBlank
-    private String category;
+    @NotNull
+    private Long categoryId;
 
 
     public static Products of(ProductForm productForm) {
-        return new ModelMapper().map(productForm, Products.class);
+        Products products= new ModelMapper().map(productForm, Products.class);
+        System.out.println("============createdby==============");
+        System.out.println(products.getCreatedBy());
+        return products;
     }
 
 }

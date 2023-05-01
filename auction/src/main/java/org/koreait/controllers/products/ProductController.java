@@ -3,14 +3,21 @@ package org.koreait.controllers.products;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.koreait.controllers.users.UserInfo;
+import org.koreait.entities.Bidders;
+import org.koreait.entities.Categories;
 import org.koreait.entities.Products;
 import org.koreait.models.Product.ProductDeleteService;
 import org.koreait.models.Product.ProductInfoService;
 import org.koreait.models.Product.ProductListService;
 import org.koreait.models.Product.ProductSaveService;
+import org.koreait.models.bidder.BidderSaveService;
+import org.koreait.repositories.CategoryRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -21,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.awt.print.Pageable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/product")
@@ -30,17 +38,24 @@ public class ProductController {
     private final ProductListService listService;
     private final ProductInfoService infoService;
     private final ProductSaveService saveService;
+    private final CategoryRepository categoryRepository;
+    private final BidderSaveService bidderSaveService;
 
 
     @GetMapping("/write") //게시글 작성 페이지 이동
     public String write(Model model){
-        ProductForm  productForm = new ProductForm();
+        ProductForm productForm = new ProductForm();
         model.addAttribute("productForm",productForm);
+
+        List<Categories> categories = categoryRepository.findAll();
+        model.addAttribute("categoryMap", categories.stream().collect(Collectors.toMap(Categories::getCateId, Categories::getCateNm)));
+
+
         return "product/write";
     }
 
     @PostMapping("/save")
-    public String save(@Valid ProductForm productForm, Errors errors, HttpSession session){
+    public String save(@Valid ProductForm productForm, Errors errors){
         try{
             saveService.save(productForm, errors);
         }catch (Exception e){
@@ -94,5 +109,12 @@ public class ProductController {
 
         return "redirect:/product/list";
     }
+    @GetMapping("/bidder/{id}")
+    public String BidderSave(@PathVariable Long id){
+        bidderSaveService.saveBidder(id);
+
+        return "redirect:/product/view";
+    }
+
 
 }

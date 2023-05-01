@@ -41,8 +41,13 @@ public class Products extends BaseUserEntity{
     @ManyToOne
     //하나의 Sellers는 여러 판매 물품을 등록할 수  있으므로, @ManyToOne 매핑
     @JoinColumn(name="seller")
+    @ToString.Exclude
     private Sellers sellers;
 
-    @Column
-    private String category;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="category")
+    @ToString.Exclude
+    private Categories categories;
+
 }
