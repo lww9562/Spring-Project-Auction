@@ -1,10 +1,7 @@
 package org.koreait.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.koreait.constants.UserType;
 
@@ -43,9 +40,11 @@ public class Users extends BaseEntity {
 
 	@OneToOne
 	@JoinColumn
+	@ToString.Exclude
 	private Bidders bidder;
 
 	@OneToOne
 	@JoinColumn
+	@ToString.Exclude
 	private Sellers seller;
 }
