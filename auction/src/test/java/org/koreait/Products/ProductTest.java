@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.koreait.controllers.products.ProductForm;
 import org.koreait.controllers.users.JoinForm;
 import org.koreait.controllers.users.UserInfoService;
+import org.koreait.entities.Bidders;
 import org.koreait.entities.Products;
 import org.koreait.entities.Sellers;
 import org.koreait.entities.Users;
@@ -23,6 +24,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -67,6 +69,7 @@ public class ProductTest {
                 .startPrice(123L)
                 .risingPrice(13L)
                 .baroPrice(123L)
+                .categoryId(1L)
                 .build();
 
         joinForm = JoinForm.builder()
@@ -224,5 +227,28 @@ public class ProductTest {
 
     }
 
+    @Test
+    @DisplayName("사용자가 보유한 money가 입찰가격보다 적으면 예외 발생")
+    @WithMockUser("user1")
+    @WithUserDetails
+    void bitterTest(){
+        assertDoesNotThrow(()->{
+            userJoinService.save(joinForm);
+            saveService.save(productForm);
+            Users user= usersRepository.findByUserId(joinForm.getUserId());
+            Products products =  infoService.get(productForm.getId());
+
+            System.out.println(user);
+            System.out.println(products);
+
+            Bidders bidder = user.getBidder();
+            bidder.setBidProduct(products);
+            System.out.println(bidder);
+            bidder.getUser().setMoney(10000L);
+
+            log.info(user.getMoney().toString());
+
+        });
+    }
 
 }

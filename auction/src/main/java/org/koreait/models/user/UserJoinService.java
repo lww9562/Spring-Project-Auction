@@ -25,6 +25,9 @@ public class UserJoinService {
 
 		Users user = JoinForm.of(joinForm);
 
+		repository.saveAndFlush(user);
+
+
 		Sellers sellers = Sellers.builder()
 				.user(user)
 				.build();
@@ -36,9 +39,13 @@ public class UserJoinService {
 		String hash = passwordEncoder.encode(joinForm.getUserPw());
 		user.setUserPw(hash);
 
-		repository.saveAndFlush(user);
 		sellersRepository.saveAndFlush(sellers);
 		biddersRepository.saveAndFlush(bidders);
+
+		user.setBidder(bidders);
+		user.setSeller(sellers);
+		repository.saveAndFlush(user);
+
 		repository.flush();
 	}
 }
