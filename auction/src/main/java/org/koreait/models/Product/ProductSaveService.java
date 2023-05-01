@@ -48,7 +48,9 @@ public class ProductSaveService {
 
         if (products == null) { // 게시글 추가
             products = productForm.of(productForm);
+            repository.save(products);
             products.setEndPrice(productForm.getStartPrice());
+            System.out.println(products.getCreatedBy());
             products.setSellers(sellersRepository.findByUser(usersRepository.findByUserId(products.getCreatedBy())));
         }
 

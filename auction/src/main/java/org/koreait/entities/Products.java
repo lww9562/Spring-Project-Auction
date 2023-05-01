@@ -34,7 +34,7 @@ public class Products extends BaseUserEntity{
 
     //private String userNm;      //작성자 - 해당 부분은 아래 sellerId로 변경해둘게요
 
-    @OneToMany(mappedBy="bidderNo")
+    @OneToMany(mappedBy="bidProduct")
     //하나의 판매물품에 대해서는 여러 구매자(입찰자)가 존재할 수 있으므로, @OneToMany 매핑
     private List<Bidders> bidders = new ArrayList<>();
 
@@ -43,6 +43,6 @@ public class Products extends BaseUserEntity{
     @JoinColumn(name="seller")
     private Sellers sellers;
 
-    @Column(nullable = false)
+    @Column
     private String category;
 }

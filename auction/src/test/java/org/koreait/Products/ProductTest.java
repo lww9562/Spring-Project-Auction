@@ -153,7 +153,7 @@ public class ProductTest {
         assertThrows(ProductValidationException.class,()->{
             saveService.save(productForm);
             log.info(productForm.toString());
-            productForm.setId(3L);
+            productForm.setId(4L);
             productForm.setMode("update");
             productForm.setPrSubject("(수정)제목");
             saveService.save(productForm);
