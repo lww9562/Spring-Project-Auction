@@ -42,10 +42,10 @@ public class Users extends BaseEntity {
 	private UserType userType = UserType.USER;	//권한 - 기본값 : USER
 
 	@OneToOne
-	@JoinColumn(name="bidderNo")
+	@JoinColumn
 	private Bidders bidder;
 
 	@OneToOne
-	@JoinColumn(name="sellerNo")
+	@JoinColumn
 	private Sellers seller;
 }

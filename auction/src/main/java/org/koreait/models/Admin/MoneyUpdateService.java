@@ -10,11 +10,16 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UsersInfoService {
-	private final UsersRepository usersRepository;
+public class MoneyUpdateService {
 
-	public void getList(List<Users> userList, Errors errors){
+	private final UsersRepository repository;
+	public void update(Long userNo, Long money){
 
+		Users user = repository.findById(userNo).orElse(null);
+
+		user.setMoney(money);
+
+		repository.saveAndFlush(user);
 
 	}
 }

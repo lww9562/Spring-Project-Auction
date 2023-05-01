@@ -3,6 +3,7 @@
 
 <head>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/boardlist.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/productlist.css}">
 </head>
 
 <body>
@@ -11,35 +12,72 @@
 
 	<br/><br/><br/>
 
-	<div id="mainHide">
-		<table class="board_table">
-			<thead>
-			<tr>
-				<th class="th_num">번호</th>
-				<th class="th_subject">제목</th>
-				<th class="th_writer">판매자</th>
-				<th class="th_price">현재 가격</th>
-				<th class="th_regDt">작성날짜</th>
-			</tr>
-			</thead>
-			<tbody>
-			<tr th:each="board : ${list}" th:object="${board}">
-				<td class="td_num" th:text="*{id}"></td>
-				<td class="td_subject">
-					<a th:href="@{/product/view/{id}(id=*{id})}" th:text="*{prSubject}"></a>
-				</td>
-				<td class="td_createdBy" th:text="*{createdBy}"></td>
-				<td class="td_price" th:text="*{endPrice}"></td>
-				<td class="td_regDt" th:text="*{#temporals.format(regDt, 'yyyy-MM-dd HH:mm:ss')}"></td>
-			</tr>
-			</tbody>
-		</table>
-	</div>
 	<div>
-		<a th:href="@{/product/write}">글쓰기</a>
+		<div class="categorybottom">
+			<div class="catewrapper">
+				<div class="cate">
+					<ul>
+						<li>
+							<button class="cateimg">전체</button>
+						</li>
+						<li>
+							<button class="cateimg">카테1</button>
+						</li>
+						<li>
+							<button class="cateimg">카테2</button>
+						</li>
+						<li>
+							<button class="cateimg">카테3</button>
+						</li>
+						<li>
+							<button class="cateimg">카테4</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="catemain">
+			<div class="catefont">품목</div>
+			<ul class="catemenu">
+				<li class="menubtn">인기순</li>
+				<li class="menubtn">마감순</li>
+				<li class="menubtn">최신순</li>
+				<li class="menubtn">가격순</li>
+			</ul>
+		</div>
+
+		<div class="maincatelist">
+
+
+			<div class="product_link">
+				<div class="product_items" th:each="board : ${list}" th:object="${board}">
+					<span style="display:none;" th:text="*{id}">물품번호(숨김)</span>
+
+					<a th:href="@{/product/view/{id}(id=*{id})}">
+						<dl>
+							<dt><img th:src="@{*{imgPath}}" class="item_img"></dt>
+							<label>상품이름</label>
+							<dd class="product_subject" th:text="*{prSubject}">상품이름</dd>
+							<label>등록가</label>
+							<dd class="product_price" th:text="*{startPrice}">등록가</dd>
+							<label>즉시구매가</label>
+							<dd class="product_price" th:text="*{baroPrice}">즉시구매가</dd>
+						</dl>
+					</a>
+				</div>
+			</div>
+
+
+
+
+		</div>
+
 	</div>
-</div>
-<br/>
+
+	<br/>
+
 
 </body>
+
 </html>

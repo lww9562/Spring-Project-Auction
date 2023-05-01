@@ -20,7 +20,8 @@
 		<br>
 		<br>
 		<br>
-		<form method="post" th:action="@{/product/save}" autocomplete="off" id="write" th:object="${productForm}" name="write">
+		<form method="post" th:action="@{/product/save}" autocomplete="off" id="write" th:object="${productForm}" name="write"
+			  enctype="multipart/form-data">
 			<div class="error global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
 			<dl>
 				<dt>카테고리</dt>
@@ -69,7 +70,7 @@
 						<div class="imgs_wrap"></div>
 					</div>
 					<div class="form-group">
-						<input type="file" id="input_imgs" name="uploadFile" multiple />
+						<input type="file" id="input_imgs" name="input_imgs" multiple />
 					</div>
 
 				</dd>

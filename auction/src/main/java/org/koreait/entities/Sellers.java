@@ -13,10 +13,10 @@ public class Sellers {
 	@GeneratedValue
 	private Long sellerNo;
 
-	@OneToOne(mappedBy="seller")
+	@OneToOne
 	private Users user;
 
-	@OneToMany(mappedBy="sellers")
+	@OneToMany
 	private List<Products> sellProducts = new ArrayList<>();
 
 	//추후에 추가될 정보가 존재할 수 있음

@@ -26,7 +26,7 @@ public class AdminController {
 		List<Users> userList = usersRepository.findAll();
 
 		model.addAttribute("userList", userList);
-
+		model.addAttribute("addScript", new String[] { "admin/user"});
 		return "admin/user/list";
 	}
 }

@@ -30,7 +30,7 @@
 </head>
 
 	<section layout:fragment="content" th:object="${userList}">
-		<table>
+		<table class="user_list">
 			<col width="50"><col width="100"><col width="100">
 			<col width="150"><col width="200"><col width="50"><col width="200"><col width="150">
 			<tr>
@@ -52,9 +52,9 @@
 				<td th:text="*{email}"></td>
 				<td th:text="*{userType}"></td>
 				<td align="right">
-					<input type="text" th:value="*{money}">
+					<input type="text" th:value="*{money}" th:data-user-no="*{userNo}" class='money'>
 				</td>
-				<td align="center"><button id="modify">변경</button></td>
+				<td align="center"><button type='button' class="modify">변경</button></td>
 			</tr>
 
 		</table>

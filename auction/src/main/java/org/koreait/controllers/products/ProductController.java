@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.print.Pageable;
 import java.util.List;
@@ -49,9 +50,9 @@ public class ProductController {
     }
 
     @PostMapping("/save")
-    public String save(@Valid ProductForm productForm, Errors errors){
+    public String save(@Valid ProductForm productForm, Errors errors , MultipartFile input_imgs){
         try{
-            saveService.save(productForm, errors);
+            saveService.save(productForm, errors, input_imgs);
         }catch (Exception e){
             errors.reject(e.getMessage());
         }

@@ -1,0 +1,146 @@
+html{
+
+    margin: 0 150px;
+
+}
+
+
+.categorybottom{
+    padding: 0 16px;
+    position: relative;
+    box-sizing: border-box;
+    align-items: center;
+
+}
+
+.catewrapper{
+    top: 22px;
+    position: sticky;
+    z-index: 10;
+    background-color: #fff;
+    padding: 8px 0;
+
+
+
+}
+
+.cate{
+
+    display: flex;
+    justify-content: center;
+
+}
+
+ul{
+
+    display: flex;
+    position: relative;
+    gap: 24px;
+    background-color: #fff;
+    padding: 0 16px;
+    height: 100%;
+
+    max-width: 992px;
+
+}
+
+li{
+
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    max-width: 200px;
+    vertical-align: middle;
+    white-space: normal;
+
+}
+
+.cateimg{
+    border: 0;
+    background-color: #ffffff00;
+    cursor: pointer;
+    min-width: 64px;
+    height: 58px;
+    overflow: hidden;
+
+
+}
+
+.catemain{
+    line-height: 34px;
+    letter-spacing: -.51px;
+    font-size: 24px;
+    font-weight: 700;
+    padding-top: 40px;
+    padding-bottom: 16px;
+    display:flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #f2f4f6;
+}
+
+
+.catefont{
+
+    letter-spacing: 0;
+    color: #495057;
+    margin-left: 8px;
+
+}
+
+.catemenu{
+
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    line-height: 18px;
+    letter-spacing: 0;
+    font-size: 12px;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.menubtn{
+    display: inline;
+    align-items: center;
+    margin-right: 8px;
+    cursor: pointer;
+
+}
+
+.menubtn:hover{
+    color:red;
+}
+
+.maincatelist{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+
+.product_link{
+    display: inline-flex;
+    width:100%;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+
+.product_items{
+    width:calc(25% - 20px);
+    margin-left: 0px;
+    margin-right: 20px;
+    margin-bottom: 40px;
+
+}
+
+.item_img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

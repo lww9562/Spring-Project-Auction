@@ -32,7 +32,12 @@ public class Products extends BaseUserEntity{
 
     private Long endPrice;      //최종 가격
 
-    //private String userNm;      //작성자 - 해당 부분은 아래 sellerId로 변경해둘게요
+    //이미지 매핑
+    private String imgName;
+    private String imgPath;
+
+
+
 
     @OneToMany(mappedBy="bidderNo")
     //하나의 판매물품에 대해서는 여러 구매자(입찰자)가 존재할 수 있으므로, @OneToMany 매핑
@@ -41,9 +46,11 @@ public class Products extends BaseUserEntity{
     @ManyToOne
     //하나의 Sellers는 여러 판매 물품을 등록할 수  있으므로, @ManyToOne 매핑
     @JoinColumn(name="seller")
+    @ToString.Exclude
     private Sellers sellers;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="category")
+    @ToString.Exclude
     private Categories categories;
 }
