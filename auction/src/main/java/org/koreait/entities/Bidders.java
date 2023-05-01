@@ -17,7 +17,7 @@ public class Bidders {
 	@OneToOne(mappedBy="bidder")
 	private Users user;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="productNo")
 	private Products bidProduct;
 

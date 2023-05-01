@@ -35,9 +35,13 @@ public class ProductSaveService {
         Products products = null;
 
         Categories categories = categoryRepository.findById(productForm.getCategoryId()).orElse(null);
+        System.out.println("============================================");
+        System.out.println(categories);
+        System.out.println("============================================");
 
         String mode = productForm.getMode();
         Long id = productForm.getId();
+        System.out.println("Before");
         if (mode != null && mode.equals("update") && id != null) {
             products = repository.findById(id).orElse(null);
             products.setPrSubject(productForm.getPrSubject());
@@ -45,9 +49,15 @@ public class ProductSaveService {
             products.setCategories(categories);
         }
 
+        System.out.println("============================================");
+        System.out.println(productForm);
+        System.out.println("============================================");
         if (products == null) { // 게시글 추가
             products = productForm.of(productForm);
+            repository.save(products);
             products.setEndPrice(productForm.getStartPrice());
+            System.out.println(products.getCreatedBy());
+            sellersRepository.findBy
             products.setSellers(sellersRepository.findByUser(usersRepository.findByUserId(products.getCreatedBy())));
             products.setCategories(categories);
         }

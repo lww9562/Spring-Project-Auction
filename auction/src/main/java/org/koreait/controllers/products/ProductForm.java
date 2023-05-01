@@ -32,7 +32,10 @@ public class ProductForm {
 
 
     public static Products of(ProductForm productForm) {
-        return new ModelMapper().map(productForm, Products.class);
+        Products products= new ModelMapper().map(productForm, Products.class);
+        System.out.println("============createdby==============");
+        System.out.println(products.getCreatedBy());
+        return products;
     }
 
 }

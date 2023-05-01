@@ -32,12 +32,12 @@
 	}
 
 	.th_writer {
-    	width : 10px;
+    	width : 50px;
     	text-align:right;
     }
 
     .th_price {
-    	width : 10px;
+    	width : 50px;
     	text-align:right;
     }
 
@@ -47,17 +47,3 @@
 	}
 
 
-
-	.td_num{
-		width : 50px;
-		text-align:center;
-	}
-
-	.td_subject{
-		width : 400px;
-		text-aligh:center;
-	}
-	.td_regDt{
-		width : 200px;
-		text-align:right;
-	}

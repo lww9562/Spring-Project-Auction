@@ -9,13 +9,18 @@
 			margin-left:auto;
 			margin-right:auto;
 			font-size: 13px;
-			width: 80%;
+			width: 100%;
 			border-top: 1px solid #ccc;
 			border-bottom: 1px solid #ccc;
 		}
 
 		td {
   			text-align: center;
+		}
+
+		td input {
+			width : 80%;
+			text-align : right;
 		}
 
 		button{
@@ -27,7 +32,7 @@
 	<section layout:fragment="content" th:object="${userList}">
 		<table>
 			<col width="50"><col width="100"><col width="100">
-			<col width="150"><col width="200"><col width="50"><col width="100"><col width="100">
+			<col width="150"><col width="200"><col width="50"><col width="200"><col width="150">
 			<tr>
 				<th>NO</th>
 				<th>ID</th>
@@ -46,7 +51,9 @@
 				<td th:text="*{mobile}"></td>
 				<td th:text="*{email}"></td>
 				<td th:text="*{userType}"></td>
-				<td align="right" th:text="*{money}"></td>
+				<td align="right">
+					<input type="text" th:value="*{money}">
+				</td>
 				<td align="center"><button id="modify">변경</button></td>
 			</tr>
 

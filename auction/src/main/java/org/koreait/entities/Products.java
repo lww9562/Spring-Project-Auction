@@ -43,7 +43,7 @@ public class Products extends BaseUserEntity{
     @JoinColumn(name="seller")
     private Sellers sellers;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="category")
     private Categories categories;
 }
