@@ -85,7 +85,7 @@ public class ProductController {
     public String view(@PathVariable("id") Long id, Model model) {
 
         Products products = infoService.get(id);
-        model.addAttribute("Product", products);
+        model.addAttribute("product", products);
 
         return "product/view";
     }

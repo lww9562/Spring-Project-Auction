@@ -89,6 +89,8 @@ public class ProductSaveService {
             List<Products> productsList = sellers.getSellProducts();
             productsList.add(products);
             sellers.setSellProducts(productsList);
+            products.setSellers(sellers);
+            repository.saveAndFlush(products);
         }
 
 //        List<Bidders> bidders = biddersRepository.findByProductOrderByEndPriceDesc(products); // 해당 상품에 대한 입찰 정보를 내림차순으로 가져옴

@@ -1,1 +1,56 @@
-상세 페이지
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/main}">
+<head>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/details.css}">
+</head>
+<main layout:fragment="content" th:object="${product}">
+	<div id = "main-area" class="main">
+		<div class="article_header"></div>
+		<div class="article_container">
+			<div class="saleInfo">
+				<div class="ProductImage">
+					<img th:src="@{*{imgPath}}" class="image" width="380" height="auto" al="상품이미지" object-fit="contain">
+				</div>
+				<div class="product_area">
+					<div class="product_detail">
+						<div class="product_detail_box">
+							<div class="ProductCategory"></div>
+							<p class="ProductName">
+								<span th:text="*{prContent}">판매물품 제목</span>
+							</p>
+							<div class="ProductPrice">
+								<strong class="currentPrice" th:text="*{endPrice}">현재 판매가격</strong><br>
+								<strong class="risingPrice" th:text="*{risingPrice}">인상 입찰가격</strong><br>
+								<strong class="expireDate">남은 시간</strong>
+							</div>
+						</div>
+						<div class="CommercialDetail">
+							<div class="section">
+								<dl class="detail_list">
+									<dt class="list_title" th:text="*{sellers.user.userNm}">판매자</dt>
+									<dd class="list_detail">
+										<span class="seller_email" th:text="*{sellers.user.email}">이메일주소</span><br>
+										<span class="seller_mobile" th:text="*{sellers.user.mobile}">휴대전화번호</span>
+									</dd>
+								</dl>
+							</div>
+						</div>
+					</div>
+					<div class="PurchaseButton">
+						<button class="bid_btn">입찰</button>
+					</div>
+					<div class="BottomNotice"></div>
+				</div>
+			</div>
+			<div>
+				<div class="content">
+					<span th:text="*{prContent}">판매 물품 내용</span>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</main>
