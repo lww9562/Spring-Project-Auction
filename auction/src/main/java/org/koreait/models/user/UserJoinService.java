@@ -39,5 +39,6 @@ public class UserJoinService {
 		repository.saveAndFlush(user);
 		sellersRepository.saveAndFlush(sellers);
 		biddersRepository.saveAndFlush(bidders);
+		repository.flush();
 	}
 }

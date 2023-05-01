@@ -57,7 +57,6 @@ public class ProductSaveService {
             repository.save(products);
             products.setEndPrice(productForm.getStartPrice());
             System.out.println(products.getCreatedBy());
-            sellersRepository.findBy
             products.setSellers(sellersRepository.findByUser(usersRepository.findByUserId(products.getCreatedBy())));
             products.setCategories(categories);
         }

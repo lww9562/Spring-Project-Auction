@@ -34,7 +34,7 @@ public class Users extends BaseEntity {
 	private String mobile;			//전화번호
 
 	@Column(length=20)
-	@ColumnDefault("0L")
+	@ColumnDefault("0")
 	private Long money;
 
 	@Enumerated(value = EnumType.STRING)

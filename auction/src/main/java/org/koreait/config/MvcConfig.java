@@ -11,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
+@EnableJpaAuditing
 public class MvcConfig implements WebMvcConfigurer {
 	@Value("$(fileupload.path)")
 	private String fileUploadPath;
