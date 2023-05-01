@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.koreait.constants.UserType;
 
 @Data @Builder @Entity
@@ -31,6 +32,10 @@ public class Users extends BaseEntity {
 
 	@Column(length=11)
 	private String mobile;			//전화번호
+
+	@Column(length=20)
+	@ColumnDefault("0")
+	private Long money;
 
 	@Enumerated(value = EnumType.STRING)
 	@Column(length=20, nullable = false)
