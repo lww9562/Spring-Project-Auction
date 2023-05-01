@@ -94,8 +94,10 @@ public class ProductController {
     public String list(Model model) {
 
         List<Products> list = listService.gets();
+        List<String> cateNmList = categoryRepository.getAllCateNm();
 
         model.addAttribute("list", list);
+        model.addAttribute("cateNmList", cateNmList);
 
         return "product/list";
     }

@@ -16,21 +16,9 @@
 		<div class="categorybottom">
 			<div class="catewrapper">
 				<div class="cate">
-					<ul>
+					<ul th:each="cateNm : ${cateNmList}">
 						<li>
-							<button class="cateimg">전체</button>
-						</li>
-						<li>
-							<button class="cateimg">카테1</button>
-						</li>
-						<li>
-							<button class="cateimg">카테2</button>
-						</li>
-						<li>
-							<button class="cateimg">카테3</button>
-						</li>
-						<li>
-							<button class="cateimg">카테4</button>
+							<button class="cateimg" th:text="${cateNm}">전체</button>
 						</li>
 					</ul>
 				</div>
