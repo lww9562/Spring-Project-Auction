@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{admin/layouts/main}">
+
+<head>
+	<style>
+		table {
+			margin-left:auto;
+			margin-right:auto;
+			font-size: 13px;
+			width: 100%;
+			border-top: 1px solid #ccc;
+			border-bottom: 1px solid #ccc;
+		}
+
+		td {
+  			text-align: center;
+		}
+
+		td input {
+			width : 80%;
+			text-align : right;
+		}
+
+		button{
+			width:100%;
+		}
+	</style>
+</head>
+
+<section layout:fragment="content" th:object="${productsList}">
+	<table class="product_list">
+		<col width="50"><col width="100"><col width="100">
+		<col width="150"><col width="200"><col width="50"><col width="200"><col width="150">
+		<tr>
+			<th>NO</th>
+			<th>CATEGORY</th>
+			<th>SUBJECT</th>
+			<th>CREATEDBY</th>
+			<th>BUY-NOW PRICE</th>
+			<th>CURRENT PRICE</th>
+			<th>RISING PRICE</th>
+			<th>REGDT</th>
+		</tr>
+
+		<tr th:each="products : ${productsList}" th:object="${products}">
+			<td th:text="*{id}"></td>
+			<td th:text="*{categories.cateNm}"></td>
+			<td th:text="*{prSubject}"></td>
+			<td th:text="*{createdBy}"></td>
+			<td th:text="*{baroPrice}"></td>
+			<td th:text="*{endPrice}"></td>
+			<td th:text="*{risingPrice}"></td>
+			<td th:text="*{regDt}"></td>
+		</tr>
+
+	</table>
+
+</section>
+
+</html>

@@ -3,7 +3,7 @@
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	<header th:fragment="common">
 		<th:block sec:authorize="isAnonymous()">
-			<a th:href="@{/user}" th:text="#{user.join}"></a>
+			<a th:href="@{/user/join}" th:text="#{user.join}"></a>
 			<a th:href="@{/user/login}" th:text="#{user.login}"></a>
 		</th:block>
 

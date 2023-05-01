@@ -2,6 +2,8 @@ package org.koreait.controllers.admins.categories;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.koreait.entities.Bidders;
+import org.koreait.entities.Products;
 import org.koreait.models.Category.CategorySaveService;
 import org.koreait.repositories.CategoryRepository;
 import org.springframework.stereotype.Controller;
@@ -31,6 +33,7 @@ public class CategoryController {
 		model.addAttribute("categoryForm", categoryForm);
 		return "admin/category/register";
 	}
+	
 
 	@PostMapping
 	public String register(@Valid CategoryForm categoryForm, Errors errors){
