@@ -37,7 +37,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {	//로
 
 
 		//3. 성공시 이동 URL
-		String url = request.getContextPath();	// contextPath를 main페이지로 둘 것
+		String url = request.getContextPath()+"/main";	// contextPath를 main페이지로 둘 것
 		response.sendRedirect(url);
 
 		//UserInfo userinfo = (UserInfo) authentication.getPrincipal();

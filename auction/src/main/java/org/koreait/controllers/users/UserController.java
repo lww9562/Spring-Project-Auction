@@ -4,13 +4,14 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.koreait.models.user.UserJoinValidator;
 import org.koreait.models.user.UserJoinService;
+import org.springframework.security.authentication.AuthenticationTrustResolver;
+import org.springframework.security.authentication.AuthenticationTrustResolverImpl;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/user")
@@ -19,6 +20,7 @@ public class UserController {
 	private final UserJoinValidator validator;
 
 	private final UserJoinService saveService;
+	private final UserInfoService infoService;
 
 	@GetMapping("/join")
 	public String join(Model model) {
@@ -43,10 +45,20 @@ public class UserController {
 
 	@GetMapping("/login")
 	public String login(@CookieValue(required = false)String saveId, Model model){
+
 		if(saveId != null){
 			model.addAttribute("userId", saveId);
 			model.addAttribute("saveId", saveId);
 		}
-		return "user/login";
+		AuthenticationTrustResolver trustResolver = new AuthenticationTrustResolverImpl();
+		if (trustResolver.isAnonymous(SecurityContextHolder.getContext().getAuthentication())) {
+			return "user/login";
+		}
+		else {
+			return "redirect:/main";
+		}
+
+
 	}
+
 }
