@@ -5,6 +5,8 @@
 <head>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/details.css}">
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script th:src="@{/js/bid_button.js}"></script>
 </head>
 <main layout:fragment="content" th:object="${product}">
 	<div id = "main-area" class="main">
@@ -79,7 +81,7 @@
 						</div>
 					</div>
 					<div class="PurchaseButton">
-						<button class="bid_btn">입찰</button>
+						<button class="bid_btn" id="bid_btn" th:data-userid="${userId}" th:data-productid="${product.id}">입찰</button>
 					</div>
 					<div class="BottomNotice"></div>
 				</div>

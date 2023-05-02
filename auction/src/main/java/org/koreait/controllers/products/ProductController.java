@@ -15,6 +15,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -83,6 +84,14 @@ public class ProductController {
 
     @GetMapping("/view/{id}") //상세 페이지 이동
     public String view(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("addScript", new String[]{"bid_button"});
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDetails userDetails = (UserDetails)principal;
+
+        String userId = userDetails.getUsername();
+
+        model.addAttribute("userId", userId);
 
         Products products = infoService.get(id);
         model.addAttribute("product", products);
