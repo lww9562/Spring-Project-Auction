@@ -15,9 +15,9 @@ public class FileUploadController {
 	@GetMapping
 	public String upload(Model model) {
 		model.addAttribute("addScript", new String[]{"fileManager"});
+		System.out.println("업로드!");
 		return "file/upload";
 	}
-
 
 
 	@ResponseBody
