@@ -37,11 +37,9 @@ public class Products extends BaseUserEntity{
     private String imgPath;
 
 
-
-
-    @OneToMany(mappedBy="bidderNo")
     //하나의 판매물품에 대해서는 여러 구매자(입찰자)가 존재할 수 있으므로, @OneToMany 매핑
-    private List<Bidders> bidders = new ArrayList<>();
+    @ManyToMany(mappedBy = "productList")
+    private List<Bidders> bidderList = new	 ArrayList<>();
 
     @ManyToOne
     //하나의 Sellers는 여러 판매 물품을 등록할 수  있으므로, @ManyToOne 매핑
