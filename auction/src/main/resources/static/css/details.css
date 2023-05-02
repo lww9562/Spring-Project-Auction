@@ -64,28 +64,6 @@ width: 384px;
     box-sizing: border-box;
 }
 
-.PurchaseButton {
-    margin: 9px 0 5px;
-    display: block;
-
-}
-
-.bid_btn {
-    width: 154px;
-    height: 46px;
-
-    font-size: 14px;
-    line-height: 46px;
-    border-radius: 6px;
-    box-sizing: border-box;
-    font-weight: 700;
-    text-align: center;
-    vertical-align: top;
-    border: 0px solid #000000;
-    background: background-color:#eff0f2;
-    color: var(--skinBaseButtonDefaultColor);
-    color: var(--skinText676767);
-}
 
 
 .content {

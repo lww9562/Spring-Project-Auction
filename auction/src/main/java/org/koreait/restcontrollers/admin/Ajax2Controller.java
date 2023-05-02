@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/ajax")
 public class Ajax2Controller {
+
     @GetMapping
     public Users ajaxTest() {
 

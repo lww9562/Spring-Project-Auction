@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 window.addEventListener("DOMContentLoaded", function() { // DOM 트리 구축 완료 후
     const buttonEl = document.getElementById("button");
     const csrfEl = document.querySelector("meta[name='_csrf']");
@@ -58,4 +59,73 @@ window.addEventListener("DOMContentLoaded", function() { // DOM 트리 구축 �
         };
     });
     */
+=======
+window.addEventListener("DOMContentLoaded", function() {	// DOM 트리 구축 완료 후
+	const buttonEl = document.getElementById("button");
+	const csrfEl = document.querySelector("meta[name='_csrf']");
+	const csrfHeaderEl = document.querySelector("meta[name='_csrf_header']");
+
+	buttonEl.addEventListener("click", async function() {
+		try{
+			const data = await axios({
+				method: "POST",
+            	url : "/ajax/post",
+            	data : {
+            		key1 : "value1",
+            		key2 : "value2"
+            	},
+            	headers : {
+            		[csrfHeaderEl.content] : csrfEl.content,
+            		"content-type" : "application/x-www-form-urlencoded"
+            	}
+            });	// 반환값 : resolve의 매개변수 값
+            console.log(data);
+		} catch(err) {
+			console.error(err);	// 반환값 : reject에서 매개변수 값
+		}
+
+	});
+/*
+	const buttonEl = document.getElementById("button");
+	const ajaxDataEl = document.getElementById("ajax_data");
+	const csrfEl = document.querySelector("meta[name='_csrf']");
+	const csrfHeaderEl = document.querySelector("meta[name='_csrf_header']");
+
+
+
+	buttonEl.addEventListener("click", function() {
+		const xhr = new XMLHttpRequest();
+		//xhr.open("GET", "/ajax");
+		xhr.open("POST", "/ajax/post");
+		xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+		xhr.setRequestHeader(csrfHeaderEl.content, csrfEl.content);
+
+		xhr.send("key1=value1&key2=value2");
+
+
+		//xhr.send(null);
+
+		//xhr.responseType="json";
+		xhr.onreadystatechange = function(){
+			//응답 성공 시 처리
+			if(xhr.status == 200 && xhr.readyState == XMLHttpRequest.DONE){
+				//console.log(xhr.responseText);
+				//ajaxDataEl.innerHTML = xhr.responseText;
+				//const res = JSON.parse(xhr.responseText);
+				//console.log(res);
+				//console.log(xhr.response);
+				console.log(xhr.responseText);
+			}
+		};
+
+		xhr.onerror = function(err) {
+			console.error(err);
+		};
+
+		xhr.onabort = function(err) {
+			console.error(err);
+		};
+	});
+	*/
+>>>>>>> 7ac095acd71b15fa0d7970d23f6108a30cc34827
 });

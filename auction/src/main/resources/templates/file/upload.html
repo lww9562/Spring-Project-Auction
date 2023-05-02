@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
+<<<<<<< HEAD
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
         layout:decorate="~{layouts/popup}">
     <main layout:fragment="content">
@@ -11,4 +12,17 @@
             </dd>
         </dl>
     </main>
+=======
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/popup}">
+	<main layout:fragment="content">
+		<dl>
+			<dt>업로드 파일 선택</dt>
+			<dd>
+				<input type="file" id="file" multiple>
+				<button type="button" class="fileUpload" data-target-id="file">업로드</button>
+			</dd>
+		</dl>
+	</main>
+>>>>>>> 7ac095acd71b15fa0d7970d23f6108a30cc34827
 </html>

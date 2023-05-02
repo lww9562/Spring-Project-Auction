@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
+<<<<<<< HEAD
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta name="_csrf" th:content="${_csrf.token}">
@@ -16,4 +17,22 @@
 <body>
 <main layout:fragment="content"></main>
 </body>
+=======
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+		<meta name="_csrf" th:content="${_csrf.token}">
+		<meta name="_csrf_header" th:content="${_csrf.headerName}">
+		<title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
+		<link rel="stylesheet" type="text/css" th:href="@{/css/popup.css}">
+		<link rel="stylesheet" type="text/css" th:each="cssFile : ${addCss}" th:href="@{/css/{file}.css(file=${cssFile})}">
+		<th:block layout:fragment="addCss"></th:block>
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+		<script th:each="jsFile : ${addScript}" th:src="@{/js/{file}.js(file=${jsFile})}"></script>
+		<th:block layout:fragment="addScript"></th:block>
+	</head>
+
+	<body>
+		<main layout:fragment="content"></main>
+	</body>
+>>>>>>> 7ac095acd71b15fa0d7970d23f6108a30cc34827
 </html>
