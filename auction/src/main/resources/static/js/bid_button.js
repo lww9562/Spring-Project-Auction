@@ -30,4 +30,4 @@ window.addEventListener("DOMContentLoaded", function() {
 			console.error(err);
 		}
 	});
-});
+}, false);

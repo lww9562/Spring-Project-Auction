@@ -5,9 +5,11 @@ import org.koreait.entities.Products;
 import org.koreait.entities.Users;
 import org.koreait.repositories.ProductRepository;
 import org.koreait.repositories.UsersRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
