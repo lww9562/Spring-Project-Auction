@@ -4,6 +4,7 @@
 	  layout:decorate="~{layouts/main}">
 <head>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/details.css}">
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
 <main layout:fragment="content" th:object="${product}">
 	<div id = "main-area" class="main">
@@ -24,6 +25,45 @@
 								<strong class="currentPrice" th:text="*{endPrice}">현재 판매가격</strong><br>
 								<strong class="risingPrice" th:text="*{risingPrice}">인상 입찰가격</strong><br>
 								<strong class="expireDate">남은 시간</strong>
+
+								<div class="time">
+									<span id="d-day-hour">00</span>
+									<span class="col">:</span>
+									<span id="d-day-min">00</span>
+									<span class="col">:</span>
+									<span id="d-day-sec">00</span>
+								</div>
+
+								<script type="text/javascript" th:inline="javascript">
+								/*<![CDATA[*/
+									function remaindTime() {
+										var now = new Date(); //현재시간을 구한다.
+										var regDt = new Date([[${product.regDt}]]);
+										console.log(regDt);
+										var open = regDt.setDate(regDt.getDate()+3);
+										console.log(open);
+
+										var nt = now.getTime(); // 현재의 시간만 가져온다
+										var ot = open; // 오픈시간만 가져온다
+
+									   if(nt<ot){ //현재시간이 오픈시간보다 이르면 오픈시간까지의 남은 시간을 구한다.
+										 sec = parseInt(ot - nt) / 1000;
+										 hour = parseInt(sec/60/60);
+										 sec = (sec - (hour*60*60));
+										 min = parseInt(sec/60);
+										 sec = parseInt(sec-(min*60));
+
+										 if(hour<10){hour="0"+hour;}
+										 if(min<10){min="0"+min;}
+										 if(sec<10){sec="0"+sec;}
+										  $("#d-day-hour").html(hour);
+										  $("#d-day-min").html(min);
+										  $("#d-day-sec").html(sec);
+									   }
+									  }
+									  setInterval(remaindTime,1000);
+  								/*]]>*/
+								</script>
 							</div>
 						</div>
 						<div class="CommercialDetail">
