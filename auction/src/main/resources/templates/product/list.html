@@ -40,9 +40,10 @@
 
 			<div class="product_link">
 				<div class="product_items" th:each="board : ${list}" th:object="${board}">
+
 					<span style="display:none;" th:text="*{id}">물품번호(숨김)</span>
 
-					<a th:href="@{/product/view/{id}(id=*{id})}">
+					<a th:if="*{stats.toString().equals('true')}" th:href="@{/product/view/{id}(id=*{id})}">
 						<dl>
 							<dt><img th:src="@{*{imgPath}}" class="item_img"></dt>
 							<label>상품이름</label>

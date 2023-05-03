@@ -24,9 +24,14 @@ window.addEventListener("DOMContentLoaded", function() {
                             	}
 			});	// 반환값 : resolve의 매개변수 값
 			console.log(data);
-            location.reload();
+            location.href = getContextPath()+"/list";
 		} catch(err) {
 			alert(err.response.data.message);
 		}
 	});
 }, false);
+
+function getContextPath() {
+	var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+	return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+}

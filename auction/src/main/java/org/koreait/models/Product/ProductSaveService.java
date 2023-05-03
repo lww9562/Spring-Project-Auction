@@ -86,6 +86,7 @@ public class ProductSaveService {
             products.setImgPath("/files/"+imgName);
         }
 
+        products.setStats(true);
         products = repository.saveAndFlush(products);
 
         productForm.setId(products.getId());

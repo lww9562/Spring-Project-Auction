@@ -43,6 +43,7 @@ public class ProductBuyService {
 		//우선 종료를 알리기 위해, products의 endPrice와 baroPrice를 999999999원으로 변경해두기로 한다.
 		products.setEndPrice(999999999L);
 		products.setBaroPrice(999999999L);
+		products.setStats(false);
 
 		usersRepository.saveAndFlush(buy_user);
 		productRepository.saveAndFlush(products);
