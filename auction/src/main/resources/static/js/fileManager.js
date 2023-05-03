@@ -22,6 +22,11 @@ koreait.fileManager = {
             xhr.setRequestHeader(header, token);
             xhr.send(formData);
 
+            xhr.onreadystatechange = function() {
+                if (xhr.status == 200 && xhr.readyState == XMLHttpRequest.DONE) {
+                    console.log(xhr.reponseText);
+                }
+            };
 
 		} catch (err) {
 			alert(err.message);

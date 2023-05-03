@@ -16,6 +16,7 @@ import java.util.List;
 public class FileListService {
 
     private final FileInfoRepository repository;
+    private final FileInfoSaveService infoSaveService;
 
     public List<FileInfo> gets(String gid) {
         return gets(gid, null);
@@ -47,6 +48,14 @@ public class FileListService {
         }
 
         List<FileInfo> fileInfos = (List<FileInfo>)repository.findAll(builder, Sort.by(asc("regDt")));
+
+        fileInfos = fileInfos.stream().map(o -> {
+            Long fileNo = o.getFileNo();
+            o.setFileURL(infoSaveService.getFileURL(fileNo));
+            o.setFilePath(infoSaveService.getFilePath(fileNo));
+            return o;
+            
+        }).toList();
 
         return fileInfos;
     }

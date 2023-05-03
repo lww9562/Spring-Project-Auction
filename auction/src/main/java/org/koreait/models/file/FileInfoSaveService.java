@@ -25,10 +25,12 @@ public class FileInfoSaveService {
     private String fileUploadPath;
 
     public FileInfo save(MultipartFile file) {
-        return save(file, UUID.randomUUID().toString(), null);
+        return save(file, null, null);
     }
 
     public FileInfo save(MultipartFile file, String gid, String location) {
+        gid = gid == null ? UUID.randomUUID().toString() : gid;
+
         String fileName = file.getOriginalFilename();
         String extension = fileName.substring(fileName.lastIndexOf(".") + 1);
 

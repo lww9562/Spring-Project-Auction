@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/file/upload")
@@ -42,8 +43,10 @@ public class FileUploadController {
 
 		for (MultipartFile file : files) {
 			// 1. 파일 정보 저장
-			FileInfo fileInfo = infoSaveService.save(file);
+			FileInfo fileInfo = infoSaveService.save(file, gid, location);
 			Long fileNo = fileInfo.getFileNo();
+
+			gid = gid == null ? fileInfo.getGid() : gid;
 
 			// 2. 파일 업로드 경로
 			String filePath = infoSaveService.getFilePath(fileNo);
@@ -58,7 +61,7 @@ public class FileUploadController {
 		}
 
 		List<FileInfo> fileInfos = listService.getAll(gid, location);
-
+		fileInfos.stream().forEach(System.out::println);
 		return fileInfos;
 	}
 }
