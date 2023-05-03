@@ -15,9 +15,11 @@ public class Bidders {
 	private Long bidderNo;
 
 	@OneToOne(mappedBy="bidder")
+	@ToString.Exclude
 	private Users user;
 
 	@ManyToMany(fetch = FetchType.LAZY)
+	@ToString.Exclude
 	@JoinTable(
 			name = "BIDDER_PRODUCT_TABLE",
 			joinColumns = @JoinColumn(name = "bidder_id"),
