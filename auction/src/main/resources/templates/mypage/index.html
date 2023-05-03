@@ -10,11 +10,9 @@
     <th:block sec:authorize="isAuthenticated()">
         <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/admin}">관리자</a>
         <a th:href="@{/user/logout}">로그아웃</a>
-
+        <a th:href="@{/mypage}">마이페이지</a>
     </th:block>
-    <a th:href="@{/main}">메인페이지</a>
 </header>
-<body th:object="${userinfo}">
     <h2>회원 정보</h2>
     <table>
         <tr>
@@ -35,7 +33,7 @@
         </tr>
         <tr>
             <th>통장</th>
-            <td th:text="*{userNm}">userNm</td>
+            <td th:text="${user.money}">userNm</td>
         </tr>
     </table>
     <h3>판매 내역</h3>
@@ -54,7 +52,7 @@
                 <th>REGDT</th>
             </tr>
 
-            <tr th:each="selProducts : ${selProductsList}" th:object="${selProducts}">
+            <tr th:each="product : ${seller.sellProducts}" th:object="${product}">
                 <td th:text="*{id}"></td>
                 <td th:text="*{categories.cateNm}"></td>
                 <td th:text="*{prSubject}"></td>
@@ -62,7 +60,7 @@
                 <td th:text="*{baroPrice}"></td>
                 <td th:text="*{endPrice}"></td>
                 <td th:text="*{risingPrice}"></td>
-                <td th:text="*{}"></td>
+                <td></td>
             </tr>
 
         </table>
@@ -84,7 +82,7 @@
                 <th>REGDT</th>
             </tr>
 
-            <tr th:each="bidProducts : ${bidProductsList}" th:object="${bidProducts}">
+            <tr th:each="product : ${latestBidProduct}" th:object="${product}">
                 <td th:text="*{id}"></td>
                 <td th:text="*{categories.cateNm}"></td>
                 <td th:text="*{prSubject}"></td>
@@ -92,7 +90,6 @@
                 <td th:text="*{baroPrice}"></td>
                 <td th:text="*{endPrice}"></td>
                 <td th:text="*{risingPrice}"></td>
-                <td th:text="*{regDt}"></td>
             </tr>
 
         </table>
@@ -101,5 +98,5 @@
 </div>
 
 
-</body>
+</main>
 </html>
