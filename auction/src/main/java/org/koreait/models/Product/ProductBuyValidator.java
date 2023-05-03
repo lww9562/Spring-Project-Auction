@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class BidValidator implements RequiredValidator {
+public class ProductBuyValidator implements RequiredValidator {
 	private final UsersRepository usersRepository;
 	private final ProductRepository productRepository;
 	private final BiddersRepository biddersRepository;
@@ -28,10 +28,9 @@ public class BidValidator implements RequiredValidator {
 		nullCheck(user, new BadRequestException("사용자를 찾을 수 없습니다."));
 		nullCheck(product, new BadRequestException("판매중인 물품을 찾을 수 없습니다."));
 
-		if(user.getMoney() < product.getEndPrice()){
+		if(user.getMoney() < product.getBaroPrice()){
 			//구매자의 소지금이 판매물품의 금액보다 적은 경우
 			throw new BadRequestException("잔고가 부족합니다!");
 		}
 	}
-
 }

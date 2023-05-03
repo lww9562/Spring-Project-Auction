@@ -13,12 +13,12 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class BidService {
+public class ProductBidService {
     private final UsersRepository usersRepository;
     private final BiddersRepository biddersRepository;
     private final ProductRepository productRepository;
 
-    private final BidValidator validator;
+    private final ProductBidValidator validator;
 
     public void bid(String userId, String productId){
         validator.check(userId, productId);
