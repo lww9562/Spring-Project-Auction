@@ -45,16 +45,16 @@ public class MypageController {
 		Sellers sellers = users.getSeller();
 		List<Products> sellProducts = sellers.getSellProducts();
 
-		model.addAttribute("seller", sellers);
+		model.addAttribute("sellProducts", sellProducts);
 
 		//입찰 내역
 		Bidders bidders = users.getBidder();
 
 		List<Products> bidProducts = bidders.getProductList();
 
-		// 최신 BidProducts 찾기
+		model.addAttribute("bidProducts",bidProducts);
 
-		model.addAttribute("latestBidProduct", latestBidProduct);
+		// 최신 BidProducts 찾기
 
 
 		//적당히 활용할 것
