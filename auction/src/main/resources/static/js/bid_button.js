@@ -27,7 +27,7 @@ window.addEventListener("DOMContentLoaded", function() {
 			console.log(data);
             location.reload();
 		} catch(err) {
-			console.error(err);
+			alert(err.response.data.message);
 		}
 	});
 }, false);
