@@ -10,6 +10,19 @@ koreait.fileManager = {
 				throw new Error("업로드할 파일을 선택하세요.");
 			}
 
+            const { header, token } = commonLib.getCsrfToken();
+
+            const formData = new FormData();
+            for (const file of files) {
+                formData.append("files", file);
+            }
+
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "/file/upload");
+            xhr.setRequestHeader(header, token);
+            xhr.send(formData);
+
+
 		} catch (err) {
 			alert(err.message);
 		}

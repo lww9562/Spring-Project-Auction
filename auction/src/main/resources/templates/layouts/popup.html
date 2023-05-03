@@ -9,6 +9,7 @@
 		<link rel="stylesheet" type="text/css" th:each="cssFile : ${addCss}" th:href="@{/css/{file}.css(file=${cssFile})}">
 		<th:block layout:fragment="addCss"></th:block>
 		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+		<script th:src="@{/js/common.js}"></script>
 		<script th:each="jsFile : ${addScript}" th:src="@{/js/{file}.js(file=${jsFile})}"></script>
 		<th:block layout:fragment="addScript"></th:block>
 	</head>

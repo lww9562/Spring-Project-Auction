@@ -23,6 +23,8 @@ public class FileUploadController {
 	@ResponseBody
 	@PostMapping
 	public void uploadPs(MultipartFile[] files){
-
+		for (MultipartFile file : files) {
+			System.out.println(file.getOriginalFilename());
+		}
 	}
 }
