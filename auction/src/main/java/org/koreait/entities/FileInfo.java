@@ -1,18 +1,15 @@
 package org.koreait.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity @Data @Builder
 @NoArgsConstructor @AllArgsConstructor
-public class FileInfo extends BaseEntity {
+public class FileInfo extends BaseUserEntity {
     @Id @GeneratedValue
     private Long fileNo; // 파일 번호.확장자
 
-    @Column(length=30, nullable = false)
+    @Column(length=40, nullable = false)
     private String gid; // 그룹 ID
 
     @Column(length=60)
@@ -28,4 +25,5 @@ public class FileInfo extends BaseEntity {
     private String contentType; // 파일 종류 MIME
 
     private boolean success; // 그룹작업 완료 여부
+
 }
