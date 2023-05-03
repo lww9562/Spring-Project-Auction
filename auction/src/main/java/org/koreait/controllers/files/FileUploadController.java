@@ -38,13 +38,19 @@ public class FileUploadController {
 
 	@ResponseBody
 	@PostMapping
-	public List<FileInfo> uploadPs(MultipartFile[] files, String gid, String location){
+	public List<FileInfo> uploadPs(MultipartFile[] files, String gid, String location, boolean image){
 		/**
 		 * 1. 파일 정보 저장
 		 * 2. 파일 저장 처리 - getFilePath에 저장
 		 */
 
 		for (MultipartFile file : files) {
+			String contentType = file.getContentType();
+			// 이미지만 업로드 제한된 경우 이미지가 아닌 경우 업로드 제외
+			if (image && contentType.indexOf("image") == -1) {
+				continue;
+			}
+
 			// 1. 파일 정보 저장
 			FileInfo fileInfo = infoSaveService.save(file, gid, location);
 			Long fileNo = fileInfo.getFileNo();

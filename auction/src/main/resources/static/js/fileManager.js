@@ -5,18 +5,28 @@ koreait.fileManager = {
 	*
 	*
 	*/
-	uploads(files, gid, location) {
+	uploads(files, gid, location, imageOnly) {
 		try {
 			if(!files || files.length == 0){
 				throw new Error("업로드할 파일을 선택하세요.");
 			}
 
-            console.log(files);
-            return;
-
             const { header, token } = commonLib.getCsrfToken();
-
             const formData = new FormData();
+
+            /** 업로드 파일 이미지 형식 체크 S */
+            if (imageOnly) { // 이미지가 아닌 파일이 섞여 있으면 X
+                formData.append("image", true);
+
+                for (const file of files) {
+                    if (file.type.indexOf("image") == -1) { // 이미지가 아닌 형식
+                       throw new Error("이미지 형식의 파일만 업로드 하세요.");
+                    }
+                }
+            }
+            /** 업로드 파일 이미지 형식 체크 E */
+
+
             for (const file of files) {
                 formData.append("files", file);
             }
@@ -38,7 +48,10 @@ koreait.fileManager = {
             xhr.responseType="json";
             xhr.onreadystatechange = function() {
                 if (xhr.status == 200 && xhr.readyState == XMLHttpRequest.DONE) {
-                    console.log(xhr.response);
+                    if (typeof parent.fileUploadCallback == 'function') {
+                        parent.fileUploadCallback(xhr.response);
+                    }
+
                 }
             };
 
@@ -63,9 +76,10 @@ window.addEventListener("DOMContentLoaded", function() {
             if(fileEl) {
                 const gid = fileEl.dataset.gid;
                 const location = fileEl.dataset.location;
+                const imageOnly = fileEl.dataset.imageOnly;
 
             	const files = fileEl.files;
-            	koreait.fileManager.uploads(files, gid, location);
+            	koreait.fileManager.uploads(files, gid, location, imageOnly == 'true');
             }
 		});
 

@@ -37,6 +37,7 @@ public class SecurityConfig {
 				//권한이 ADMIN인 사용자만 접근 가능한 URL 패턴
 				.anyRequest().permitAll();
 
+		http.headers().frameOptions().disable();
 
 		//관리자 접근 권한 없을 시 → "접근 권한이 없습니다!" 메세지와 상태코드 401 - UnAuthorized
 		//비회원 접근 권한 없을 시 → 로그인 페이지로 이동
@@ -58,7 +59,7 @@ public class SecurityConfig {
 	@Bean
 	public WebSecurityCustomizer webSecurityCustomizer() {
 		return web -> web.ignoring()
-				.requestMatchers("/css/**", "/js/**", "/images/**");
+				.requestMatchers("/css/**", "/js/**", "/images/**", "/uploads/**");
 	}
 
 	@Bean
