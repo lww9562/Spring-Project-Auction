@@ -35,7 +35,7 @@
         </tr>
         <tr>
             <th>통장</th>
-            <td th:text="*{userNm}">userNm</td>
+            <td th:text="${user.money}">userNm</td>
         </tr>
     </table>
     <h3>판매 내역</h3>
@@ -54,7 +54,7 @@
                 <th>REGDT</th>
             </tr>
 
-            <tr th:each="selProducts : ${selProductsList}" th:object="${selProducts}">
+            <tr th:each="product : ${sellProducts}" th:object="${product}">
                 <td th:text="*{id}"></td>
                 <td th:text="*{categories.cateNm}"></td>
                 <td th:text="*{prSubject}"></td>
@@ -62,13 +62,13 @@
                 <td th:text="*{baroPrice}"></td>
                 <td th:text="*{endPrice}"></td>
                 <td th:text="*{risingPrice}"></td>
-                <td th:text="*{}"></td>
+
             </tr>
 
         </table>
 
     </section>
-    <h3>구매 내역</h3>
+    <h3>입찰 내역</h3>
     <section  th:object="${bidProductsList}">
         <table class="product_list">
             <col width="50"><col width="100"><col width="100">
@@ -84,7 +84,7 @@
                 <th>REGDT</th>
             </tr>
 
-            <tr th:each="bidProducts : ${bidProductsList}" th:object="${bidProducts}">
+            <tr th:each="bidProducts : ${bidProducts}" th:object="${bidProducts}">
                 <td th:text="*{id}"></td>
                 <td th:text="*{categories.cateNm}"></td>
                 <td th:text="*{prSubject}"></td>

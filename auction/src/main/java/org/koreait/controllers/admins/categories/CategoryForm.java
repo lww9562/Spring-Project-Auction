@@ -20,6 +20,7 @@ public class CategoryForm {
 
 	@NotNull
 	private Long orderNo;
+	private String mode;
 
 	public static Categories of (CategoryForm categoryForm) {
 		return new ModelMapper().map(categoryForm, Categories.class);
