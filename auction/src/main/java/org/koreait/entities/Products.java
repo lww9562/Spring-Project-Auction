@@ -36,6 +36,9 @@ public class Products extends BaseUserEntity{
     private String imgName;
     private String imgPath;
 
+    //물품 판매상태
+    private boolean stats;
+
 
     //하나의 판매물품에 대해서는 여러 구매자(입찰자)가 존재할 수 있으므로, @OneToMany 매핑
     @ManyToMany(mappedBy = "productList", fetch = FetchType.LAZY)

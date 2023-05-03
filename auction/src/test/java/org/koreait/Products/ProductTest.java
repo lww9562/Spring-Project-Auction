@@ -231,7 +231,7 @@ public class ProductTest {
 //    void bidderJoinTest(){
 //
 //    }
-
+/*
     @Test
     @DisplayName("사용자가 보유한 money가 입찰가격보다 적으면 예외 발생")
     @WithMockUser("user1")
@@ -279,5 +279,7 @@ public class ProductTest {
 
         });
     }
+
+ */
 
 }

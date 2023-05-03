@@ -34,37 +34,44 @@
 									<span class="col">:</span>
 									<span id="d-day-sec">00</span>
 								</div>
+								<div th:if="*{stats.toString().equals('true')}" class="timer">
+									<script type="text/javascript" th:inline="javascript">
+									/*<![CDATA[*/
+										function remaindTime() {
+											var now = new Date(); //현재시간을 구한다.
+											var regDt = new Date([[${product.regDt}]]);
+											console.log(regDt);
+											var open = regDt.setDate(regDt.getDate()+3);
+											console.log(open);
 
-								<script type="text/javascript" th:inline="javascript">
-								/*<![CDATA[*/
-									function remaindTime() {
-										var now = new Date(); //현재시간을 구한다.
-										var regDt = new Date([[${product.regDt}]]);
-										console.log(regDt);
-										var open = regDt.setDate(regDt.getDate()+3);
-										console.log(open);
+											var nt = now.getTime(); // 현재의 시간만 가져온다
+											var ot = open; // 오픈시간만 가져온다
 
-										var nt = now.getTime(); // 현재의 시간만 가져온다
-										var ot = open; // 오픈시간만 가져온다
+											if(nt<ot){ //현재시간이 오픈시간보다 이르면 오픈시간까지의 남은 시간을 구한다.
+												sec = parseInt(ot - nt) / 1000;
+												hour = parseInt(sec/60/60);
+												sec = (sec - (hour*60*60));
+												min = parseInt(sec/60);
+												sec = parseInt(sec-(min*60));
 
-									   if(nt<ot){ //현재시간이 오픈시간보다 이르면 오픈시간까지의 남은 시간을 구한다.
-										 sec = parseInt(ot - nt) / 1000;
-										 hour = parseInt(sec/60/60);
-										 sec = (sec - (hour*60*60));
-										 min = parseInt(sec/60);
-										 sec = parseInt(sec-(min*60));
-
-										 if(hour<10){hour="0"+hour;}
-										 if(min<10){min="0"+min;}
-										 if(sec<10){sec="0"+sec;}
-										  $("#d-day-hour").html(hour);
-										  $("#d-day-min").html(min);
-										  $("#d-day-sec").html(sec);
-									   }
-									  }
-									  setInterval(remaindTime,1000);
-  								/*]]>*/
-								</script>
+												if(hour<10){
+													hour="0"+hour;
+												}
+												if(min<10){
+													min="0"+min;
+												}
+												if(sec<10){
+													sec="0"+sec;
+												}
+												$("#d-day-hour").html(hour);
+												$("#d-day-min").html(min);
+												$("#d-day-sec").html(sec);
+											}
+										}
+										setInterval(remaindTime,1000);
+									/*]]>*/
+									</script>
+								</div>
 							</div>
 						</div>
 						<div class="CommercialDetail">
@@ -79,8 +86,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="PurchaseButton">
+					<div class="PurchaseButton" th:if="*{stats.toString().equals('true')}">
 						<button id="bid_btn" th:data-userid="${userId}" th:data-productid="${product.id}">입찰</button>
+						<button id="buy_btn" th:data-userid="${userId}" th:data-productid="${product.id}">바로 구매</button>
 					</div>
 					<div class="BottomNotice"></div>
 				</div>
