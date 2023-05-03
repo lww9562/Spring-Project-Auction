@@ -26,9 +26,12 @@ public class FileUploadController {
 	private final FileListService listService;
 
 	@GetMapping
-	public String upload(Model model) {
+	public String upload(String gid, String location, boolean image, Model model) {
 		model.addAttribute("addScript", new String[]{"fileManager"});
-		System.out.println("업로드!");
+		model.addAttribute("gid", gid);
+		model.addAttribute("location", location);
+		model.addAttribute("imageOnly", image);
+
 		return "file/upload";
 	}
 

@@ -6,7 +6,9 @@
 		<dl>
 			<dt>업로드 파일 선택</dt>
 			<dd>
-				<input type="file" id="file" multiple>
+				<input type="file" id="file" multiple
+					   th:data-image-only="${imageOnly}"
+					   th:data-gid="${gid}" th:data-location="${location}">
 				<button type="button" class="fileUpload" data-target-id="file">업로드</button>
 			</dd>
 		</dl>

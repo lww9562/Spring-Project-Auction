@@ -54,7 +54,7 @@ public class FileListService {
             o.setFileURL(infoSaveService.getFileURL(fileNo));
             o.setFilePath(infoSaveService.getFilePath(fileNo));
             return o;
-            
+
         }).toList();
 
         return fileInfos;
