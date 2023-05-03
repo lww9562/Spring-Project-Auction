@@ -7,6 +7,7 @@
 		<form class="form" method="post" th:action="@{/admin/category}" autocomplete="off">
 			<th:block th:replace="~{admin/category/_form::form}"></th:block>
 			<button type="submit" class="submit_btn">등록하기</button>
+			<a th:href="@{/admin/category/list}">카테고리목록</a>
 		</form>
 	</section>
 

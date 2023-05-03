@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.koreait.controllers.users.UserInfo;
 import org.koreait.entities.Categories;
 import org.koreait.entities.Products;
+import org.koreait.models.Category.CategorySaveService;
 import org.koreait.models.Product.ProductDeleteService;
 import org.koreait.models.Product.ProductInfoService;
 import org.koreait.models.Product.ProductListService;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.print.Pageable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,6 +40,7 @@ public class ProductController {
     private final ProductInfoService infoService;
     private final ProductSaveService saveService;
     private final CategoryRepository categoryRepository;
+    private final CategorySaveService categorySaveService;
 
 
     @GetMapping("/write") //게시글 작성 페이지 이동
@@ -46,7 +49,16 @@ public class ProductController {
         model.addAttribute("productForm",productForm);
 
         List<Categories> categories = categoryRepository.findAll();
-        model.addAttribute("categoryMap", categories.stream().collect(Collectors.toMap(Categories::getCateId, Categories::getCateNm)));
+
+        List<Categories> listCategories = new ArrayList<>();
+
+        for (Categories category : categories) {
+            if(category.isUse()){
+                listCategories.add(category);
+            }
+        }
+
+        model.addAttribute("categoryMap", listCategories.stream().collect(Collectors.toMap(Categories::getCateId, Categories::getCateNm)));
 
 
         return "product/write";
