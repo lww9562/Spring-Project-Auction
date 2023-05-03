@@ -3,6 +3,7 @@ package org.koreait.controllers.files;
 import lombok.RequiredArgsConstructor;
 import org.koreait.entities.FileInfo;
 import org.koreait.models.file.FileInfoSaveService;
+import org.koreait.models.file.FileListService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequestMapping("/file/upload")
@@ -20,6 +22,7 @@ import java.io.IOException;
 public class FileUploadController {
 
 	private final FileInfoSaveService infoSaveService;
+	private final FileListService listService;
 
 	@GetMapping
 	public String upload(Model model) {
@@ -31,7 +34,7 @@ public class FileUploadController {
 
 	@ResponseBody
 	@PostMapping
-	public void uploadPs(MultipartFile[] files){
+	public List<FileInfo> uploadPs(MultipartFile[] files, String gid, String location){
 		/**
 		 * 1. 파일 정보 저장
 		 * 2. 파일 저장 처리 - getFilePath에 저장
@@ -53,5 +56,9 @@ public class FileUploadController {
 			}
 
 		}
+
+		List<FileInfo> fileInfos = listService.getAll(gid, location);
+
+		return fileInfos;
 	}
 }

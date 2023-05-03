@@ -26,4 +26,10 @@ public class FileInfo extends BaseUserEntity {
 
     private boolean success; // 그룹작업 완료 여부
 
+    @Transient
+    private String fileURL; // 파일 접속 URL
+
+    @Transient
+    private String filePath; // 파일 업로드 경로
+
 }
