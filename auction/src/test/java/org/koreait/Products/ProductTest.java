@@ -245,7 +245,7 @@ public class ProductTest {
 
             Bidders bidder = user.getBidder();
 
-            bidder.setBidProduct(products);
+            //bidder.setBidProduct(products);
 
             bidder.getUser().setMoney(10000L);
 
@@ -271,7 +271,7 @@ public class ProductTest {
             System.out.println(products);
 
             Bidders bidder = user.getBidder();
-            bidder.setBidProduct(products);
+            //bidder.setBidProduct(products);
             System.out.println(bidder);
             bidder.getUser().setMoney(10000L);
 
