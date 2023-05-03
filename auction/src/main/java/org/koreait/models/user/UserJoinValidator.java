@@ -1,9 +1,7 @@
 package org.koreait.models.user;
 
 import lombok.RequiredArgsConstructor;
-import org.koreait.commons.validators.EmailValidator;
-import org.koreait.commons.validators.MobileValidator;
-import org.koreait.commons.validators.RequiredValidator;
+import org.koreait.commons.validators.*;
 import org.koreait.controllers.users.JoinForm;
 import org.koreait.repositories.UsersRepository;
 import org.springframework.stereotype.Component;
@@ -12,7 +10,7 @@ import org.springframework.validation.Validator;
 
 @Component
 @RequiredArgsConstructor
-public class UserJoinValidator implements Validator, MobileValidator, EmailValidator, RequiredValidator {
+public class UserJoinValidator implements Validator, MobileValidator, EmailValidator, RequiredValidator, IdValidator, NameValidator {
 	private final UsersRepository repository;
 
 	@Override
@@ -51,6 +49,13 @@ public class UserJoinValidator implements Validator, MobileValidator, EmailValid
 			errors.rejectValue("userId", "Validation.Duplicate.userId");
 			//throw new JoinValidationException("이미 가입된 아이디입니다.");
 		}
+		if(userId != null && !userId.isBlank()){
+			if(!idCheck(userId)){
+				errors.rejectValue("userId", "Validation.NotType.userId");
+				throw new JoinValidationException("아이디는 5~20 자리 영문자와 숫자조합만 가능합니다.");
+			}
+		}
+
 
 		//2
 		if(!userPw.equals(userPwRe)){
@@ -76,6 +81,15 @@ public class UserJoinValidator implements Validator, MobileValidator, EmailValid
 				throw new JoinValidationException("올바른 이메일 형식이 아닙니다.");
 			}
 		}
+
+		//5
+		if(userNm != null && !userNm.isBlank()){
+			if(!NameCheck(userNm)){
+				errors.rejectValue("userNm", "Validation.NotType.userNm");
+				throw new JoinValidationException("이름은 2~4자의 한글로 입력해 주세요.");
+			}
+		}
+
 	}
 
 }
