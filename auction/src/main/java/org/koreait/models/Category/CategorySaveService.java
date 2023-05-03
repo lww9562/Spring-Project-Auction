@@ -40,6 +40,14 @@ public class CategorySaveService {
 			category = CategoryForm.of(categoryForm);
 		}
 
+//		String mode = categoryForm.getMode();
+//		Long id = categoryForm.getCateId();
+//		if (mode != null && mode.equals("update") && id != null) {
+//			category = repository.findById(cateId).orElse(null);
+//			category.setCateId(cateId);
+//			category.setCateNm(categoryForm.getCateNm());
+//			category.setOrderNo(categoryForm.getOrderNo());
+//		}
 
 		repository.saveAndFlush(category);
 	}
