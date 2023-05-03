@@ -18,23 +18,38 @@ public class BidService {
     private final BiddersRepository biddersRepository;
     private final ProductRepository productRepository;
 
+    private final BidValidator validator;
+
     public void bid(String userId, String productId){
-        Users users = usersRepository.findByUserId(userId);
+        validator.check(userId, productId);
+
+        Users new_users = usersRepository.findByUserId(userId);
         Products products = productRepository.findById(Long.parseLong(productId)).orElse(null);
 
-        Bidders bidders = users.getBidder();
+        Bidders new_bidders = new_users.getBidder();
 
-        List<Products> productsList = bidders.getProductList();
+        List<Products> productsList = new_bidders.getProductList();
+        if(productsList.contains(products)){
+            productsList.remove(products);
+        }
         productsList.add(products);
 
-        users.setMoney(users.getMoney()-products.getEndPrice());
-        usersRepository.saveAndFlush(users);
+        new_users.setMoney(new_users.getMoney()-products.getEndPrice());
+        usersRepository.saveAndFlush(new_users);
 
         List<Bidders> biddersList = products.getBidderList();
-        biddersList.add(bidders);
+
+        /* 기존 최종 입찰자 잔고 환급 S */
+        Bidders before_bidder = biddersList.get(biddersList.size()-1);
+        Users before_user = before_bidder.getUser();
+        before_user.setMoney(before_user.getMoney() + products.getEndPrice());
+        usersRepository.saveAndFlush(before_user);
+        /* 기존 최종 입찰자 잔고 환급 E */
+
+        biddersList.add(new_bidders);
         products.setBidderList(biddersList);
         products.setEndPrice(products.getEndPrice()+products.getRisingPrice());
         productRepository.saveAndFlush(products);
-        biddersRepository.saveAndFlush(bidders);
+        biddersRepository.saveAndFlush(new_bidders);
     }
 }
