@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-@RequestMapping("/file/upload")
-public class FileUploadController {
+@RequestMapping("/files/upload")
+public class FileUpload2Controller {
     @GetMapping
     public String upload(Model model) {
         model.addAttribute("addScript", new String[]{ "fileManager" });
-        return "file/upload";
+        return "files/form";
     }
 
 
