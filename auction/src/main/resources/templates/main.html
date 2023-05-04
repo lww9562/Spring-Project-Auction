@@ -2,8 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/boardlist.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/productlist.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mainboardlist.css}">
 </head>
 
 <header th:fragment="common">
@@ -24,9 +23,28 @@
         <a th:href="@{/product/list}">상품목록</a>
     </main>
 <div class="container">
+
+    <div class="slide">
+        <div>
+            <div class="slideimglist">
+            <img class="slideimg1" th:src="@{/files/구구단1.png}">
+            <img class="slideimg2" th:src="@{/files/다운로드.jpg}">
+            <img class="slideimg3" th:src="@{/files/캡처.png}">
+            <img class="slideimg4" th:src="@{/files/구구단1.png}">
+            </div>
+            <div>
+            <button class="backbutton">&lt;</button>
+            <button class="forwardbutton">&gt;</button>
+            <div class="progressbar"></div>
+            </div>
+        </div>
+    </div>
+
+
     <h1>게시글 목록</h1>
 
     <br/><br/><br/>
+    <!-- https://devinus.tistory.com/48 참고해서 슬라이드 완성하기-->
 
     <div>
         <div class="categorybottom">
@@ -52,8 +70,6 @@
         </div>
 
         <div class="maincatelist">
-
-
             <div class="product_link">
                 <div class="product_items" th:each="board : ${list}" th:object="${board}">
 
