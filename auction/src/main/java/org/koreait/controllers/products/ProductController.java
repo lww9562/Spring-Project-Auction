@@ -115,9 +115,19 @@ public class ProductController {
     public String list(Model model) {
 
         List<Products> list = listService.gets();
+        List<Products> list1 = listService.getsOrderByBaroPrice();
+        List<Products> list2 = listService.getsOrderByEndPrice();
+        List<Products> list3 = listService.getsOrderByLastTime();
+        List<Products> list4 = listService.getsOrderByNewPr();
+
         List<String> cateNmList = categoryRepository.getAllCateNm();
 
         model.addAttribute("list", list);
+        model.addAttribute("listBaro", list1);
+        model.addAttribute("listEndPrice", list2);
+        model.addAttribute("listLastTime", list3);
+        model.addAttribute("listNewPr", list4);
+
         model.addAttribute("cateNmList", cateNmList);
 
         return "product/list";

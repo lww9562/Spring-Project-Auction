@@ -144,3 +144,19 @@ li{
   height: 165px;
   object-fit: cover;
 }
+
+
+.bottom_link{
+    display: flex;
+}
+
+.bottom_link a{
+    margin: 10px;
+    padding : 10px;
+    border : 1px solid black;
+    border-radius: 5px;
+}
+
+.hidden_tag{
+ display:none;
+}

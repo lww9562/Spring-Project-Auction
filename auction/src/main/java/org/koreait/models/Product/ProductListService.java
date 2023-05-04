@@ -15,6 +15,29 @@ public class ProductListService {
     private final ProductRepository repository;
 
     public List<Products> gets(){
+        return repository.findAll(Sort.by(Sort.Order.asc("id")));
+    }
+
+
+    public List<Products> getsOrderByNewPr(){
         return repository.findAll(Sort.by(Sort.Order.desc("regDt")));
     }
+
+
+    public List<Products> getsOrderByLastTime(){
+        return repository.findAll(Sort.by(Sort.Order.asc("regDt")));
+    }
+
+
+    public List<Products> getsOrderByEndPrice(){
+        return repository.findAll(Sort.by(Sort.Order.desc("endPrice")));
+    }
+
+
+    public List<Products> getsOrderByBaroPrice(){
+        return repository.findAll(Sort.by(Sort.Order.desc("baroPrice")));
+    }
+
+
+
 }
