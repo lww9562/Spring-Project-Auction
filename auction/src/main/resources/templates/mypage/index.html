@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <header th:fragment="common">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mypage.css}">
     <th:block sec:authorize="isAnonymous()">
         <a th:href="@{/user}" th:text="#{user.join}"></a>
         <a th:href="@{/user/login}" th:text="#{user.login}"></a>
@@ -16,7 +18,7 @@
 </header>
 <body th:object="${userinfo}">
     <h2>회원 정보</h2>
-    <table>
+    <table class="infoTable">
         <tr>
             <th>ID</th>
             <td th:text="*{userId}">userId</td>
@@ -41,8 +43,6 @@
     <h3>판매 내역</h3>
     <section  th:object="${selProductsList}">
         <table class="product_list">
-            <col width="50"><col width="100"><col width="100">
-            <col width="150"><col width="200"><col width="50"><col width="200"><col width="150">
             <tr>
                 <th>NO</th>
                 <th>CATEGORY</th>
@@ -71,8 +71,6 @@
     <h3>입찰 내역</h3>
     <section  th:object="${bidProductsList}">
         <table class="product_list">
-            <col width="50"><col width="100"><col width="100">
-            <col width="150"><col width="200"><col width="50"><col width="200"><col width="150">
             <tr>
                 <th>NO</th>
                 <th>CATEGORY</th>
@@ -99,7 +97,6 @@
 
     </section>
 </div>
-
 
 </body>
 </html>

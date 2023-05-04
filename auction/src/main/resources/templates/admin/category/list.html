@@ -3,56 +3,34 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{admin/layouts/main}">
 
-<head>
-    <style>
-		table {
-			margin-left:auto;
-			margin-right:auto;
-			font-size: 13px;
-			width: 100%;
-			border-top: 1px solid #ccc;
-			border-bottom: 1px solid #ccc;
-		}
+    <section layout:fragment="content">
+        <form method="post" th:action="@{/admin/category/list}" autocomplete="off">
+        <table class="user_list">
 
-		td {
-  			text-align: center;
-		}
+            <tr>
+                <th>cateId</th>
+                <th>cateNm</th>
+                <th>orderNo</th>
+                <th>use</th>
 
-		td input {
-			width : 80%;
-			text-align : right;
-		}
+            </tr>
 
-		button{
-			width:100%;
-		}
-	</style>
-</head>
+            <tr th:each=" list : ${categoriesList}" th:object="${list}">
+                <td th:text="*{cateId}">id</td>
+                <td th:text="*{cateNm}">카테이름</td>
+                <td th:text="*{orderNo}">카테 번호</td>
+                <td>
+                    <input type="checkbox" th:checked="${list.use}" id="open" name="open" />
+                    <input type="hidden" name="_open" value="on">
+                </td>
 
-<section layout:fragment="content" th:object="${userList}">
-    <table class="user_list">
-        <col width="50"><col width="100"><col width="100">
-        <col width="150"><col width="200"><col width="50"><col width="200"><col width="150">
-        <tr>
-            <th>cateId</th>
-            <th>cateNm</th>
-            <th>orderNo</th>
-            <th>use</th>
+            </tr>
 
-        </tr>
-
-        <tr th:each=" list : ${categoriesList}" th:object="${list}">
-            <td th:text="*{cateId}"></td>
-            <td th:text="*{cateNm}"></td>
-            <td th:text="*{orderNo}"></td>
-            <td>
-                <input type="checkbox" th:checked="${list.use}" />
-            </td>
-
-        </tr>
-
-    </table>
-
-</section>
+        </table>
+            <div class="btns">
+                <button type="submit" class="submit_btn">등록하기</button>
+            </div>
+        </form>
+    </section>
 
 </html>

@@ -24,7 +24,7 @@ import java.util.List;
 public class CategoryController {
 
 	private final CategoryRepository repository;
-	private final CategorySaveService service;
+	private final CategorySaveService saveService;
 	private final CategoryListService listService;
 
 	@GetMapping
@@ -44,7 +44,7 @@ public class CategoryController {
 	@PostMapping
 	public String register(@Valid CategoryForm categoryForm, Errors errors){
 		try{
-			service.save(categoryForm, errors);
+			saveService.save(categoryForm, errors);
 		} catch(Exception e){
 			errors.rejectValue("", "");
 		}
@@ -73,4 +73,13 @@ public class CategoryController {
 //		model.addAttribute("categoryForm", categoryForm);
 //		return "admin/category/update";
 //	}
+	@PostMapping("/list")
+	public String listPs(Model model){
+
+		List<Categories> categoriesList = listService.gets();
+//		Categories categories = categoriesList.get()
+		model.addAttribute("categoriesList",categoriesList);
+
+		return "redirect:/admin/category/list";
+	}
 }
