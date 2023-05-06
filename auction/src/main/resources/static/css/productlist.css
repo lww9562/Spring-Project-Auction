@@ -101,7 +101,9 @@ li{
     font-size: 14px;
 }
 
-.menubtn{
+.orderbtn{
+
+    color:gray;
     display: inline;
     align-items: center;
     margin-right: 8px;
