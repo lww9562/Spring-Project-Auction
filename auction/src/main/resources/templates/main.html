@@ -54,14 +54,17 @@
         <div class="categorybottom">
             <div class="catewrapper">
                 <div class="cate">
-                    <ul th:each="cateNm : ${cateNmList}">
+                    <ul class="catelist" th:each="cateNm : ${cateNmList}">
                         <li>
                             <button class="cateimg" th:text="${cateNm}">전체</button>
                         </li>
                     </ul>
                 </div>
+                <button class="car-ctrl car-prev">Prev</button>
+                <button class="car-ctrl car-next">Next</button>
             </div>
         </div>
+
 
         <div class="catemain">
             <div class="catefont">품목</div>

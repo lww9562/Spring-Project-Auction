@@ -156,4 +156,31 @@ slide.addEventListener("mouseout", () => {
 
 });
 
+
+
+  const carouseInner = document.querySelector('.cate');
+  const carouseItems = carouseInner.querySelectorAll('.catelist');
+  const carPrev = document.querySelector('.car-prev');
+  const carNext = document.querySelector('.car-next');
+
+  console.log(carouseItems);
+
+  let cateIndex = 0;
+  const maxOffset = carouseItems[0].scrollWidth - carouseInner.offsetWidth;
+
+  function moveCarousel(cateoffset) {
+    cateIndex += cateoffset;
+    cateIndex = Math.max(cateIndex, 0);
+    cateIndex = Math.min(cateIndex, maxOffset);
+    carouseItems[0].style.transform = `translateX(-${cateIndex}px)`;
+    console.log(offsetWidth);
+    console.log(scrollWidth);
+  }
+
+  carPrev.addEventListener('click', () => moveCarousel(-200));
+  carNext.addEventListener('click', () => moveCarousel(200));
+
+
+
+
 });

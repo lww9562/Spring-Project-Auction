@@ -19,17 +19,36 @@
         z-index: 10;
         background-color: #fff;
         padding: 8px 0;
-
+        overflow : hidden;
 
 
     }
 
     .cate{
-
         display: flex;
         justify-content: center;
+        transition : transform 0.5s ease-in-out;
+    }
+
+    .catelist{
+    }
+
+    .car-ctrl{
+        position : absolute;
+        top : 50%;
+        transform : translateY(-50%);
+        background-color : #fff;
 
     }
+    .car-prev{
+        left : 0;
+    }
+    .car-next{
+        right : 0;
+    }
+
+
+
 
     ul{
 
@@ -206,8 +225,6 @@
         transition:0.5s;
         border-radius: 5px;
     }
-
-
 
     .product_link{
         display: inline-flex;
