@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -38,6 +39,7 @@ public class AdminController {
 	@GetMapping("/product/list")
 	public String productsInfo(Model model){
 		List<Products> productsList = productRepository.findAll();
+		Collections.sort(productsList);
 
 		model.addAttribute("productsList", productsList);
 
