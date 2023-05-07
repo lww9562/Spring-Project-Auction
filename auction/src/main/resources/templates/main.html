@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <script type="text/javascript" th:src="@{/js/mainpage.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mainboardlist.css}">
+</head>
+
 <header th:fragment="common">
     <th:block sec:authorize="isAnonymous()">
         <a th:href="@{/user}" th:text="#{user.join}"></a>
@@ -18,4 +23,83 @@
         <a th:href="@{/product/write}">글쓰기</a>
         <a th:href="@{/product/list?ALL}">상품목록</a>
     </main>
+<div class="container">
+
+    <div class="slide">
+        <img class="slideimg" th:src="@{/files/구구단1.png}">
+        <img class="slideimg" th:src="@{/files/다운로드.jpg}">
+        <img class="slideimg" th:src="@{/files/캡처.png}">
+        <img class="slideimg" th:src="@{/files/구구단1.png}">
+        <div class="buttonset">
+        <button class="backbutton slidebutton">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z"/></svg>
+        </button>
+        <button class="forwardbutton slidebutton">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"/></svg>
+        </button>
+        </div>
+        <div class="progressbar">
+            <div class="progressbar-fill"></div>
+        </div>
+    </div>
+
+
+
+    <h1>게시글 목록</h1>
+
+    <br/><br/><br/>
+    <!-- https://devinus.tistory.com/48 참고해서 슬라이드 완성하기-->
+
+    <div>
+        <div class="categorybottom">
+            <div class="catewrapper">
+                <div class="cate">
+                    <ul class="catelist" th:each="cateNm : ${cateNmList}">
+                        <li>
+                            <button class="cateimg" th:text="${cateNm}">전체</button>
+                        </li>
+                    </ul>
+                </div>
+                <button class="car-ctrl car-prev">Prev</button>
+                <button class="car-ctrl car-next">Next</button>
+            </div>
+        </div>
+
+
+        <div class="catemain">
+            <div class="catefont">품목</div>
+            <ul class="catemenu">
+                <li class="menubtn">인기순</li>
+                <li class="menubtn">마감순</li>
+                <li class="menubtn">최신순</li>
+                <li class="menubtn">가격순</li>
+            </ul>
+        </div>
+
+        <div class="maincatelist">
+            <div class="product_link">
+                <div class="product_items" th:each="board : ${list}" th:object="${board}">
+
+                    <span style="display:none;" th:text="*{id}">물품번호(숨김)</span>
+
+                    <a th:if="*{stats.toString().equals('true')}" th:href="@{/product/view/{id}(id=*{id})}">
+                        <dl>
+                            <dt><img th:src="@{*{imgPath}}" class="item_img"></dt>
+                            <label>상품이름</label>
+                            <dd class="product_subject" th:text="*{prSubject}">상품이름</dd>
+                            <label>등록가</label>
+                            <dd class="product_price" th:text="*{startPrice}">등록가</dd>
+                            <label>즉시구매가</label>
+                            <dd class="product_price" th:text="*{baroPrice}">즉시구매가</dd>
+                        </dl>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br/>
+<a th:href="@{/main}">메인페이지</a>
+</body>
 </html>
