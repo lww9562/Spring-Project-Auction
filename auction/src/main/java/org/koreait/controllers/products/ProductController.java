@@ -89,7 +89,7 @@ public class ProductController {
                 return "product/update";    // board/write로 쓴 부분 수정
             }
         }
-        return "redirect:/product/list"; //우선 목록 페이지도 있어야 할 것 같아서 목록으로 보냄
+        return "redirect:/product/list?"; //우선 목록 페이지도 있어야 할 것 같아서 목록으로 보냄
     }
 
     @GetMapping("/update/{id}") //수정 페이지 이동
@@ -156,7 +156,7 @@ public class ProductController {
         System.out.println("=================default URL=================");
         String qs = Arrays.stream(request.getQueryString().split("&")).filter(s -> !s.contains("page")).collect(Collectors.joining("&"));
 
-        url += "?" + qs;
+        //url += "?" + qs;
         System.out.println("===========================================");
         System.out.println(qs);
         System.out.println(url);

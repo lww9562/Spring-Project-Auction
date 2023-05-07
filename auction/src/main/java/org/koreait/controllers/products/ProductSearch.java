@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class ProductSearch {
     private int page = 1;
-    private int limit = 20;
+    private int limit = 8;
 
     private String sort;
 
