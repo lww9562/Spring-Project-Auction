@@ -1,73 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<main layout:fragment="content">
 
-<head>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/boardlist.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/productlist.css}">
-</head>
-
-<body>
-<div class="container">
-	<h1>게시글 목록</h1>
-
-	<br/><br/><br/>
-
-	<div>
-		<div class="categorybottom">
-			<div class="catewrapper">
-				<div class="cate">
-					<ul th:each="cateNm : ${cateNmList}">
-						<li>
-							<button class="cateimg" th:text="${cateNm}">전체</button>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-		<div class="catemain">
-			<div class="catefont">품목</div>
-			<ul class="catemenu">
-				<li class="menubtn">인기순</li>
-				<li class="menubtn">마감순</li>
-				<li class="menubtn">최신순</li>
-				<li class="menubtn">가격순</li>
-			</ul>
-		</div>
-
-		<div class="maincatelist">
-
-
-			<div class="product_link">
-				<div class="product_items" th:each="board : ${list}" th:object="${board}">
-					<div th:if="*{stats.toString().equals('true')}">
-						<span style="display:none;" th:text="*{id}">물품번호(숨김)</span>
-
-						<a th:href="@{/product/view/{id}(id=*{id})}">
-							<dl>
-								<dt><img th:src="@{*{imgPath}}" class="item_img"></dt>
-								<label>상품이름</label>
-								<dd class="product_subject" th:text="*{prSubject}">상품이름</dd>
-								<label>등록가</label>
-								<dd class="product_price" th:text="*{startPrice}">등록가</dd>
-								<label>즉시구매가</label>
-								<dd class="product_price" th:text="*{baroPrice}">즉시구매가</dd>
-							</dl>
-						</a>
-						</div>
-				</div>
-			</div>
-
-
-
-
-		</div>
-
-	</div>
-
-	<br/>
-
-	<a th:href="@{/main}">메인페이지</a>
-</body>
-
+    <th:block th:replace="~{commons/pagination::pagination}"></th:block>
+</main>
 </html>

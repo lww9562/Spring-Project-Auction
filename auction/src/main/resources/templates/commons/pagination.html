@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="pagination" th:if="${pagination != null}" th:object="${pagination}">
+    <ul class='pagination'>
+        <th:block th:if="*{page > pageCnt}">
+            <li class='page first'><a th:href="@{{url}(url=*{baseUrl}, page=1)}">처음</a></li>
+            <li class='page prev'><a th:href="@{{url}(url=*{baseUrl}, page=*{prev})}">이전</a></li>
+        </th:block>
+        <th:block th:each="p : *{pages}">
+            <li class='page' th:if="${p == pagination.page}" th:classappend="on">
+                <a th:href="@{{url}(url=*{baseUrl}, page=${p})}" th:text="${p}"></a>
+
+            </li>
+        </th:block>
+        <li  th:if="*{next  > 0}" class='page next'><a th:href="@{{url}(url=*{baseUrl}, page=*{next})}">다음</a></li>
+        <li th:if="*{page < lastPage}" class='page last'><a th:href="@{{url}(url=*{baseUrl}, page=*{lastPage})}">마지막</a></li>
+    </ul>
+</th:block>
+</html>
