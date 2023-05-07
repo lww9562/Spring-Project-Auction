@@ -1,5 +1,7 @@
 package org.koreait.commons;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,17 +30,17 @@ public class Pagination<T> {
     private List<Integer> pages; // 구간별 페이지 번호
     private String baseUrl;
 
-    public Pagination(Page<T> data, String url) {
+    public Pagination(Page<T> data, String url) throws UnsupportedEncodingException {
         //this(data.getNumber() + 1, data.getTotalElements(), data.getSize(), url);
-        this(data.getNumber() + 1, data.getTotalElements(), 10, url);
+        this(data.getNumber() + 1, data.getTotalElements(), 20, url);
     }
 
-    public Pagination(int page, long total, String url) {
-//        this(page, total, 20, url);
-        this(page, total, 10, url);
+    public Pagination(int page, long total, String url) throws UnsupportedEncodingException {
+        this(page, total, 20, url);
+
     }
 
-    public Pagination(int _page, long _total, int _pagePerCnt, String url) {
+    public Pagination(int _page, long _total, int _pagePerCnt, String url) throws UnsupportedEncodingException {
         total = _total;
         pagePerCnt = _pagePerCnt;
         page = _page <= 0 ? 1 : page;
@@ -48,7 +50,10 @@ public class Pagination<T> {
         }
 
         baseUrl = url;
-        baseUrl = baseUrl == null ? "" : baseUrl;
+        baseUrl = (baseUrl == null) ? "" : baseUrl;
+        baseUrl = URLDecoder.decode(baseUrl, "UTF-8");
+
+        System.out.println(baseUrl);
 
         this.pageCnt = pageCnt < 1 ? 10 : pageCnt; // 페이지 구간이 0 이하 인 경우는 기본값 10 지정
         this.lastPage = (int)Math.ceil(total / (double)this.pagePerCnt);  // 마지막 페이지

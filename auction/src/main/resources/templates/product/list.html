@@ -26,22 +26,25 @@
                     </div>
                 </div>
             </div>
-
             <div class="catemain">
                 <div class="catefont">품목</div>
+
+                <input type="text" class="search_bar">
+
+
                 <ul class="catemenu">
                     <li class="menubtn">인기순</li>
                     <li class="menubtn">
-                        <a th:href="@{/product/list?ALL&sort=regDt%20ASC}">마감순</a>
+                        <a th:href="@{{url}(url=*{baseUrl}, regDt=ASC, page=1)}">마감순</a>
                     </li>
                     <li class="menubtn">
-                        <a th:href="@{/product/list?ALL&sort=regDt%20DESC}">최신순</a>
+                        <a th:href="@{{url}(url=*{baseUrl}, regDt=DESC, page=1)}">최신순</a>
                     </li>
                     <li class="menubtn">
-                        <a th:href="@{/product/list?ALL&sort=endPrice%20DESC}">높은가격순</a>
+                        <a th:href="@{{url}(url=*{baseUrl}, endPrice=DESC, page=1)}">높은가격순</a>
                     </li>
                     <li class="menubtn">
-                        <a th:href="@{/product/list?ALL&sort=endPrice%20ASC}">낮은가격순</a>
+                        <a th:href="@{{url}(url=*{baseUrl}, endPrice=ASC, page=1)}">낮은가격순</a>
                     </li>
                 </ul>
             </div>
