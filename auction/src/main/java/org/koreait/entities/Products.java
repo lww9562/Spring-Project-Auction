@@ -45,7 +45,7 @@ public class Products extends BaseUserEntity{
     @ToString.Exclude
     private List<Bidders> bidderList = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     //하나의 Sellers는 여러 판매 물품을 등록할 수  있으므로, @ManyToOne 매핑
     @JoinColumn(name="seller")
     @ToString.Exclude

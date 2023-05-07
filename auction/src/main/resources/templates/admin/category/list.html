@@ -4,7 +4,10 @@
       layout:decorate="~{admin/layouts/main}">
 
 <head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin/product_list.css}">
+    <script th:src="@{/js/admin/category_list.js}"></script>
     <style>
+
 		table {
 			margin-left:auto;
 			margin-right:auto;
@@ -46,7 +49,7 @@
             <td th:text="*{cateNm}"></td>
             <td th:text="*{orderNo}"></td>
             <td>
-                <input type="checkbox" th:checked="${list.use}" />
+                <input type="checkbox" th:checked="*{use}" th:data-cateID="*{cateId}" th:data-use="*{use}" class="form-check-input">
             </td>
 
         </tr>

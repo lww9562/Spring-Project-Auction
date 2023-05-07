@@ -4,29 +4,8 @@
 	  layout:decorate="~{admin/layouts/main}">
 
 <head>
-	<style>
-		table {
-			margin-left:auto;
-			margin-right:auto;
-			font-size: 13px;
-			width: 100%;
-			border-top: 1px solid #ccc;
-			border-bottom: 1px solid #ccc;
-		}
-
-		td {
-  			text-align: center;
-		}
-
-		td input {
-			width : 80%;
-			text-align : right;
-		}
-
-		button{
-			width:100%;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/admin/product_list.css}">
+	<script th:src="@{/js/admin/product_list.js}"></script>
 </head>
 
 <section layout:fragment="content" th:object="${productsList}">
@@ -42,6 +21,7 @@
 			<th>CURRENT PRICE</th>
 			<th>RISING PRICE</th>
 			<th>REGDT</th>
+			<th>STATS</th>
 		</tr>
 
 		<tr th:each="products : ${productsList}" th:object="${products}">
@@ -53,6 +33,9 @@
 			<td th:text="*{endPrice}"></td>
 			<td th:text="*{risingPrice}"></td>
 			<td th:text="*{regDt}"></td>
+			<td>
+				<input type="checkbox" th:checked="*{stats}" th:data-product-no="*{id}" th:data-product-stats="*{stats}" class="form-check-input">
+			</td>
 		</tr>
 
 	</table>

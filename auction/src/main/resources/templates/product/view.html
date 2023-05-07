@@ -20,12 +20,11 @@
 						<div class="product_detail_box">
 							<div class="ProductCategory"></div>
 							<p class="ProductName">
-								<span th:text="*{prContent}">판매물품 제목</span>
+								<span th:text="*{prSubject}">판매물품 제목</span>
 							</p>
 							<div class="ProductPrice">
-								<strong class="currentPrice" th:text="*{endPrice}">현재 판매가격</strong><br>
-								<strong class="risingPrice" th:text="*{risingPrice}">인상 입찰가격</strong><br>
-								<strong class="expireDate">남은 시간</strong>
+
+								<strong class="expireDate">남은 시간</strong><br>
 
 								<div class="time">
 									<span id="d-day-hour">00</span>
@@ -86,6 +85,9 @@
 							</div>
 						</div>
 					</div>
+					<strong class="currentPrice" th:text="*{endPrice}" style="font-size:1rem">현재 판매가격</strong><br>
+					<strong class="risingPrice" th:text="*{risingPrice}">인상 입찰가격</strong><br>
+
 					<div class="PurchaseButton" th:if="*{stats.toString().equals('true')}">
 						<button id="bid_btn" th:data-userid="${userId}" th:data-productid="${product.id}">입찰</button>
 						<button id="buy_btn" th:data-userid="${userId}" th:data-productid="${product.id}">바로 구매</button>

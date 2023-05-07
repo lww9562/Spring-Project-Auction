@@ -1,3 +1,4 @@
+
 	a:link {
 		color: black;
 		text-decoration: none;
@@ -44,6 +45,11 @@
 	.th_regDt{
 		width : 200px;
 		text-align:right;
+	}
+
+	.paging {
+		width : 200px;
+		text-align:center;
 	}
 
 

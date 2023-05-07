@@ -5,6 +5,7 @@ html{
 }
 
 
+
 .categorybottom{
     padding: 0 16px;
     position: relative;
@@ -42,6 +43,10 @@ ul{
 
     max-width: 992px;
 
+}
+
+.pagination {
+	justify-content: center;
 }
 
 li{
@@ -101,7 +106,9 @@ li{
     font-size: 14px;
 }
 
-.menubtn{
+.orderbtn{
+
+    color:gray;
     display: inline;
     align-items: center;
     margin-right: 8px;
@@ -109,7 +116,7 @@ li{
 
 }
 
-.menubtn:hover{
+.menubtn a:hover{
     color:red;
 }
 
@@ -120,8 +127,6 @@ li{
     justify-content: center;
 
 }
-
-
 
 .product_link{
     display: inline-flex;
@@ -144,3 +149,21 @@ li{
   height: 165px;
   object-fit: cover;
 }
+
+
+.bottom_link{
+    display: flex;
+}
+
+.bottom_link a{
+    margin: 10px;
+    padding : 10px;
+    border : 1px solid black;
+    border-radius: 5px;
+}
+
+.hidden_tag{
+ display:none;
+}
+
+
