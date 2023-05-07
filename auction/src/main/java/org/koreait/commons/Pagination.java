@@ -29,11 +29,13 @@ public class Pagination<T> {
     private String baseUrl;
 
     public Pagination(Page<T> data, String url) {
-        this(data.getNumber() + 1, data.getTotalElements(), data.getSize(), url);
+        //this(data.getNumber() + 1, data.getTotalElements(), data.getSize(), url);
+        this(data.getNumber() + 1, data.getTotalElements(), 10, url);
     }
 
     public Pagination(int page, long total, String url) {
-        this(page, total, 20, url);
+//        this(page, total, 20, url);
+        this(page, total, 10, url);
     }
 
     public Pagination(int _page, long _total, int _pagePerCnt, String url) {

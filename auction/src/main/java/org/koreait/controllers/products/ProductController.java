@@ -140,12 +140,18 @@ public class ProductController {
 
     @GetMapping("/list")
     public String list(ProductSearch search, Model model, HttpServletRequest request) {
+        System.out.println(search);
 
         Page<Products> products = listService.gets(search);
 
         String url = request.getContextPath() + "/product/list";
         String qs = Arrays.stream(request.getQueryString().split("&")).filter(s -> !s.contains("page")).collect(Collectors.joining("&"));
+
         url += "/?" + qs;
+        System.out.println("===========================================");
+        System.out.println(qs);
+        System.out.println(url);
+
         Pagination<Products> pagination = new Pagination<>(products, url);
         model.addAttribute("products", products.getContent());
         model.addAttribute("pagination", pagination);

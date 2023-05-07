@@ -12,6 +12,7 @@ import static org.springframework.data.domain.Sort.Order.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
+import java.util.Arrays;
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Products,Long>, QuerydslPredicateExecutor<Products> {
@@ -50,6 +51,9 @@ public interface ProductRepository extends JpaRepository<Products,Long>, Queryds
 
         /** 정렬 처리 S */
         String sort = search.getSort();
+        System.out.println("===================================");
+        System.out.println(sort);
+
         int page = search.getPage();
         int limit = search.getLimit();
         page = page < 1 ? 1 : page;
@@ -57,6 +61,9 @@ public interface ProductRepository extends JpaRepository<Products,Long>, Queryds
         Sort sort2 = Sort.by(desc("regDt"));
         if (sort != null) {
             String[] sorts = sort.split("\\s+");
+            System.out.println("sorts[0] : " + sorts[0]);
+            System.out.println("sorts[1] : " + sorts[1]);
+            Arrays.stream(sorts).forEach(System.out::println);
             if (sorts[1].toUpperCase().equals("DESC")) {
                 sort2 = Sort.by(desc(sorts[0]));
             } else {

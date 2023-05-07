@@ -5,6 +5,7 @@ html{
 }
 
 
+
 .categorybottom{
     padding: 0 16px;
     position: relative;
@@ -42,6 +43,10 @@ ul{
 
     max-width: 992px;
 
+}
+
+.pagination {
+	justify-content: center;
 }
 
 li{
@@ -111,7 +116,7 @@ li{
 
 }
 
-.menubtn:hover{
+.menubtn a:hover{
     color:red;
 }
 
@@ -122,8 +127,6 @@ li{
     justify-content: center;
 
 }
-
-
 
 .product_link{
     display: inline-flex;
@@ -162,3 +165,5 @@ li{
 .hidden_tag{
  display:none;
 }
+
+
