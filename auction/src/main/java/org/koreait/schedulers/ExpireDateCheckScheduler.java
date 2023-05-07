@@ -25,7 +25,7 @@ public class ExpireDateCheckScheduler {
 		List<Products> list = repository.findAll();
 
 		for(Products product : list){
-			LocalDateTime expire = product.getRegDt();
+			LocalDateTime expire = product.getRegDt().plusDays(3L);
 			LocalDate expire_date = expire.toLocalDate();
 			LocalTime expire_time = expire.toLocalTime();
 
