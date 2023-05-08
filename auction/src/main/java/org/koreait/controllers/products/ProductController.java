@@ -156,7 +156,7 @@ public class ProductController {
         System.out.println("=================default URL=================");
         String qs = Arrays.stream(request.getQueryString().split("&")).filter(s -> !s.contains("page")).collect(Collectors.joining("&"));
 
-        url += "?" + qs;
+        //url += "?" + qs;
         System.out.println("===========================================");
         System.out.println(qs);
         System.out.println(url);

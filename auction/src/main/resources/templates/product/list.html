@@ -73,18 +73,21 @@
 
 
                 <ul class="catemenu">
-                    <li class="menubtn">인기순</li>
+<!--                    <li class="menubtn">인기순</li>-->
                     <li class="menubtn">
-                        <a th:href="@{{url}(url=*{baseUrl}, regDt=ASC, page=1)}">마감순</a>
+                        <a th:href="@{/product/list?sort=regDt%20ASC}">마감순</a>
                     </li>
                     <li class="menubtn">
-                        <a th:href="@{{url}(url=*{baseUrl}, regDt=DESC, page=1)}">최신순</a>
+                        <a th:href="@{/product/list?sort=regDt%20DESC}">최신순</a>
                     </li>
                     <li class="menubtn">
-                        <a th:href="@{{url}(url=*{baseUrl}, endPrice=DESC, page=1)}">높은가격순</a>
+                        <a th:href="@{/product/list?sort=endPrice%20DESC}">높은가격순</a>
                     </li>
                     <li class="menubtn">
-                        <a th:href="@{{url}(url=*{baseUrl}, endPrice=ASC, page=1)}">낮은가격순</a>
+                        <a th:href="@{/product/list?sort=endPrice%20ASC}">낮은가격순</a>
+                    </li>
+                    <li class="menubtn">
+                        <a th:href="@{/product/list?sort=baroPrice%20DESC}">즉시구매순</a>
                     </li>
                 </ul>
             </div>
@@ -116,8 +119,16 @@
 
         </div>
 
+        <div class="bottom_link">
+            <a th:href="@{/main}">메인페이지</a>
+            <a th:href="@{write}">물품등록</a>
+        </div>
+
+
+
         <br/>
-    </body>
+    </div>
+</body>
     <th:block th:replace="~{commons/pagination::pagination}" ></th:block>
 
 </main>

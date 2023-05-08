@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	<head>
 
 		<meta name="_csrf" th:content="${_csrf.token}">
@@ -9,6 +10,7 @@
 		<title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
 		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 		<link rel="stylesheet" type="text/css" th:each="cssFile : ${addCss}" th:href="@{/css/{file}.css(file=${cssFile})}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
 		<th:block layout:fragment="addCss"></th:block>
 
 		<script th:src="@{/js/common.js}"></script>
@@ -20,16 +22,19 @@
 				display : table-cell;
 				width : 15%;
 				min-width : 200px;
+				height : 500px;
+				text-align:center;
 				background-color : #ffbd59;
 				vertical-align: top;
 				margin-left : 20px;
-				padding-bottom:100%;
 			}
 
 			#main_content {
+				border : 1px solid black;
 				display:table-cell;
 				width: 85%;
-				padding-left: 10%;
+
+				padding:0 15px;
 			}
 			h5 {
 				text-align:center;
@@ -38,7 +43,58 @@
 	</head>
 
 	<body>
-		<header th:replace="~{admin/outlines/header::common}"></header>
+	<header th:fragment="common">
+
+		<div class="web_header">
+			<div class="header_container">
+
+				<div class="logo_wrap">
+
+					<a th:href="@{/main}">
+						<img th:src="@{/images/logo.png}" class="logo_img"></a>
+					<ul class="categories">
+						<li class="header_li">
+							<a th:href="@{#}">사이트 소개</a>
+						</li>
+						<li class="header_li">
+							<a th:href="@{/product/list?}">물품 목록</a>
+
+						</li>
+						<li class="header_li">
+							<a th:href="@{/mypage}">마이페이지</a>
+						</li>
+					</ul>
+
+				</div>
+			</div>
+
+			<div class="header_util">
+				<div class="user">
+					<li class="header_li">
+						<th:block sec:authorize="isAnonymous()">
+							<a th:href="@{/user/join}" th:text="#{user.join}"></a></th:block>
+						</br>
+
+						<th:block sec:authorize="isAnonymous()">
+							<a th:href="@{/user/login}" th:text="#{user.login}"></a>
+						</th:block>
+						<th:block sec:authorize="isAuthenticated()">
+							<a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/admin}">관리자페이지</a>
+						</th:block>
+
+						<th:block sec:authorize="isAuthenticated()">
+							<a th:href="@{/user/logout}">로그아웃</a>
+						</th:block>
+					</li>
+				</div>
+				<div class="product">
+					<span class="product_write">
+						<a th:href="@{/product/write}">판매물품 등록</a></span>
+				</div>
+			</div>
+
+		</div>
+	</header>
 		<main>
 			<aside id="sidebar" th:replace="~{admin/outlines/side::menus}"></aside>
 
