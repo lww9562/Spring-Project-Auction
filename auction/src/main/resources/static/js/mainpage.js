@@ -17,8 +17,6 @@ function updateProgress() {
   progressbar.style.width = `${(currSlide / maxSlide) * 100}%`;
 }
 
-
-
 const startSlide = slideItems[0];
 const endSlide = slideItems[slideItems.length-1];
 const startElem = document.createElement("div");
