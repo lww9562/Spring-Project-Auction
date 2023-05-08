@@ -5,21 +5,33 @@
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/boardlist.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/productlist.css}">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script th:src="@{/js/search.js}"></script>
     <style>
 
 
 .search {
 	height: 40px;
-	width : 400px;
+	width : 600px;
 	border : 1px solid #ffbd59;
 	background : #ffffff;
 	margin:auto;
 }
 
+#sopt {
+    width:75px;
+    font-size : 14px;
+    height : 100%;
+    padding : 10px;
+    float : left;
+    border : 0px;
+    outline:none;
+    border-right:1px solid #ffbd59;
+}
 
 .search_bar {
 	font-size : 14px;
-	width : 325px;
+	width : 200px;
 	padding : 10px;
 	border : 0px;
 	outline:none;
@@ -28,7 +40,7 @@
 }
 
 .search button{
-	width : 50px;
+	width : 75px;
 	height : 100%;
 	border : 0px;
 	background : #ffbd59;
@@ -37,7 +49,9 @@
 	color:#ffffff
 
 }
-
+.catemain {
+    float:none;
+}
 
     </style>
 </head>
@@ -50,10 +64,16 @@
         <br/><br/><br/>
 
         <div>
-            <div class="search">
-                <input type="text" class="search_bar" placeholder="검색어를 입력하세요.">
-                <button>검색</button>
-            </div>
+            <form method = "GET" action="">
+                <div class="search">
+                    <select name="sopt" id="sopt">
+                        <option value="ALL">전체</option>
+                        <option value="prSubject">제목</option>
+                    </select>
+                    <input type="text" name="skey" class="search_bar" id="skey" placeholder="검색어를 입력하세요." value="">
+                    <button type="submit" id = "search_btn">검색</button>
+                </div>
+            </form>
             <div class="categorybottom">
                 <div class="catewrapper">
                     <div class="cate">
@@ -75,19 +95,19 @@
                 <ul class="catemenu">
 <!--                    <li class="menubtn">인기순</li>-->
                     <li class="menubtn">
-                        <a th:href="@{/product/list?sort=regDt%20ASC}">마감순</a>
+                        <a th:href="@{/product/list?sort=regDt ASC}">마감순</a>
                     </li>
                     <li class="menubtn">
-                        <a th:href="@{/product/list?sort=regDt%20DESC}">최신순</a>
+                        <a th:href="@{/product/list?sort=regDt DESC}">최신순</a>
                     </li>
                     <li class="menubtn">
-                        <a th:href="@{/product/list?sort=endPrice%20DESC}">높은가격순</a>
+                        <a th:href="@{/product/list?sort=endPrice DESC}">높은가격순</a>
                     </li>
                     <li class="menubtn">
-                        <a th:href="@{/product/list?sort=endPrice%20ASC}">낮은가격순</a>
+                        <a th:href="@{/product/list?sort=endPrice ASC}">낮은가격순</a>
                     </li>
                     <li class="menubtn">
-                        <a th:href="@{/product/list?sort=baroPrice%20DESC}">즉시구매순</a>
+                        <a th:href="@{/product/list?sort=baroPrice DESC}">즉시구매순</a>
                     </li>
                 </ul>
             </div>

@@ -36,6 +36,8 @@ public interface ProductRepository extends JpaRepository<Products,Long>, Queryds
         // 예로 하나 만들어 드리겠습니다~ 필요에 따라 더 추가하시면 됩니다.
         String sopt = search.getSopt();
         String skey = search.getSkey();
+        System.out.println("sopt : " + sopt);
+        System.out.println("skey : " + skey);
         if (sopt != null && !sopt.isBlank() && skey != null && !skey.isBlank()) {
             if (sopt.equals("ALL")) { // 통합 검색 - 물품 제목, 물품 내용 중에서
                 BooleanBuilder orBuilder = new BooleanBuilder();
@@ -44,6 +46,12 @@ public interface ProductRepository extends JpaRepository<Products,Long>, Queryds
                 andBuilder.and(orBuilder);
             } else if (sopt.equals("prSubject")) { // 제목에서 검색
                 andBuilder.and(products.prSubject.contains(skey));
+            }
+            else{
+                andBuilder.and(products.prSubject.contains(skey));
+                System.out.println("==============null================");
+                System.out.println(andBuilder.toString());
+                System.out.println("==============null================");
             }
         }
         /** 추가 검색 조건 처리 E */
