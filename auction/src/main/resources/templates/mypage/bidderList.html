@@ -7,9 +7,9 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/mypage1.css}">
 </head>
 
-<main layout:fragment="content" th:object="${userinfo}">
-
+<main layout:fragment="content">
     <div class="wrap">
+
         <aside th:fragment="menus" class="boxsidebar">
             <ul class="list">
                 <li >
@@ -32,29 +32,37 @@
                 </li>
             </ul>
         </aside>
-            <table class="userinfo">
-                <tr>
-                    <th>ID</th>
-                    <td th:text="*{userId}">userId</td>
+        <section  th:object="${bidProducts}"  class="box">
+            <table class="product_list">
+
+                <tr class="trMenu">
+                    <th class="th1">NO</th>
+                    <th class="th2">카테고리</th>
+                    <th class="th3">상 품</th>
+                    <th class="th4">판매자</th>
+                    <th class="th5">즉시 입찰가</th>
+                    <th class="th6">현재 입찰가</th>
+                    <th class="th7">인상가</th>
+                    <th class="th8">REGDT</th>
                 </tr>
-                <tr>
-                    <th>이름</th>
-                    <td th:text="*{userNm}">userNm</td>
+
+                <tr th:each="product : ${bidProducts}" th:object="${product}">
+                    <td th:text="*{id}"></td>
+                    <td th:text="*{categories.cateNm}"></td>
+                    <td th:text="*{prSubject}"></td>
+                    <td th:text="*{createdBy}"></td>
+                    <td th:text="*{baroPrice}"></td>
+                    <td th:text="*{endPrice}"></td>
+                    <td th:text="*{risingPrice}"></td>
+                    <td th:text="*{regDt}"></td>
+
                 </tr>
-                <tr>
-                    <th>Email</th>
-                    <td th:text="*{email}">이메일</td>
-                </tr>
-                <tr>
-                    <th>휴대번호</th>
-                    <td th:text="*{mobile}">mobile</td>
-                </tr>
-                <tr>
-                    <th>통장</th>
-                    <td th:text="${user.money}">userNm</td>
-                </tr>
+
             </table>
+
+        </section>
     </div>
+
 </main>
 
 </html>
