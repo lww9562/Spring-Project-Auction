@@ -9,6 +9,7 @@ public class ProductSearch {
     private int limit = 8;
 
     private String sort;
+    private String cateNm;  //카테고리별 조회
 
     private String sopt; // 검색 항목
 

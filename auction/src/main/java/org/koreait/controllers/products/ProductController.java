@@ -143,27 +143,13 @@ public class ProductController {
 
     @GetMapping("/list")
     public String list(ProductSearch search, Model model, HttpServletRequest request) throws Exception {
-        System.out.println(search);
-
         Page<Products> products = listService.gets(search);
 
         String url = request.getContextPath() + "/product/list";
-        System.out.println(url);
-
-
-
-
-        System.out.println("=================default URL=================");
-        String qs = Arrays.stream(request.getQueryString().split("&")).filter(s -> !s.contains("page")).collect(Collectors.joining("&"));
-
-        //url += "?" + qs;
-        System.out.println("===========================================");
-        System.out.println(qs);
-        System.out.println(url);
-
-        url = URLDecoder.decode(url, "UTF-8");
 
         Pagination<Products> pagination = new Pagination<>(products, url);
+
+
         model.addAttribute("products", products.getContent());
         model.addAttribute("pagination", pagination);
         List<String> cateNmList = categoryRepository.getAllCateNm();
