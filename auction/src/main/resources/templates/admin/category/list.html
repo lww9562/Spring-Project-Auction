@@ -32,16 +32,14 @@
 	</style>
 </head>
 
-<section layout:fragment="content" th:object="${userList}">
-    <table class="user_list">
-        <col width="50"><col width="100"><col width="100">
-        <col width="150"><col width="200"><col width="50"><col width="200"><col width="150">
+<section layout:fragment="content">
+    <table class="category_list">
+        <col width="50"><col width="200"><col width="50"><col width="150">
         <tr>
             <th>cateId</th>
             <th>cateNm</th>
             <th>orderNo</th>
             <th>use</th>
-
         </tr>
 
         <tr th:each=" list : ${categoriesList}" th:object="${list}">

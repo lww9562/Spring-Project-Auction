@@ -66,8 +66,6 @@ public class CategoryController {
 
 		model.addAttribute("categoriesList",categoriesList);
 
-
-
 //		model.addAttribute("category",category);
 		return "admin/category/list";
 	}
