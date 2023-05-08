@@ -1,0 +1,127 @@
+
+		table {
+			margin-left:auto;
+			margin-right:auto;
+			font-size: 13px;
+			width: 100%;
+			border-top: 1px solid #ccc;
+			border-bottom: 1px solid #ccc;
+		}
+
+		td {
+  			text-align: center;
+		}
+
+		td input {
+			width : 80%;
+			text-align : right;
+		}
+
+		button{
+			width:100%;
+		}
+.onoff-switch-container{
+  display:inline-block;
+  height: 30px;
+  position:relative;
+}
+
+
+.onoff-switch-container input[type="checkbox"]{
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+}
+.onoff-switch-container label{
+  padding-left: 70px;
+  line-height: 30px;
+  font-size: 16px;
+}
+.onoff-switch-container label::after{
+  position:absolute;
+  top:3px;
+  left:4px;
+  content:'';
+  width: 24px;
+  height: 24px;
+  background: #d1d1d1;
+  border-radius: 100%;
+  transition: all 0.3s
+
+}
+.onoff-switch-container label::before{
+  position:absolute;
+  top:0;
+  left:0;
+  content:'';
+  width: 60px;
+  height: 30px;
+  border:1px solid #d1d1d1;
+  border-radius: 20px;
+  background: #f1f1f1;
+  box-sizing: border-box;
+}
+.onoff-switch-container input[type="checkbox"]:checked + label::after {
+  transform: translateX(28px);
+  background: green;
+}
+.onoff-switch-container input[type="checkbox"]:checked + label::before {
+  background: #fff;
+}
+
+
+[type="checkbox"] {
+  appearance: none;
+  position: relative;
+  border: max(2px, 0.1em) solid gray;
+  border-radius: 1.25em;
+  width: 2.25em;
+  height: 1.25em;
+}
+
+[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  transform: scale(0.8);
+  background-color: gray;
+  transition: left 250ms linear;
+}
+
+[type="checkbox"]:checked {
+  background-color: tomato;
+  border-color: tomato;
+}
+
+[type="checkbox"]:checked::before {
+  background-color: white;
+  left: 1em;
+}
+
+[type="checkbox"]:disabled {
+  border-color: lightgray;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+[type="checkbox"]:disabled:before {
+  background-color: lightgray;
+}
+
+[type="checkbox"]:disabled + span {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+[type="checkbox"]:focus-visible {
+  outline-offset: max(2px, 0.1em);
+  outline: max(2px, 0.1em) solid tomato;
+}
+
+[type="checkbox"]:enabled:hover {
+  box-shadow: 0 0 0 max(4px, 0.2em) lightgray;
+}

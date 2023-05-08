@@ -1,8 +1,10 @@
 package org.koreait.controllers.products;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.koreait.commons.Pagination;
 import org.koreait.controllers.users.UserInfo;
 import org.koreait.entities.Categories;
 import org.koreait.entities.Products;
@@ -13,6 +15,7 @@ import org.koreait.models.Product.ProductListService;
 import org.koreait.models.Product.ProductSaveService;
 import org.koreait.repositories.CategoryRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,7 +30,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.print.Pageable;
+import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,6 +63,7 @@ public class ProductController {
                 listCategories.add(category);
             }
         }
+        Collections.sort(listCategories);
 
         model.addAttribute("categoryMap", listCategories.stream().collect(Collectors.toMap(Categories::getCateId, Categories::getCateNm)));
 
@@ -82,7 +89,7 @@ public class ProductController {
                 return "product/update";    // board/write로 쓴 부분 수정
             }
         }
-        return "redirect:/product/list"; //우선 목록 페이지도 있어야 할 것 같아서 목록으로 보냄
+        return "redirect:/product/list?"; //우선 목록 페이지도 있어야 할 것 같아서 목록으로 보냄
     }
 
     @GetMapping("/update/{id}") //수정 페이지 이동
@@ -110,16 +117,57 @@ public class ProductController {
 
         return "product/view";
     }
-
+    /**
     @GetMapping("/list") //게시글 목록 이동
     public String list(Model model) {
 
         List<Products> list = listService.gets();
+        List<Products> list1 = listService.getsOrderByBaroPrice();
+        List<Products> list2 = listService.getsOrderByEndPrice();
+        List<Products> list3 = listService.getsOrderByLastTime();
+        List<Products> list4 = listService.getsOrderByNewPr();
+
         List<String> cateNmList = categoryRepository.getAllCateNm();
 
         model.addAttribute("list", list);
+        model.addAttribute("listBaro", list1);
+        model.addAttribute("listEndPrice", list2);
+        model.addAttribute("listLastTime", list3);
+        model.addAttribute("listNewPr", list4);
+
         model.addAttribute("cateNmList", cateNmList);
 
+        return "product/list";
+    }
+    */
+
+    @GetMapping("/list")
+    public String list(ProductSearch search, Model model, HttpServletRequest request) throws Exception {
+        System.out.println(search);
+
+        Page<Products> products = listService.gets(search);
+
+        String url = request.getContextPath() + "/product/list";
+        System.out.println(url);
+
+
+
+
+        System.out.println("=================default URL=================");
+        String qs = Arrays.stream(request.getQueryString().split("&")).filter(s -> !s.contains("page")).collect(Collectors.joining("&"));
+
+        //url += "?" + qs;
+        System.out.println("===========================================");
+        System.out.println(qs);
+        System.out.println(url);
+
+        url = URLDecoder.decode(url, "UTF-8");
+
+        Pagination<Products> pagination = new Pagination<>(products, url);
+        model.addAttribute("products", products.getContent());
+        model.addAttribute("pagination", pagination);
+        List<String> cateNmList = categoryRepository.getAllCateNm();
+        model.addAttribute("cateNmList", cateNmList);
         return "product/list";
     }
 

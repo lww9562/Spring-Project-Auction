@@ -1,72 +1,155 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
 <head>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/boardlist.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/productlist.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/boardlist.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/productlist.css}">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script th:src="@{/js/search.js}"></script>
+    <style>
+
+
+.search {
+	height: 40px;
+	width : 600px;
+	border : 1px solid #ffbd59;
+	background : #ffffff;
+	margin:auto;
+}
+
+#sopt {
+    width:75px;
+    font-size : 14px;
+    height : 100%;
+    padding : 10px;
+    float : left;
+    border : 0px;
+    outline:none;
+    border-right:1px solid #ffbd59;
+}
+
+.search_bar {
+	font-size : 14px;
+	width : 200px;
+	padding : 10px;
+	border : 0px;
+	outline:none;
+	float:left;
+    height : 100%;
+}
+
+.search button{
+	width : 75px;
+	height : 100%;
+	border : 0px;
+	background : #ffbd59;
+	outline:none;
+	float:right;
+	color:#ffffff
+
+}
+.catemain {
+    float:none;
+}
+
+    </style>
 </head>
 
-<body>
-<div class="container">
-	<h1>게시글 목록</h1>
+<main layout:fragment="content">
+    <body>
+    <div class="container">
+        <h1>게시글 목록</h1>
 
-	<br/><br/><br/>
+        <br/><br/><br/>
 
-	<div>
-		<div class="categorybottom">
-			<div class="catewrapper">
-				<div class="cate">
-					<ul th:each="cateNm : ${cateNmList}">
-						<li>
-							<button class="cateimg" th:text="${cateNm}">전체</button>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
+        <div>
+            <form method = "GET" action="">
+                <div class="search">
+                    <select name="sopt" id="sopt">
+                        <option value="ALL">전체</option>
+                        <option value="prSubject">제목</option>
+                    </select>
+                    <input type="text" name="skey" class="search_bar" id="skey" placeholder="검색어를 입력하세요." value="">
+                    <button type="submit" id = "search_btn">검색</button>
+                </div>
+            </form>
+            <div class="categorybottom">
+                <div class="catewrapper">
+                    <div class="cate">
+                        <ul th:each="cateNm : ${cateNmList}">
+                            <li>
+                                <button class="cateimg" th:text="${cateNm}">전체</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-		<div class="catemain">
-			<div class="catefont">품목</div>
-			<ul class="catemenu">
-				<li class="menubtn">인기순</li>
-				<li class="menubtn">마감순</li>
-				<li class="menubtn">최신순</li>
-				<li class="menubtn">가격순</li>
-			</ul>
-		</div>
-
-		<div class="maincatelist">
-
-
-			<div class="product_link">
-				<div class="product_items" th:each="board : ${list}" th:object="${board}">
-
-					<span style="display:none;" th:text="*{id}">물품번호(숨김)</span>
-
-					<a th:if="*{stats.toString().equals('true')}" th:href="@{/product/view/{id}(id=*{id})}">
-						<dl>
-							<dt><img th:src="@{*{imgPath}}" class="item_img"></dt>
-							<label>상품이름</label>
-							<dd class="product_subject" th:text="*{prSubject}">상품이름</dd>
-							<label>등록가</label>
-							<dd class="product_price" th:text="*{startPrice}">등록가</dd>
-							<label>즉시구매가</label>
-							<dd class="product_price" th:text="*{baroPrice}">즉시구매가</dd>
-						</dl>
-					</a>
-				</div>
-			</div>
+            <div class="catemain">
+                <div class="catefont">품목</div>
 
 
 
 
-		</div>
+                <ul class="catemenu">
+<!--                    <li class="menubtn">인기순</li>-->
+                    <li class="menubtn">
+                        <a th:href="@{/product/list?sort=regDt ASC}">마감순</a>
+                    </li>
+                    <li class="menubtn">
+                        <a th:href="@{/product/list?sort=regDt DESC}">최신순</a>
+                    </li>
+                    <li class="menubtn">
+                        <a th:href="@{/product/list?sort=endPrice DESC}">높은가격순</a>
+                    </li>
+                    <li class="menubtn">
+                        <a th:href="@{/product/list?sort=endPrice ASC}">낮은가격순</a>
+                    </li>
+                    <li class="menubtn">
+                        <a th:href="@{/product/list?sort=baroPrice DESC}">즉시구매순</a>
+                    </li>
+                </ul>
+            </div>
 
-	</div>
 
-	<br/>
+            <div class="maincatelist">
 
-	<a th:href="@{/main}">메인페이지</a>
+
+                <div class="product_link">
+                    <div class="product_items" th:each="board : ${products}" th:object="${board}">
+                        <div th:if="*{stats.toString().equals('true')}">
+                            <span style="display:none;" th:text="*{id}">물품번호(숨김)</span>
+
+                            <a th:href="@{/product/view/{id}(id=*{id})}">
+                                <dl>
+                                    <dt><img th:src="@{*{imgPath}}" class="item_img"></dt>
+                                    <label>상품이름</label>
+                                    <dd class="product_subject" th:text="*{prSubject}">상품이름</dd>
+                                    <label>등록가</label>
+                                    <dd class="product_price" th:text="*{startPrice}">등록가</dd>
+                                    <label>즉시구매가</label>
+                                    <dd class="product_price" th:text="*{baroPrice}">즉시구매가</dd>
+                                </dl>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bottom_link">
+            <a th:href="@{/main}">메인페이지</a>
+            <a th:href="@{write}">물품등록</a>
+        </div>
+
+
+
+        <br/>
+    </div>
 </body>
+    <th:block th:replace="~{commons/pagination::pagination}" ></th:block>
 
+</main>
 </html>

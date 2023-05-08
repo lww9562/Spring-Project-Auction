@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor@AllArgsConstructor
 @Data
 //Products 클래스는 판매물품과 판매게시글 이라는 두가지 개념을 같이 가지고 있음
-public class Products extends BaseUserEntity{
+public class Products extends BaseUserEntity implements Comparable<Products>{
     //작성자 및 수정자를 파악하기 위해, 좀 더 새부적인 BaseUserEntity를 상속받도록 변경할게요
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;            // 판매 물품 번호
@@ -45,7 +45,7 @@ public class Products extends BaseUserEntity{
     @ToString.Exclude
     private List<Bidders> bidderList = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     //하나의 Sellers는 여러 판매 물품을 등록할 수  있으므로, @ManyToOne 매핑
     @JoinColumn(name="seller")
     @ToString.Exclude
@@ -55,4 +55,16 @@ public class Products extends BaseUserEntity{
     @JoinColumn(name="category")
     @ToString.Exclude
     private Categories categories;
+
+
+    @Override
+    public int compareTo(Products o) {
+        if(this.id > o.id){
+            return 1;
+        }
+        else if(this.id == o.id)
+            return 0;
+        else
+            return -1;
+    }
 }

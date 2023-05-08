@@ -3,9 +3,25 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{admin/layouts/main}">
 
+<<<<<<< HEAD
     <section layout:fragment="content">
         <form method="post" th:action="@{/admin/category/list}" autocomplete="off">
         <table class="user_list">
+=======
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin/product_list.css}">
+    <script th:src="@{/js/admin/category_list.js}"></script>
+    <style>
+
+		table {
+			margin-left:auto;
+			margin-right:auto;
+			font-size: 13px;
+			width: 100%;
+			border-top: 1px solid #ccc;
+			border-bottom: 1px solid #ccc;
+		}
+>>>>>>> e9e0255401e78c20b4e7f68065ad0a398a778781
 
             <tr>
                 <th>cateId</th>
@@ -24,6 +40,7 @@
                     <input type="hidden" name="_open" value="on">
                 </td>
 
+<<<<<<< HEAD
             </tr>
 
         </table>
@@ -32,5 +49,30 @@
             </div>
         </form>
     </section>
+=======
+<section layout:fragment="content">
+    <table class="category_list">
+        <col width="50"><col width="200"><col width="50"><col width="150">
+        <tr>
+            <th>cateId</th>
+            <th>cateNm</th>
+            <th>orderNo</th>
+            <th>use</th>
+        </tr>
+
+        <tr th:each=" list : ${categoriesList}" th:object="${list}">
+            <td th:text="*{cateId}"></td>
+            <td th:text="*{cateNm}"></td>
+            <td th:text="*{orderNo}"></td>
+            <td>
+                <input type="checkbox" th:checked="*{use}" th:data-cateID="*{cateId}" th:data-use="*{use}" class="form-check-input">
+            </td>
+
+        </tr>
+
+    </table>
+
+</section>
+>>>>>>> e9e0255401e78c20b4e7f68065ad0a398a778781
 
 </html>
