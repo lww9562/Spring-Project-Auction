@@ -149,9 +149,9 @@ public class ProductController {
 
         Pagination<Products> pagination = new Pagination<>(products, url);
 
-
         model.addAttribute("products", products.getContent());
         model.addAttribute("pagination", pagination);
+
         List<String> cateNmList = categoryRepository.getAllCateNm();
         model.addAttribute("cateNmList", cateNmList);
         return "product/list";

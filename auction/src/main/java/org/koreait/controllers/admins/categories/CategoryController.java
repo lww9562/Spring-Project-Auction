@@ -57,32 +57,6 @@ public class CategoryController {
 			return "admin/category/register";
 		}
 
-		return "redirect:/admin/category";
-	}
-
-	@GetMapping("/list")
-	public String list(Model model){
-		List<Categories> categoriesList = listService.gets();
-
-		model.addAttribute("categoriesList",categoriesList);
-
-//		model.addAttribute("category",category);
-		return "admin/category/list";
-	}
-//	@GetMapping("/update")
-//	public String update(Model model){
-//
-//		CategoryForm categoryForm = new ModelMapper().map(category, CategoryForm.class);
-//		model.addAttribute("categoryForm", categoryForm);
-//		return "admin/category/update";
-//	}
-	@PostMapping("/list")
-	public String listPs(Model model){
-
-		List<Categories> categoriesList = listService.gets();
-//		Categories categories = categoriesList.get()
-		model.addAttribute("categoriesList",categoriesList);
-
-		return "redirect:/admin/category/list";
+		return "admin/category/register";
 	}
 }

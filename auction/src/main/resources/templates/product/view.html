@@ -5,10 +5,133 @@
 <head>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/details.css}">
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<style>
-		.article_container{
-			margin : 0px auto;
-		}
+		html{
+
+    margin: 0 150px;
+
+}
+
+.product_section:after {
+    display: block;
+    clear: both;
+}
+
+.saleInfo {
+	display:flex;
+	justify-content: center;
+}
+
+.saleInfo_wrap{
+	padding : 100px;
+	border : 1px solid #e4e4e4;
+	border-radius : 6px;
+}
+
+.ProductImage {
+    display:inline-block;
+    width: 384px;
+    padding-left : 5%;
+}
+.product_area {
+	display:inline-block;
+	padding-left: 20%;
+	width: 384px;
+}
+
+.pr_Subject{
+	color : #ffbd59;
+	font-weight : 700;
+}
+
+.ProductName {
+    margin-bottom: 6px;
+    font-size: 22px;
+    word-wrap: break-word;
+}
+
+.ProductPrice {
+    margin-right: 10px;
+    font-family: arial,sans-serif;
+    font-size: 26px;
+    text-align:center;
+}
+
+.section {
+    padding-top: 17px;
+    padding-bottom: 3px;
+    border-top: 1px solid var(--skinLayoutBorder);
+}
+
+.detail_list {
+    position: relative;
+    padding-left: 69px;
+}
+
+.list_title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 69px;
+    vertical-align: top;
+    font-size: 15px;
+    line-height: 17px;
+    text-align: left;
+    font-weight: 400;
+}
+
+.list_detail {
+    position: relative;
+    padding: 0 0 11px;
+    vertical-align: top;
+    word-break: break-all;
+    font-size: 15px;
+    line-height: 17px;
+    box-sizing: border-box;
+}
+
+.expireDate{
+	color : #ffbd59;
+}
+
+.content {
+	margin:0 auto;
+	width:800px;
+	display:block;
+	clear: both;
+
+    padding-top: 100px;
+    border-radius: 6px;
+    font-size: 18px;
+    line-height: 23.8px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.nowPrice{
+	margin-top : 10px;
+	margin-bottom : 10px;
+}
+
+.risingPrice{
+	margin-bottom : 10px;
+}
+.PurchaseButton{
+	text-align:center;
+}
+.PurchaseButton button{
+	width : 108px;
+	padding : 10px;
+	font-size : 15px;
+	font-weight: 700;
+	border : 1px solid #e4e4e4;
+	background : #ffbd59;;
+	border-radius: 6px;
+	color:white;
+}
+
+
 	</style>
 </head>
 <main layout:fragment="content" th:object="${product}">
@@ -16,94 +139,106 @@
 		<div class="article_header"></div>
 		<div class="article_container">
 			<div class="saleInfo">
-				<div class="ProductImage">
-					<img th:src="@{*{imgPath}}" class="image" width="380" height="auto" al="상품이미지" object-fit="contain">
-				</div>
-				<div class="product_area">
-					<div class="product_detail">
-						<div class="product_detail_box">
-							<div class="ProductCategory"></div>
-							<p class="ProductName">
-								<span th:text="*{prSubject}">판매물품 제목</span>
-							</p>
-							<div class="ProductPrice">
+				<div class="saleInfo_wrap">
+					<div class="ProductImage">
+						<img th:src="@{*{imgPath}}" class="image" width="380" height="auto" al="상품이미지" object-fit="contain">
+					</div>
+					<div class="product_area">
+						<div class="product_detail">
+							<div class="product_detail_box">
+								<div class="ProductCategory"></div>
+								<p class="ProductName">
+									<span class="pr_Subject">[판매]</span>
+									<span th:text="*{prSubject}">판매물품 제목</span>
+								</p>
+								<div class="ProductPrice">
 
-								<strong class="expireDate">남은 시간</strong><br>
+									<strong class="expireDate">남은 시간</strong><br>
 
-								<div class="time">
-									<span id="d-day-hour">00</span>
-									<span class="col">:</span>
-									<span id="d-day-min">00</span>
-									<span class="col">:</span>
-									<span id="d-day-sec">00</span>
-								</div>
-								<div th:if="*{stats.toString().equals('true')}" class="timer">
-									<script type="text/javascript" th:inline="javascript">
-									/*<![CDATA[*/
-										function remaindTime() {
-											var now = new Date(); //현재시간을 구한다.
-											var regDt = new Date([[${product.regDt}]]);
-											console.log(regDt);
-											var open = regDt.setDate(regDt.getDate()+3);
-											console.log(open);0
+									<div class="time">
+										<span id="d-day-hour">00</span>
+										<span class="col">:</span>
+										<span id="d-day-min">00</span>
+										<span class="col">:</span>
+										<span id="d-day-sec">00</span>
+									</div>
+									<div th:if="*{stats.toString().equals('true')}" class="timer">
+										<script type="text/javascript" th:inline="javascript">
+										/*<![CDATA[*/
+											function remaindTime() {
+												var now = new Date(); //현재시간을 구한다.
+												var regDt = new Date([[${product.regDt}]]);
+												var open = regDt.setDate(regDt.getDate()+3);
 
-											var nt = now.getTime(); // 현재의 시간만 가져온다
-											var ot = open; // 오픈시간만 가져온다
+												var nt = now.getTime(); // 현재의 시간만 가져온다
+												var ot = open; // 오픈시간만 가져온다
 
-											if(nt<ot){ //현재시간이 오픈시간보다 이르면 오픈시간까지의 남은 시간을 구한다.
-												sec = parseInt(ot - nt) / 1000;
-												hour = parseInt(sec/60/60);
-												sec = (sec - (hour*60*60));
-												min = parseInt(sec/60);
-												sec = parseInt(sec-(min*60));
+												if(nt<ot){ //현재시간이 오픈시간보다 이르면 오픈시간까지의 남은 시간을 구한다.
+													sec = parseInt(ot - nt) / 1000;
+													hour = parseInt(sec/60/60);
+													sec = (sec - (hour*60*60));
+													min = parseInt(sec/60);
+													sec = parseInt(sec-(min*60));
 
-												if(hour<10){
-													hour="0"+hour;
+													if(hour<10){
+														hour="0"+hour;
+													}
+													if(min<10){
+														min="0"+min;
+													}
+													if(sec<10){
+														sec="0"+sec;
+													}
+													$("#d-day-hour").html(hour);
+													$("#d-day-min").html(min);
+													$("#d-day-sec").html(sec);
 												}
-												if(min<10){
-													min="0"+min;
-												}
-												if(sec<10){
-													sec="0"+sec;
-												}
-												$("#d-day-hour").html(hour);
-												$("#d-day-min").html(min);
-												$("#d-day-sec").html(sec);
 											}
-										}
-										setInterval(remaindTime,1000);
-									/*]]>*/
-									</script>
+											setInterval(remaindTime,1000);
+										/*]]>*/
+										</script>
+									</div>
+								</div>
+							</div>
+							<div class="CommercialDetail">
+								<div class="section">
+									<dl class="detail_list">
+										<dt class="list_title" th:text="*{sellers.user.userNm}">판매자</dt>
+										<dd class="list_detail">
+											<span class="seller_email" th:text="*{sellers.user.email}">이메일주소</span><br>
+											<span class="seller_mobile" th:text="*{sellers.user.mobile}">휴대전화번호</span>
+										</dd>
+									</dl>
 								</div>
 							</div>
 						</div>
-						<div class="CommercialDetail">
-							<div class="section">
-								<dl class="detail_list">
-									<dt class="list_title" th:text="*{sellers.user.userNm}">판매자</dt>
-									<dd class="list_detail">
-										<span class="seller_email" th:text="*{sellers.user.email}">이메일주소</span><br>
-										<span class="seller_mobile" th:text="*{sellers.user.mobile}">휴대전화번호</span>
-									</dd>
-								</dl>
-							</div>
+						<div class="nowPrice">현재 입찰가 :
+							<strong class="currentPrice" th:text="*{endPrice}" style="font-size:1rem">현재 판매가격</strong><br>
+						</div>
+						<div class="risingPrice">인상가 단위 :
+							<strong class="risingPrice" th:text="*{risingPrice}">인상 입찰가격</strong><br>
+						</div>
+
+
+						<div class="PurchaseButton" th:if="*{stats.toString().equals('true')}">
+							<button id="bid_btn" th:data-userid="${userId}" th:data-productid="${product.id}">입찰</button>
+							<button id="buy_btn" th:data-userid="${userId}" th:data-productid="${product.id}">바로 구매</button>
+						</div>
+						<div class="BottomNotice"></div>
+					</div>
+					<div>
+						<div class="content">
+							<span th:text="*{prContent}">판매 물품 내용</span>
 						</div>
 					</div>
-					<strong class="currentPrice" th:text="*{endPrice}" style="font-size:1rem">현재 판매가격</strong><br>
-					<strong class="risingPrice" th:text="*{risingPrice}">인상 입찰가격</strong><br>
+				</div>
+			</div>
 
-					<div class="PurchaseButton" th:if="*{stats.toString().equals('true')}">
-						<button id="bid_btn" th:data-userid="${userId}" th:data-productid="${product.id}">입찰</button>
-						<button id="buy_btn" th:data-userid="${userId}" th:data-productid="${product.id}">바로 구매</button>
-					</div>
-					<div class="BottomNotice"></div>
-				</div>
-			</div>
-			<div>
-				<div class="content">
-					<span th:text="*{prContent}">판매 물품 내용</span>
-				</div>
-			</div>
+			<br>
+			<br>
+			<br>
+
+
 		</div>
 
 	</div>

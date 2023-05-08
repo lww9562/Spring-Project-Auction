@@ -13,8 +13,12 @@ public class UrlUtil {
 	private HttpServletRequest request;
 
 	public String getPageUrl(String url, int page){
-		url += "?";
+		if(!url.contains("?")){
+			url += "?";
+		}
+
 		String qs = request.getQueryString();
+		//System.out.println("qs : " + qs);
 		if (qs != null && !qs.isBlank()){
 			qs = Arrays.stream(qs.split("&")).filter(s-> !s.contains("page")).collect(Collectors.joining("&"));
 
@@ -26,4 +30,29 @@ public class UrlUtil {
 
 		return url;
 	}
+/*
+	public String getPageUrl(String url, int page, String sort){
+		System.out.println("url : " + url);
+		if(!url.contains("?")){
+			url += "?";
+		}
+
+		String qs = request.getQueryString();
+		System.out.println("qs : " + qs);
+		if (qs != null && !qs.isBlank()){
+			if(qs.contains("sort")){
+				return url+"sort="+sort+"&page="+page;
+			}
+			qs = Arrays.stream(qs.split("&")).filter(s-> !s.contains("page")).collect(Collectors.joining("&"));
+
+			if(!qs.isBlank()){
+				url += qs + "&";
+			}
+		}
+		url += "sort=" + sort + "&page=" + page;
+
+		return url;
+	}
+
+ */
 }
