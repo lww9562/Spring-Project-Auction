@@ -5,7 +5,11 @@
 <head>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/details.css}">
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<style>
+		.article_container{
+			margin : 0px auto;
+		}
+	</style>
 </head>
 <main layout:fragment="content" th:object="${product}">
 	<div id = "main-area" class="main">
@@ -41,7 +45,7 @@
 											var regDt = new Date([[${product.regDt}]]);
 											console.log(regDt);
 											var open = regDt.setDate(regDt.getDate()+3);
-											console.log(open);
+											console.log(open);0
 
 											var nt = now.getTime(); // 현재의 시간만 가져온다
 											var ot = open; // 오픈시간만 가져온다

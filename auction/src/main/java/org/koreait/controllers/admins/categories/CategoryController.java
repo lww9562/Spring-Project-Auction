@@ -32,16 +32,15 @@ public class CategoryController {
 	private final CategorySaveService service;
 	private final CategoryListService listService;
 
-	@GetMapping
-	public String index(){
-		return "admin/category/index";
-	}
 
 	//카테고리 등록
 	@GetMapping("/register")
 	public String register(Model model){
 		CategoryForm categoryForm = new CategoryForm();
 		model.addAttribute("categoryForm", categoryForm);
+
+		List<Categories> categoriesList = listService.gets();
+		model.addAttribute("categoriesList",categoriesList);
 		return "admin/category/register";
 	}
 	
@@ -60,6 +59,7 @@ public class CategoryController {
 
 		return "redirect:/admin/category";
 	}
+
 	@GetMapping("/list")
 	public String list(Model model){
 		List<Categories> categoriesList = listService.gets();

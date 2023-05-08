@@ -25,6 +25,5 @@ public class UrlUtil {
 		url += "page=" + page;
 
 		return url;
-
 	}
 }
