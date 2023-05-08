@@ -79,7 +79,7 @@
                     <div class="cate">
                         <ul th:each="cateNm : ${cateNmList}">
                             <li>
-                                <button class="cateimg" th:text="${cateNm}">전체</button>
+                                <a th:href="@{/product/list?cateNm=}+${cateNm}" class="cateimg" th:text="${cateNm}">전체</a>
                             </li>
                         </ul>
                     </div>

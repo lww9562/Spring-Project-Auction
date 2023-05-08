@@ -58,6 +58,17 @@ public interface ProductRepository extends JpaRepository<Products,Long>, Queryds
         }
         /** 추가 검색 조건 처리 E */
 
+        /** 카테고리별 조회 s*/
+        String cate = search.getCateNm();
+        System.out.println(cate);
+        if(cate != null && !cate.isBlank()){
+            andBuilder.and(products.categories.cateNm.contains(cate));
+        }
+        /** 카테고리별 조회 e*/
+
+
+
+
 
 
 
