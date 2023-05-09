@@ -2,7 +2,9 @@ package org.koreait.controllers.admins;
 
 import lombok.RequiredArgsConstructor;
 import org.koreait.entities.Products;
+import org.koreait.entities.RequestMoney;
 import org.koreait.entities.Users;
+import org.koreait.models.user.MoneyListService;
 import org.koreait.repositories.ProductRepository;
 import org.koreait.repositories.UsersRepository;
 import org.springframework.data.repository.query.Param;
@@ -21,6 +23,8 @@ import java.util.List;
 public class AdminController {
 	private final UsersRepository usersRepository;
 	private final ProductRepository productRepository;
+	private final MoneyListService moneyListService;
+
 	@GetMapping
 	public String admin(){
 
@@ -46,8 +50,9 @@ public class AdminController {
 		return "admin/product/list";
 	}
 	@GetMapping("/money")
-	public String requestMoney(){
-
+	public String requestMoney(Model model){
+		List<RequestMoney> requestMonies = moneyListService.gets();
+		model.addAttribute("requestMonies",requestMonies);
 		return "admin/money/requestMoney";
 	}
 }

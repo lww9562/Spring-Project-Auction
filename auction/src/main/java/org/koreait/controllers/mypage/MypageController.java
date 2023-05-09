@@ -8,6 +8,10 @@ import org.koreait.entities.Products;
 import org.koreait.entities.Sellers;
 import org.koreait.entities.Users;
 
+
+
+import org.koreait.models.user.RequestMoneyService;
+
 import org.koreait.repositories.ProductRepository;
 import org.koreait.repositories.UsersRepository;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -31,6 +35,8 @@ public class MypageController {
 
 	private final ProductRepository productRepository;
 	private final UsersRepository usersRepository;
+
+	private final RequestMoneyService requestMoneyService;
 
 	//유저 정보
 	@GetMapping
@@ -92,10 +98,39 @@ public class MypageController {
 
 		return "mypage/bidderList";
 	}
-	@PostMapping("/money")
-	public String requestMoney(){
 
 
-		return "redirect:/mypage/index";
+
+
+
+
+	@GetMapping("/requestMoney")
+	public String saveMoney(Model model){
+
+		RequestMoneyForm requestMoneyForm = new RequestMoneyForm();
+		model.addAttribute("requestMoneyForm",requestMoneyForm);
+
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails user = (UserDetails)principal;
+		String userId = user.getUsername();
+
+		model.addAttribute("Id" , userId);
+
+
+		return "mypage/requestMoney";
 	}
+
+
+
+	@PostMapping("/requestMoney")
+	public String saveMoneyPs(RequestMoneyForm requestMoneyForm , Model model){
+
+		requestMoneyService.saveMoney(requestMoneyForm);
+
+		return "redirect:/mypage";
+	}
+
+
+
+
 }

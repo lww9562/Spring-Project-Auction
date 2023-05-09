@@ -4,7 +4,7 @@
       layout:decorate="~{admin/layouts/main}">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/admin/product_list.css}">
-    <script th:src="@{/js/admin/category_list.js}"></script>
+    <script th:src="@{/js/admin/user.js}"></script>
     <style>
 
 		table {
@@ -54,20 +54,19 @@
             <th>No</th>
             <th>UserId</th>
             <th>신청금액</th>
-            <th>회원정보 변경</th>
+
         </tr>
 
-<!--        <tr th:each=" list : ${}" th:object="">-->
-<!--            <td th:text="*{}"></td>-->
-<!--            <td th:text="*{}"></td>-->
 
-<!--            <td align="center"><button type='button' class="modify">변경</button></td>-->
-<!--            <td>-->
-<!--                <input type="checkbox" th:checked="*{}" th:data-cateID="*{}" th:data-use="*{}" class="form-check-input">-->
-<!--            </td>-->
-<!--        </tr>-->
+
+        <tr th:each=" list : ${requestMonies}" th:object="${list}">
+            <td th:text="*{id}"></td>
+            <td th:text="*{userId}"></td>
+            <td th:text="*{money}"></td>
+
+        </tr>
 
     </table>
-</section>
 
+</section>
 </html>
