@@ -5,6 +5,9 @@ window.addEventListener("DOMContentLoaded", function() {
 	console.dir(buttonEl);
 
 	buttonEl.addEventListener("click", async function() {
+		if (!confirm("정말 구매하시겠습니까?")) {
+        		return;
+        	}
 		try{
 		    const dataset = this.dataset;
 

@@ -123,12 +123,6 @@ public class ProductController {
         Products products = infoService.get(id);
         model.addAttribute("product", products);
 
-        List<FileInfo> fileInfos = fileInfoRepository.findByGidOrderByRegDtAsc(products.getGid());
-        FileInfo thumbnail = fileInfos.get(0);
-
-        String url = fileInfoSaveService.getFileURL(thumbnail.getFileNo());
-
-        model.addAttribute("thumbnail", url);
         return "product/view";
     }
     /**
