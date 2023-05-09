@@ -7,7 +7,11 @@ import org.koreait.entities.Bidders;
 import org.koreait.entities.Products;
 import org.koreait.entities.Sellers;
 import org.koreait.entities.Users;
+
+
+
 import org.koreait.models.user.RequestMoneyService;
+
 import org.koreait.repositories.ProductRepository;
 import org.koreait.repositories.UsersRepository;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -31,7 +35,9 @@ public class MypageController {
 
 	private final ProductRepository productRepository;
 	private final UsersRepository usersRepository;
+
 	private final RequestMoneyService requestMoneyService;
+
 	//유저 정보
 	@GetMapping
 	public String index(@AuthenticationPrincipal UserInfo userinfo, Model model){
@@ -123,6 +129,7 @@ public class MypageController {
 
 		return "redirect:/mypage";
 	}
+
 
 
 

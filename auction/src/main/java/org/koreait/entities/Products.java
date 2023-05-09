@@ -36,6 +36,9 @@ public class Products extends BaseUserEntity implements Comparable<Products>{
     private String imgName;
     private String imgPath;
 
+    //파일 gid
+    private String gid;
+
     //물품 판매상태
     private boolean stats;
 

@@ -11,6 +11,8 @@ import org.koreait.entities.Categories;
 import org.koreait.entities.Products;
 import org.modelmapper.ModelMapper;
 
+import java.util.UUID;
+
 @Data
 @Builder
 @NoArgsConstructor @AllArgsConstructor
@@ -18,6 +20,9 @@ public class ProductForm {
     private String writer;  //작성자 추가
     private Long id;
     private String mode;
+
+    private String gid = UUID.randomUUID().toString();  //파일 gid
+
     @NotBlank
     private String prSubject;
     @NotBlank

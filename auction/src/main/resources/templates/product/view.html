@@ -169,7 +169,7 @@ cursor:pointer;
 			<div class="saleInfo">
 				<div class="saleInfo_wrap">
 					<div class="ProductImage">
-						<img th:src="@{*{imgPath}}" class="image" al="상품이미지">
+						<img th:src="@{${thumbnail}}" class="image" al="상품이미지">
 					</div>
 
 					<div class="product_area">
@@ -263,7 +263,7 @@ cursor:pointer;
 
 					<div class="content_border">
 					<h2>상품설명</h2><br>
-					<span th:text="*{prContent}">판매 물품 내용</span>
+					<span th:utext="*{prContent}">판매 물품 내용</span>
 					</div>
 
 				</div>
