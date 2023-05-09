@@ -57,6 +57,6 @@ public class CategoryController {
 			return "admin/category/register";
 		}
 
-		return "admin/category/register";
+		return "redirect:/admin/category/register";
 	}
 }

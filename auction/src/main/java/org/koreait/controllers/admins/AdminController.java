@@ -45,4 +45,9 @@ public class AdminController {
 
 		return "admin/product/list";
 	}
+	@GetMapping("/money")
+	public String requestMoney(){
+
+		return "admin/money/requestMoney";
+	}
 }
