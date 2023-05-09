@@ -82,13 +82,14 @@ public class UserJoinValidator implements Validator, MobileValidator, EmailValid
 			}
 		}
 
-		//5
-		if(userNm != null && !userNm.isBlank()){
-			if(!NameCheck(userNm)){
-				errors.rejectValue("userNm", "Validation.NotType.userNm");
-				throw new JoinValidationException("이름은 2~4자의 한글로 입력해 주세요.");
-			}
-		}
+//
+//		//5
+//		if(userNm != null && !userNm.isBlank()){
+//			if(!NameCheck(userNm)){
+//				errors.rejectValue("userNm", "Validation.NotType.userNm");
+//				throw new JoinValidationException("이름은 2~4자의 한글로 입력해 주세요.");
+//			}
+//		}
 
 	}
 

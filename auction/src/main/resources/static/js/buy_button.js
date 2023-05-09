@@ -26,6 +26,7 @@ window.addEventListener("DOMContentLoaded", function() {
 			console.log(data);
             location.href = getContextPath()+"/list";
 		} catch(err) {
+			console.log(err);
 			alert(err.response.data.message);
 		}
 	});

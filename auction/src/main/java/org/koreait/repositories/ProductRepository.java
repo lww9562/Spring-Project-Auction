@@ -29,30 +29,50 @@ public interface ProductRepository extends JpaRepository<Products,Long>, Queryds
      * @return
      */
     default Page<Products> getProducts(ProductSearch search) {
-        
         BooleanBuilder andBuilder = new BooleanBuilder();
         QProducts products = QProducts.products;
+
+        //System.out.println("search = " + search);
+
         /** 추가 검색 조건 처리 S */
-        // 예로 하나 만들어 드리겠습니다~ 필요에 따라 더 추가하시면 됩니다.
         String sopt = search.getSopt();
         String skey = search.getSkey();
+        //System.out.println("sopt : " + sopt);
+        //System.out.println("skey : " + skey);
         if (sopt != null && !sopt.isBlank() && skey != null && !skey.isBlank()) {
             if (sopt.equals("ALL")) { // 통합 검색 - 물품 제목, 물품 내용 중에서
                 BooleanBuilder orBuilder = new BooleanBuilder();
                 orBuilder.or(products.prSubject.contains(skey))
                         .or(products.prContent.contains(skey));
                 andBuilder.and(orBuilder);
+
             } else if (sopt.equals("prSubject")) { // 제목에서 검색
                 andBuilder.and(products.prSubject.contains(skey));
+            } else{
+                andBuilder.and(products.prSubject.contains(skey));
+                //System.out.println("==============null================");
+                //System.out.println(andBuilder.toString());
+                //System.out.println("==============null================");
             }
         }
         /** 추가 검색 조건 처리 E */
 
+        /** 카테고리별 조회 s*/
+        String cate = search.getCateNm();
+        //System.out.println(cate);
+        if(cate != null && !cate.isBlank()){
+            andBuilder.and(products.categories.cateNm.contains(cate));
+        }
+        /** 카테고리별 조회 e*/
+
+
+
+
+
+
 
         /** 정렬 처리 S */
         String sort = search.getSort();
-        System.out.println("===================================");
-        System.out.println(sort);
 
         int page = search.getPage();
         int limit = search.getLimit();

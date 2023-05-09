@@ -29,6 +29,7 @@ public class MypageController {
 
 	private final ProductRepository productRepository;
 	private final UsersRepository usersRepository;
+	//유저 정보
 	@GetMapping
 	public String index(@AuthenticationPrincipal UserInfo userinfo, Model model){
 
@@ -41,23 +42,51 @@ public class MypageController {
 		//유저의 정보
 		model.addAttribute("userinfo",userinfo);
 
-		//판매 내역
+//		//판매 내역
+//		Sellers sellers = users.getSeller();
+//		List<Products> sellProducts = sellers.getSellProducts();
+//
+//		model.addAttribute("sellProducts", sellProducts);
+//
+//		//입찰 내역
+//		Bidders bidders = users.getBidder();
+//
+//		List<Products> bidProducts = bidders.getProductList();
+//
+//		model.addAttribute("bidProducts",bidProducts);
+//
+//		// 최신 BidProducts 찾기
+
+
+		//적당히 활용할 것
+		return "mypage/index";
+	}
+	//판매내역
+	@GetMapping("/sellerList")
+	public String sellerList(@AuthenticationPrincipal UserInfo userinfo, Model model){
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails user = (UserDetails)principal;
+		Users users = usersRepository.findByUserId(user.getUsername());
+
 		Sellers sellers = users.getSeller();
 		List<Products> sellProducts = sellers.getSellProducts();
 
 		model.addAttribute("sellProducts", sellProducts);
+		return "mypage/sellerList";
+	}
+	//구매내역
+	@GetMapping("/bidderList")
+	public String bidderList(@AuthenticationPrincipal UserInfo userinfo, Model model){
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails user = (UserDetails)principal;
+		Users users = usersRepository.findByUserId(user.getUsername());
 
-		//입찰 내역
 		Bidders bidders = users.getBidder();
 
 		List<Products> bidProducts = bidders.getProductList();
 
 		model.addAttribute("bidProducts",bidProducts);
 
-		// 최신 BidProducts 찾기
-
-
-		//적당히 활용할 것
-		return "mypage/index";
+		return "mypage/bidderList";
 	}
 }

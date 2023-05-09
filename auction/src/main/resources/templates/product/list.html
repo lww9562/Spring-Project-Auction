@@ -5,6 +5,55 @@
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/boardlist.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/productlist.css}">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script th:src="@{/js/search.js}"></script>
+    <style>
+
+
+.search {
+	height: 40px;
+	width : 600px;
+	border : 1px solid #ffbd59;
+	background : #ffffff;
+	margin:auto;
+}
+
+#sopt {
+    width:75px;
+    font-size : 14px;
+    height : 100%;
+    padding : 10px;
+    float : left;
+    border : 0px;
+    outline:none;
+    border-right:1px solid #ffbd59;
+}
+
+.search_bar {
+	font-size : 14px;
+	width : 200px;
+	padding : 10px;
+	border : 0px;
+	outline:none;
+	float:left;
+    height : 100%;
+}
+
+.search button{
+	width : 75px;
+	height : 100%;
+	border : 0px;
+	background : #ffbd59;
+	outline:none;
+	float:right;
+	color:#ffffff
+
+}
+.catemain {
+    float:none;
+}
+
+    </style>
 </head>
 
 <main layout:fragment="content">
@@ -15,12 +64,24 @@
         <br/><br/><br/>
 
         <div>
+            <form method = "GET" action="">
+                <div class="search">
+                    <select name="sopt" id="sopt">
+                        <option value="ALL">전체</option>
+                        <option value="prSubject">제목</option>
+                    </select>
+                    <input type="text" name="skey" class="search_bar" id="skey" placeholder="검색어를 입력하세요." value="">
+                    <button type="submit" id = "search_btn">검색</button>
+                </div>
+            </form>
+            <br>
+
             <div class="categorybottom">
                 <div class="catewrapper">
                     <div class="cate">
                         <ul th:each="cateNm : ${cateNmList}">
                             <li>
-                                <button class="cateimg" th:text="${cateNm}">전체</button>
+                                <a th:href="@{/product/list?cateNm=}+${cateNm}" class="cateimg" th:text="${cateNm}">전체</a>
                             </li>
                         </ul>
                     </div>
@@ -29,19 +90,28 @@
 
             <div class="catemain">
                 <div class="catefont">품목</div>
+
+
+
+
                 <ul class="catemenu">
-                    <li class="menubtn">인기순</li>
+<!--                    <li class="menubtn">인기순</li>-->
                     <li class="menubtn">
-                        <a th:href="@{/product/list?ALL&sort=regDt%20ASC}">마감순</a>
+                        <a th:href="@{/product/list?sort=regDt ASC&page=1&cateNm=}">마감순</a>
+                        <!-- <a th:href="${@urlUtil.getPageUrl(pagination.baseUrl, 1, 'regDt ASC')}">마감순2</a>-->
                     </li>
                     <li class="menubtn">
-                        <a th:href="@{/product/list?ALL&sort=regDt%20DESC}">최신순</a>
+                        <a th:href="@{/product/list?sort=regDt DESC&page=1}">최신순</a>
+                        <!-- <a th:href="${@urlUtil.getPageUrl(pagination.baseUrl, 1, 'regDt DESC')}">최신순2</a>-->
                     </li>
                     <li class="menubtn">
-                        <a th:href="@{/product/list?ALL&sort=endPrice%20DESC}">높은가격순</a>
+                        <a th:href="@{/product/list?sort=endPrice DESC&page=1}">높은가격순</a>
                     </li>
                     <li class="menubtn">
-                        <a th:href="@{/product/list?ALL&sort=endPrice%20ASC}">낮은가격순</a>
+                        <a th:href="@{/product/list?sort=endPrice ASC&page=1}">낮은가격순</a>
+                    </li>
+                    <li class="menubtn">
+                        <a th:href="@{/product/list?sort=baroPrice DESC&page=1}">즉시구매순</a>
                     </li>
                 </ul>
             </div>
@@ -73,8 +143,16 @@
 
         </div>
 
+        <div class="bottom_link">
+            <a th:href="@{/main}">메인페이지</a>
+            <a th:href="@{write}">물품등록</a>
+        </div>
+
+
+
         <br/>
-    </body>
+    </div>
+</body>
     <th:block th:replace="~{commons/pagination::pagination}" ></th:block>
 
 </main>
