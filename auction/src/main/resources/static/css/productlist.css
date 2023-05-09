@@ -76,7 +76,7 @@ li{
 }
 .cateimg:hover{
     font-weight:bold;
-    color:black;
+    color:#ff7f00;
 }
 
 .catemain{
@@ -123,7 +123,7 @@ li{
 }
 
 .menubtn a:hover{
-    color:red;
+    color:#ff7f00;
 }
 
 .maincatelist{
@@ -150,8 +150,9 @@ li{
 
 }
 
+
 .item_img{
-  width: 90%;
+  width: 100%;
   height: 200px;
   object-fit: cover;
 }

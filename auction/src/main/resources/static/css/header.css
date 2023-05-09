@@ -1,3 +1,6 @@
+html{
+    background:#f0f0e8;
+}
 .categories {
 
     display: flex;
@@ -35,10 +38,16 @@ align-items:center;
 margin-top : 40px;
 margin-bottom : 40px;
 }
+
 .logo_img{
 	width : 75px;
 	height : 75px;
 	border-radius : 50%;
+	border:0.5px solid #ffbd59;
+}
+.logo_img:hover{
+    transform: rotate( 360deg );
+    transition:0.8s;
 }
 
 .header_container {
@@ -114,3 +123,19 @@ display:flex;
 .header_li a {
 				margin-right : 10px;
 			}
+
+.header_a:hover {
+    color:#ff7f00;
+    transition:0.3s;
+}
+
+.write_btn:hover{
+    background-color:#ffbd59;
+    color:white;
+    transition:0.4s;
+}
+
+.auth_a:hover{
+   font-weight:bold;
+   transition:0.2s;
+}
