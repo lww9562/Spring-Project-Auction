@@ -10,6 +10,9 @@
     max-width: 992px;
 
 }
+header{
+min-width:900px;
+}
 
 .header_li {
 

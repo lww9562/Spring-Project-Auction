@@ -4,6 +4,7 @@
 	  layout:decorate="~{layouts/main}">
 <head>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/details.css}">
+	<meta name="viewport" content="width=1190">
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<style>
@@ -21,22 +22,30 @@
 .saleInfo {
 	display:flex;
 	justify-content: center;
+	min-width:1380px;
 }
 
 .saleInfo_wrap{
-	padding : 100px;
+
+	padding : 80px;
 	border : 1px solid #e4e4e4;
-	border-radius : 6px;
+	border-radius : 10px;
 }
 
 .ProductImage {
-    display:inline-block;
-    width: 384px;
-    padding-left : 5%;
+	display:inline-flex;
+    width:400px;
+    height:400px;
+
+}
+.ProductImage img{
+	width:inherit;
+	height:inherit;
+	object-fit: cover;
 }
 .product_area {
 	display:inline-block;
-	padding-left: 20%;
+	margin-left: 100px;
 	width: 384px;
 }
 
@@ -52,75 +61,82 @@
 }
 
 .ProductPrice {
-    margin-right: 10px;
+    margin-top: 18px;
     font-family: arial,sans-serif;
-    font-size: 26px;
-    text-align:center;
+    font-size: 23px;
+
 }
 
 .section {
-    padding-top: 17px;
-    padding-bottom: 3px;
+    margin-top: 25px;
+    padding-bottom: 13px;
     border-top: 1px solid var(--skinLayoutBorder);
+    line-height: 30px;
+
+}
+.section span{
+	font-size:13px;
 }
 
-.detail_list {
-    position: relative;
-    padding-left: 69px;
-}
 
-.list_title {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 69px;
-    vertical-align: top;
-    font-size: 15px;
-    line-height: 17px;
-    text-align: left;
-    font-weight: 400;
-}
-
-.list_detail {
-    position: relative;
-    padding: 0 0 11px;
-    vertical-align: top;
-    word-break: break-all;
-    font-size: 15px;
-    line-height: 17px;
-    box-sizing: border-box;
-}
 
 .expireDate{
-	color : #ffbd59;
+	color : red;
+}
+
+.content_wrap{
+	display:flex;
+	justify-content: center;
+	min-width:1380px;
+
 }
 
 .content {
 	margin:0 auto;
 	width:800px;
 	display:block;
-	clear: both;
-
     padding-top: 100px;
-    border-radius: 6px;
     font-size: 18px;
     line-height: 23.8px;
     word-break: break-all;
     word-wrap: break-word;
+
 }
+.content_border{
+border:1px solid #e4e4e4;
+width:100%;
+height:500px;
+
+}
+
+
 
 .nowPrice{
 	margin-top : 10px;
 	margin-bottom : 10px;
+	font-size : 13px;
+	color:gray;
 }
 
 .risingPrice{
 	margin-bottom : 10px;
+	font-size : 13px;
+	color:gray;
 }
+
+.risingPr{
+font-size:1.5rem;
+}
+.currentPr{
+font-size:1.5rem;
+}
+
+
 .PurchaseButton{
-	text-align:center;
+
 }
 .PurchaseButton button{
+	margin-top:20px;
 	width : 108px;
 	padding : 10px;
 	font-size : 15px;
@@ -129,6 +145,17 @@
 	background : #ffbd59;;
 	border-radius: 6px;
 	color:white;
+}
+
+#bid_btn:hover{
+ cursor:pointer;
+ border:1px solid #cc6600;
+ background-color:#cc6600;
+}
+#buy_btn:hover{
+cursor:pointer;
+ border:1px solid #cc6600;
+ background-color:#cc6600;
 }
 
 
@@ -141,19 +168,18 @@
 			<div class="saleInfo">
 				<div class="saleInfo_wrap">
 					<div class="ProductImage">
-						<img th:src="@{*{imgPath}}" class="image" width="380" height="auto" al="상품이미지" object-fit="contain">
+						<img th:src="@{*{imgPath}}" class="image" al="상품이미지">
 					</div>
+
 					<div class="product_area">
 						<div class="product_detail">
-							<div class="product_detail_box">
-								<div class="ProductCategory"></div>
-								<p class="ProductName">
-									<span class="pr_Subject">[판매]</span>
+								<div class="ProductName">
+									<span class="pr_Subject">[상품명]</span>
 									<span th:text="*{prSubject}">판매물품 제목</span>
-								</p>
+								</div>
 								<div class="ProductPrice">
 
-									<strong class="expireDate">남은 시간</strong><br>
+									<strong class="expireDate">남은 시간</strong>
 
 									<div class="time">
 										<span id="d-day-hour">00</span>
@@ -162,6 +188,8 @@
 										<span class="col">:</span>
 										<span id="d-day-sec">00</span>
 									</div>
+
+
 									<div th:if="*{stats.toString().equals('true')}" class="timer">
 										<script type="text/javascript" th:inline="javascript">
 										/*<![CDATA[*/
@@ -199,24 +227,22 @@
 										</script>
 									</div>
 								</div>
-							</div>
-							<div class="CommercialDetail">
-								<div class="section">
-									<dl class="detail_list">
-										<dt class="list_title" th:text="*{sellers.user.userNm}">판매자</dt>
-										<dd class="list_detail">
-											<span class="seller_email" th:text="*{sellers.user.email}">이메일주소</span><br>
-											<span class="seller_mobile" th:text="*{sellers.user.mobile}">휴대전화번호</span>
-										</dd>
-									</dl>
-								</div>
+
+
+								<div class="CommercialDetail">
+										<div class="section">
+										<b>판매자정보</b><br>
+										<span class="list_title" th:text="*{sellers.user.userNm}">판매자</span><br>
+										<span class="seller_email" th:text="*{sellers.user.email}">이메일주소</span><br>
+										<span class="seller_mobile" th:text="*{sellers.user.mobile}">휴대전화번호</span>
+										</div>
 							</div>
 						</div>
 						<div class="nowPrice">현재 입찰가 :
-							<strong class="currentPrice" th:text="*{endPrice}" style="font-size:1rem">현재 판매가격</strong><br>
+							<strong class="currentPr" th:text="*{endPrice}" >현재 판매가격</strong><br>
 						</div>
 						<div class="risingPrice">인상가 단위 :
-							<strong class="risingPrice" th:text="*{risingPrice}">인상 입찰가격</strong><br>
+							<strong class="risingPr" th:text="*{risingPrice}">인상 입찰가격</strong><br>
 						</div>
 
 
@@ -226,11 +252,19 @@
 						</div>
 						<div class="BottomNotice"></div>
 					</div>
-					<div>
-						<div class="content">
-							<span th:text="*{prContent}">판매 물품 내용</span>
-						</div>
+				</div>
+			</div>
+
+
+
+			<div class="content_wrap">
+				<div class="content">
+
+					<div class="content_border">
+					<h2>상품설명</h2><br>
+					<span th:text="*{prContent}">판매 물품 내용</span>
 					</div>
+
 				</div>
 			</div>
 
