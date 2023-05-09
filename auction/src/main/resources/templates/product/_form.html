@@ -1,0 +1,95 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/main}">
+<head>
+	<script src="//code.jquery.com/jquery-latest.min.js"></script>
+	<script th:src="@{/js/file.js}"></script>
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+	<style>
+			textarea {
+			width: 500px;
+			height: 15em;
+			resize: none;
+			}
+			#thumbs { display: flex; }
+			#thumbs .thumb { position: relative; width: 60px; height: 60px; margin-right: 5px; margin-bottom: 5px; border: 1px solid #d5d5d5; }
+			#thumbs .thumb > a { background: #000; color: #fff; position: absolute; top: 0; right: 0; cursor: pointer; padding: 2px; font-size: 12px; }
+			#thumbs .thumb > .inner { display: block;  border-radius: 5px; cursor: pointer; height: 58px; }
+	</style>
+</head>
+
+<main layout:fragment="content">
+	<br>
+	<br>
+	<br>
+	<form method="post" th:action="@{/product/save}" autocomplete="off" id="write" th:object="${productForm}" name="write"
+		  enctype="multipart/form-data">
+		<input type="hidden" name="gid" th:field="*{gid}">
+		<input type="file" id="file" multiple class="dn">
+
+		<div class="error global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+		<dl>
+			<dt>카테고리</dt>
+			<dd valign="top">
+				<select style="width: 150px;" th:field="*{categoryId}">
+					<option value="">카테고리를 선택하세요</option>
+					<option th:each="category : ${categoryMap}" th:value="${category.key}" th:text="${category.value}"/>
+				</select>
+			</dd>
+		</dl>
+
+
+		<dl>
+			<dt th:text="#{product.subject}"></dt>
+			<dd>
+				<input type="text" name="prSubject" th:field="*{prSubject}">
+				<div class='error' th:each="err : ${#fields.errors('prSubject')}" th:text="${err}"></div>
+			</dd>
+		</dl>
+		<dl>
+			<dt>이미지</dt>
+			<dd>
+				<div id="thumbs"></div>
+				<button type="button" class="attach_files" data-location="main_photo">이미지 추가</button>
+			</dd>
+		</dl>
+		<dl>
+			<dt th:text="#{product.startPrice}"></dt>
+			<dd>
+				<input type="text" name="startPrice" th:field="*{startPrice}">
+				<div class='error' th:each="err : ${#fields.errors('startPrice')}" th:text="${err}"></div>
+			</dd>
+		</dl>
+		<dl>
+			<dt th:text="#{product.risingPrice}"></dt>
+			<dd>
+				<input type="text" name="risingPrice" th:field="*{risingPrice}">
+				<div class='error' th:each="err : ${#fields.errors('risingPrice')}" th:text="${err}"></div>
+			</dd>
+		</dl>
+		<dl>
+			<dt th:text="#{product.baroPrice}"></dt>
+			<dd>
+				<input type="text" name="baroPrice" th:field="*{baroPrice}">
+				<div class='error' th:each="err : ${#fields.errors('baroPrice')}" th:text="${err}"></div>
+			</dd>
+		</dl>
+
+
+		<dl>
+			<dt>본문</dt>
+			<dd>
+				<textarea id="description" name="description" th:field="*{prContent}"></textarea>
+				<div class="error" th:each="err : ${#fields.errors('prContent')}" th:text="${err}"></div>
+				<div>
+					<button type="button" class="attach_files" data-location="editor">이미지 삽입</button>
+				</div>
+
+				<ul id="attached_files"></ul>
+			</dd>
+		</dl>
+		<th:block th:replace="~{commons/file_tpl::tpl}"></th:block>
+
+	</form>
+</main>
+</html>

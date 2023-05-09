@@ -35,12 +35,13 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {	//로
 		}
 		response.addCookie(cookie);
 
+		UserInfo userInfo = (UserInfo) authentication.getPrincipal();
+		session.setAttribute("userInfo", userInfo);
 
 		//3. 성공시 이동 URL
 		String url = request.getContextPath()+"/main";	// contextPath를 main페이지로 둘 것
 		response.sendRedirect(url);
 
-		//UserInfo userinfo = (UserInfo) authentication.getPrincipal();
-		//session.setAttribute("userNo", userinfo.getUserNo());
+
 	}
 }

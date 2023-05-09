@@ -71,6 +71,17 @@ public class ProductController {
         return "product/write";
     }
 
+    @GetMapping("/write/test")
+    public String writeTest(Model model){
+        String[] addScript = { "ckeditor/ckeditor", "fileManager", "product/form",  };
+        model.addAttribute("addScript", addScript);
+
+        ProductForm productForm = new ProductForm();
+        model.addAttribute("productForm", productForm);
+
+        return "product/_form";
+    }
+
     @PostMapping("/save")
     public String save(@Valid ProductForm productForm, Errors errors , MultipartFile input_imgs){
         try{

@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/file/upload")
+@RequestMapping("/file/uploads")
 @RequiredArgsConstructor
 public class FileUploadController {
 
