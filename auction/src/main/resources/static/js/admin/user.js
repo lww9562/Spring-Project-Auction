@@ -16,6 +16,7 @@ function updateUserMoney(e) {
 
 	const trEl = e.currentTarget.parentElement.parentElement;
     const moneyInput = trEl.querySelector(".money");
+
     const money = Number(moneyInput.value);
     const userNo = moneyInput.dataset.userNo;
 

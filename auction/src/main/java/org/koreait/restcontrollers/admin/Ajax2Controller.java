@@ -23,10 +23,15 @@ public class Ajax2Controller {
         return user;
     }
 
+<<<<<<< HEAD
     @PostMapping("/post")
     public String ajaxTest2(String key1, String key2) {
         System.out.printf("key1=%s, key2=%s%n", key1, key2);
 
         return "key1=" + key1 + ",key2=" + key2;
     }
+=======
+		return "key1="+ key1 + ", key2="+key2;
+	}
+>>>>>>> master
 }

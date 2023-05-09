@@ -1,105 +1,62 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<header th:fragment="common">
-    <th:block sec:authorize="isAnonymous()">
-        <a th:href="@{/user}" th:text="#{user.join}"></a>
-        <a th:href="@{/user/login}" th:text="#{user.login}"></a>
-    </th:block>
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mypage1.css}">
+</head>
 
-    <th:block sec:authorize="isAuthenticated()">
-        <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/admin}">관리자</a>
-        <a th:href="@{/user/logout}">로그아웃</a>
+<main layout:fragment="content" th:object="${userinfo}">
 
-    </th:block>
-    <a th:href="@{/main}">메인페이지</a>
-</header>
-<body th:object="${userinfo}">
-    <h2>회원 정보</h2>
-    <table>
-        <tr>
-            <th>ID</th>
-            <td th:text="*{userId}">userId</td>
-        </tr>
-        <tr>
-            <th>이름</th>
-            <td th:text="*{userNm}">userNm</td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td th:text="*{email}">이메일</td>
-        </tr>
-        <tr>
-            <th>휴대번호</th>
-            <td th:text="*{mobile}">mobile</td>
-        </tr>
-        <tr>
-            <th>통장</th>
-            <td th:text="*{userNm}">userNm</td>
-        </tr>
-    </table>
-    <h3>판매 내역</h3>
-    <section  th:object="${selProductsList}">
-        <table class="product_list">
-            <col width="50"><col width="100"><col width="100">
-            <col width="150"><col width="200"><col width="50"><col width="200"><col width="150">
-            <tr>
-                <th>NO</th>
-                <th>CATEGORY</th>
-                <th>SUBJECT</th>
-                <th>CREATEDBY</th>
-                <th>BUY-NOW PRICE</th>
-                <th>CURRENT PRICE</th>
-                <th>RISING PRICE</th>
-                <th>REGDT</th>
-            </tr>
+    <div class="wrap">
+        <aside th:fragment="menus" class="boxsidebar">
+            <ul class="list">
+                <li >
+                    <a th:href="@{/mypage}" class="nav-link">
+                        <i class="bx bx-home-alt"></i>
+                        <span calss="link">회원 정보</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/mypage/sellerList}" class="nav-link">
+                        <i class="bx bx-home-alt"></i>
+                        <span calss="link">판매 내역</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/mypage/bidderList}" class="nav-link">
+                        <i class="bx bx-home-alt"></i>
+                        <span calss="link">구매 내역</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+            <table class="userinfo">
+                <tr>
+                    <th>ID</th>
+                    <td th:text="*{userId}">userId</td>
+                </tr>
+                <tr>
+                    <th>이름</th>
+                    <td th:text="*{userNm}">userNm</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td th:text="*{email}">이메일</td>
+                </tr>
+                <tr>
+                    <th>휴대번호</th>
+                    <td th:text="*{mobile}">mobile</td>
+                </tr>
+                <tr>
+                    <th>통장</th>
+                    <td>[[${user.money}]] &nbsp;&nbsp;
+                        <button id="requestMoney"  onClick="location.href='/mypage/requestMoney'">충전신청</button>
+                    </td>
+                </tr>
+            </table>
+    </div>
+</main>
 
-            <tr th:each="selProducts : ${selProductsList}" th:object="${selProducts}">
-                <td th:text="*{id}"></td>
-                <td th:text="*{categories.cateNm}"></td>
-                <td th:text="*{prSubject}"></td>
-                <td th:text="*{createdBy}"></td>
-                <td th:text="*{baroPrice}"></td>
-                <td th:text="*{endPrice}"></td>
-                <td th:text="*{risingPrice}"></td>
-                <td th:text="*{}"></td>
-            </tr>
-
-        </table>
-
-    </section>
-    <h3>구매 내역</h3>
-    <section  th:object="${bidProductsList}">
-        <table class="product_list">
-            <col width="50"><col width="100"><col width="100">
-            <col width="150"><col width="200"><col width="50"><col width="200"><col width="150">
-            <tr>
-                <th>NO</th>
-                <th>CATEGORY</th>
-                <th>SUBJECT</th>
-                <th>CREATEDBY</th>
-                <th>BUY-NOW PRICE</th>
-                <th>CURRENT PRICE</th>
-                <th>RISING PRICE</th>
-                <th>REGDT</th>
-            </tr>
-
-            <tr th:each="bidProducts : ${bidProductsList}" th:object="${bidProducts}">
-                <td th:text="*{id}"></td>
-                <td th:text="*{categories.cateNm}"></td>
-                <td th:text="*{prSubject}"></td>
-                <td th:text="*{createdBy}"></td>
-                <td th:text="*{baroPrice}"></td>
-                <td th:text="*{endPrice}"></td>
-                <td th:text="*{risingPrice}"></td>
-                <td th:text="*{regDt}"></td>
-            </tr>
-
-        </table>
-
-    </section>
-</div>
-
-
-</body>
 </html>

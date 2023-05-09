@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+    <main layout:fragment="content">
+
+        <div>
+            <textarea id="content"></textarea>
+        </div>
+        <button type="button" class="imageUpload">이미지 추가</button>
+        <h2>첨부파일목록</h2>
+        <ul id="attachedFiles"></ul>
+
+        <script type="text/html" id="fileTpl">
+            <li>
+                <a href="/file/download/#{fileNo}">#{fileName}</a>
+                <span class="remove" data-file-no="#{fileNo}">[X]</span>
+            </li>
+        </script>
+    </main>
+</html>

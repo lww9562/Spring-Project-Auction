@@ -1,15 +1,57 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-	<header th:fragment="common">
-		<th:block sec:authorize="isAnonymous()">
-			<a th:href="@{/user/join}" th:text="#{user.join}"></a>
-			<a th:href="@{/user/login}" th:text="#{user.login}"></a>
-		</th:block>
 
-		<th:block sec:authorize="isAuthenticated()">
-			<a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/admin}">관리자페이지</a>
-			<a th:href="@{/user/logout}">로그아웃</a>
-		</th:block>
+	<header th:fragment="common">
+
+		<div class="web_header">
+			<div class="header_container">
+
+				<div class="logo_wrap">
+
+				<a th:href="@{/main}">
+					<img th:src="@{/images/logo.png}" class="logo_img"></a>
+					<ul class="categories">
+						<li class="header_li">
+							<a th:href="@{#}" class="header_a">사이트 소개</a>
+						</li>
+						<li class="header_li">
+							<a th:href="@{/product/list?}" class="header_a">물품 목록</a>
+
+						</li>
+						<li class="header_li">
+							<a th:href="@{/mypage}" class="header_a">마이페이지</a>
+						</li>
+					</ul>
+
+				</div>
+			</div>
+
+			<div class="header_util">
+				<div class="user">
+					<li class="header_li">
+						<th:block sec:authorize="isAnonymous()">
+							<a th:href="@{/user/join}" th:text="#{user.join}" class="auth_a"></a>
+						</th:block>
+
+						<th:block sec:authorize="isAnonymous()">
+							<a th:href="@{/user/login}" th:text="#{user.login}" class="auth_a"></a>
+						</th:block>
+						<th:block sec:authorize="isAuthenticated()">
+							<a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/admin}" class="auth_a">관리자페이지</a>
+						</th:block>
+
+						<th:block sec:authorize="isAuthenticated()">
+							<a th:href="@{/user/logout}" class="auth_a">로그아웃</a>
+						</th:block>
+					</li>
+				</div>
+				<div class="product">
+					<span class="product_write">
+						<a th:href="@{/product/write}" class="write_btn">판매물품 등록</a></span>
+				</div>
+			</div>
+
+		</div>
 	</header>
 </html>

@@ -2,12 +2,77 @@
 <html xmlns:th="http://www.thymeleaf.com"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="~{admin/layouts/main}">
+<head>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/admin/product_list.css}">
+	<script th:src="@{/js/admin/category_list.js}"></script>
+	<style>
 
-	<section layout:fragment="content">
-		<form class="form" method="post" th:action="@{/admin/category}" autocomplete="off">
-			<th:block th:replace="~{admin/category/_form::form}"></th:block>
-			<button type="submit" class="submit_btn">등록하기</button>
-		</form>
-	</section>
+		table {
+			margin-left:auto;
+			margin-right:auto;
+			font-size: 13px;
+			width: 100%;
+			border-top: 1px solid #ccc;
+			border-bottom: 1px solid #ccc;
+
+		}
+
+		td {
+  			text-align: center;
+		}
+
+		td input {
+			width : 80%;
+			text-align : right;
+		}
+
+		button{
+			width:100%;
+		}
+
+		.form{
+			margin-top:50px;
+			text-align:center;
+			width : 250px;
+
+		}
+		dl {
+			margin:5px;
+		}
+		.submit_btn{
+			width: 70px;
+		}
+		span{
+			display : flex;
+		}
+	</style>
+</head>
+<section layout:fragment="content">
+		<span>
+			<table class="category_list">
+				<col width="50"><col width="200"><col width="50"><col width="150">
+				<tr>
+					<th>cateId</th>
+					<th>cateNm</th>
+					<th>orderNo</th>
+					<th>use</th>
+				</tr>
+
+				<tr th:each=" list : ${categoriesList}" th:object="${list}">
+					<td th:text="*{cateId}"></td>
+					<td th:text="*{cateNm}"></td>
+					<td th:text="*{orderNo}"></td>
+					<td>
+						<input type="checkbox" th:checked="*{use}" th:data-cateID="*{cateId}" th:data-use="*{use}" class="form-check-input">
+					</td>
+				</tr>
+
+			</table>
+			<form class="form" method="post" th:action="@{/admin/category}" autocomplete="off">
+				<th:block th:replace="~{admin/category/_form::form}"></th:block>
+				<button type="submit" class="submit_btn">등록하기</button>
+			</form>
+		</span>
+</section>
 
 </html>

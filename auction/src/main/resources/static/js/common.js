@@ -1,6 +1,16 @@
 /** 공통 라이브러리 */
 const commonLib = {
     /**
+    * 요청 헤더 전송용 CSRF 추출
+    *
+    */
+    getCsrfToken() {
+        const csrfEl = document.querySelector("meta[name='_csrf']")
+        const csrfHeaderEl = document.querySelector("meta[name='_csrf_header']");
+
+        return  { header : csrfHeaderEl.content, token : csrfEl.content };
+    },
+    /**
     * ajax 요청 편의 메서드
     *
     * @param url - 요청 메서드

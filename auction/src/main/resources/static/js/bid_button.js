@@ -6,6 +6,9 @@ window.addEventListener("DOMContentLoaded", function() {
 	console.dir(buttonEl);
 
 	buttonEl.addEventListener("click", async function() {
+		if (!confirm("정말 입찰하시겠습니까?")) {
+    		return;
+    	}
 		try{
 		    const dataset = this.dataset;
 
@@ -27,7 +30,7 @@ window.addEventListener("DOMContentLoaded", function() {
 			console.log(data);
             location.reload();
 		} catch(err) {
-			console.error(err);
+			alert(err.response.data.message);
 		}
 	});
-});
+}, false);

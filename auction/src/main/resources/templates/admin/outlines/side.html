@@ -3,24 +3,29 @@
 
 	<aside th:fragment="menus">
 		<ul class="sidebar">
-			<a class="sidebar_name" th:href="@{/admin/user}" style="font-size:2.0em;">
-				<div>
-					<i style="margin-left: 15px;"></i>
-					<span><h5>회원정보 관리</h5></span>
-				</div>
+			<div style="margin:50px 0;">
+			<a class="sidebar_name" th:href="@{/admin/user}"
+			   style="padding:30px; font-size:20px;">
+					<b>회원정보 관리</b>
 			</a>
-			<a class="sidebar_name" th:href="@{/admin/product/list}" style="font-size:2.0em;">
-				<div>
-					<i style="margin-left: 15px;"></i>
-					<span><h5>판매물품 관리</h5></span>
-				</div>
+			</div>
+
+			<div style="margin:50px 0;">
+			<a class="sidebar_name" th:href="@{/admin/product/list}" style="padding:30px; font-size:20px;">
+					<b>판매물품 관리</b>
 			</a>
-			<a class="sidebar_name" th:href="@{/admin/category/register}" style="font-size:2.0em;">
-				<div>
-					<i style="margin-left: 15px;"></i>
-					<span><h5>카테고리 관리</h5></span>
-				</div>
+			</div>
+
+			<div style="margin:50px 0;">
+			<a class="sidebar_name" th:href="@{/admin/category/register}" style="padding:30px; font-size:20px;">
+				<b>카테고리 관리</b>
 			</a>
+			</div>
+			<div style="margin:50px 0;">
+				<a class="sidebar_name" th:href="@{/admin/money}" style="padding:30px; font-size:20px;">
+					<b>금액신청 관리</b>
+				</a>
+			</div>
 		</ul>
 	</aside>
 </html>
