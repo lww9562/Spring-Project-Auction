@@ -26,8 +26,10 @@ html{
 }
 
 .cate{
-
+    overflow-x: auto;
     display: flex;
+    text-align: center;
+    justify-content: center;
 
 }
 
@@ -51,7 +53,6 @@ ul{
 
 li{
 
-    display: inline-flex;
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
@@ -69,8 +70,13 @@ li{
     min-width: 64px;
     height: 58px;
     overflow: hidden;
+    color:gray;
 
 
+}
+.cateimg:hover{
+    font-weight:bold;
+    color:#ff7f00;
 }
 
 .catemain{
@@ -117,7 +123,7 @@ li{
 }
 
 .menubtn a:hover{
-    color:red;
+    color:#ff7f00;
 }
 
 .maincatelist{
@@ -144,9 +150,10 @@ li{
 
 }
 
+
 .item_img{
   width: 100%;
-  height: 165px;
+  height: 200px;
   object-fit: cover;
 }
 

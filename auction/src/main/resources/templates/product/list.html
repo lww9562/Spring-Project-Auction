@@ -31,7 +31,7 @@
 
 .search_bar {
 	font-size : 14px;
-	width : 200px;
+	width : 445px;
 	padding : 10px;
 	border : 0px;
 	outline:none;
@@ -49,8 +49,26 @@
 	color:#ffffff
 
 }
+#search_btn:hover{
+
+    cursor:pointer;
+    background-color:#ff7f00;
+}
 .catemain {
     float:none;
+}
+
+.product_items label{
+    font-weight:bold;
+
+}
+
+.product_items dd{
+    color:gray;
+}
+
+.item_border:hover{
+    border:1px solid #CDCDCD;
 }
 
     </style>
@@ -122,10 +140,10 @@
 
                 <div class="product_link">
                     <div class="product_items" th:each="board : ${products}" th:object="${board}">
-                        <div th:if="*{stats.toString().equals('true')}">
+                        <div th:if="*{stats.toString().equals('true')}" class="item_border">
                             <span style="display:none;" th:text="*{id}">물품번호(숨김)</span>
 
-                            <a th:href="@{/product/view/{id}(id=*{id})}">
+                            <a th:href="@{/product/view/{id}(id=*{id})}" >
                                 <dl>
                                     <dt><img th:src="@{*{imgPath}}" class="item_img"></dt>
                                     <label>상품이름</label>
