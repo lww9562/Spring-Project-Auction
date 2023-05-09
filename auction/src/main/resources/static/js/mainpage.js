@@ -157,28 +157,59 @@ slide.addEventListener("mouseout", () => {
 });
 //progress bar + slide img start end
 
-
+//carousel
 
 //swiper(카테고리) start
+
+const cateScroll = document.querySelectorAll(".catewrapper");
+const currentCateScroll = element.scrollLeft;
+
+console.log(currentCateScroll);
+
+var Scroll_btn_left = document.querySelector(".car-prev");
+var Scroll_btn_right = document.querySelector(".car-next");
+
+Scroll_btn_left.addEventListener("click", () => {
+    cateScroll.scrollTo()
+    console.log("왼쪽!");
+
+});
+
+
+Scroll_btn_right.addEventListener("click", () => {
+    console.log("오른쪽!");
+
+});
+
+
 let swipeItems = document.querySelectorAll(".swiper-slide");
 
- var swiper = new Swiper(".mySwiper", {
-      slidesPerView: swipeItems.length,
-      spaceBetween: 30,
-      centeredSlides: true,
-       hashNavigation: {
-            watchState: true,
-        },
-      pagination: {
-        el: ".swiper-pagination",
-        type:"fraction",
-        clickable: true,
-      },
-      navigation: {
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
-         },
-    });
+
+
+// var swiper = new Swiper(".mySwiper", {
+//      slidesPerView: swipeItems.length/2,
+//      spaceBetween: 30,
+//    initialSlide: 0,
+//      centeredSlides: true,
+//      /**
+//      //centerInsufficientSlides: true,
+//
+////      centeredSlidesBounds : true,
+////       hashNavigation: {
+////            watchState: true,
+////        },
+//    */
+//      pagination: {
+//        el: ".swiper-pagination",
+//        type:"progressbar",
+//        clickable: true,
+//      },
+//      navigation: {
+//              nextEl: ".swiper-button-next",
+//              prevEl: ".swiper-button-prev",
+//         },
+//    });
+//     console.log(swipeItems);
 
     //swiper end
 

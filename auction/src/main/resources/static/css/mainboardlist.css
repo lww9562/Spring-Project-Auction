@@ -6,6 +6,7 @@
 
 
     .categorybottom{
+
         padding: 0 16px;
         position: relative;
         box-sizing: border-box;
@@ -14,30 +15,36 @@
     }
 
     .catewrapper{
+
         top: 22px;
         position: sticky;
         z-index: 10;
         background-color: #fff;
         padding: 8px 0;
-        overflow : hidden;
+       overflow-x: auto;
 
 
     }
 
     .cate{
+
         cursor : grab;
         display: flex;
         justify-content: center;
         transition : transform 0.5s ease-in-out;
+        /** 카테고리 이미지 아이콘으로 대체할 시 변경 */
+        overflow : visible;
     }
 
     .catelist{
-
+        position : relative;
+        z-index : 1;
     }
 
     .car-ctrl{
-        display: block;
-        position : absolute;
+        z-index : 2;
+        display : fixed;
+        position : relative;
         top : 50%;
         transform : translateY(-50%);
         background-color : #fff;
@@ -45,11 +52,24 @@
 
     }
     .car-prev{
-        left : 0;
+        right : 0%;
     }
     .car-next{
-        right : 0;
+        left : 90%;
     }
+
+
+    .cateimg{
+            border: 1px solid;
+            background-color: #ffffff00;
+            cursor: pointer;
+            width : 60px;
+            height: 60px;
+            /** 나중에 카테고리를 이미지로 대체할경우 수정 */
+            overflow: visible;
+
+
+        }
 
 
 
@@ -80,16 +100,7 @@
 
     }
 
-    .cateimg{
-        border: 0;
-        background-color: #ffffff00;
-        cursor: pointer;
-        min-width: 64px;
-        height: 58px;
-        overflow: hidden;
 
-
-    }
 
     .catemain{
         line-height: 34px;

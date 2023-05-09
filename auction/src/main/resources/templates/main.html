@@ -35,16 +35,16 @@
 
 
 
-        <h1>게시글 목록</h1>
+        <h1>배너위치</h1>
 
     <br/><br/><br/>
     <!-- https://devinus.tistory.com/48 참고해서 슬라이드 완성하기-->
 
     <div>
         <div class="categorybottom">
-            <div class="swiper mySwiper catewrapper">
-                <div class="swiper-wrapper cate">
-                    <ul class="swiper-slide catelist" th:each="cateNm : ${cateNmList}">
+            <div class=" catewrapper">
+                <div class=" cate">
+                    <ul class=" catelist" th:each="cateNm : ${cateNmList}">
                         <li>
                             <button class="cateimg" th:text="${cateNm}">카테고리</button>
                         </li>
@@ -62,12 +62,11 @@
 
 
         <div class="catemain">
+            <!-- Products 관련 -->
             <div class="catefont">품목</div>
             <ul class="catemenu">
-                <li class="menubtn">인기순</li>
-                <li class="menubtn">마감순</li>
+                <!--공통 엔티티 regdt-->
                 <li class="menubtn">최신순</li>
-                <li class="menubtn">가격순</li>
             </ul>
         </div>
 
