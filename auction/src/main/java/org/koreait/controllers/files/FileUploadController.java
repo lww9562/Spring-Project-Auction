@@ -1,9 +1,11 @@
 package org.koreait.controllers.files;
 
 import lombok.RequiredArgsConstructor;
+import org.codehaus.groovy.transform.SourceURIASTTransformation;
 import org.koreait.entities.FileInfo;
 import org.koreait.models.file.FileInfoSaveService;
 import org.koreait.models.file.FileListService;
+import org.koreait.repositories.FileInfoRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +26,8 @@ public class FileUploadController {
 
 	private final FileInfoSaveService infoSaveService;
 	private final FileListService listService;
+
+	private final FileInfoRepository repository;
 
 	@GetMapping
 	public String upload(String gid, String location, boolean image, Model model) {
@@ -59,6 +63,12 @@ public class FileUploadController {
 
 			// 2. 파일 업로드 경로
 			String filePath = infoSaveService.getFilePath(fileNo);
+			String fileUrl = infoSaveService.getFileURL(fileNo);
+			System.out.println("----------------------------------");
+			System.out.println(fileInfo);
+			fileInfo.setFilePath(filePath);
+			fileInfo.setFileURL(fileUrl);
+			System.out.println(fileInfo);
 
 			// 3. 파일 업로드 처리
 			try {
@@ -71,6 +81,8 @@ public class FileUploadController {
 
 		List<FileInfo> fileInfos = listService.getAll(gid, location);
 		fileInfos.stream().forEach(System.out::println);
+
+		repository.saveAllAndFlush(fileInfos);
 		return fileInfos;
 	}
 }

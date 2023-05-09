@@ -36,6 +36,8 @@ window.addEventListener("DOMContentLoaded", function() {
 		const thumbs = document.getElementById("thumbs");
 		const attachedFiles = document.getElementById("attached_files");
 		const fileTpl = document.getElementById("file_tpl").innerHTML;
+		const dd = thumbs.parentElement;
+        const insert_ui = dd.lastElementChild;
 		for(const file of files) {
 
 			/** CKEditor에 파일 올리기 */
@@ -60,6 +62,7 @@ window.addEventListener("DOMContentLoaded", function() {
 					CKEDITOR.instances.description.insertHtml(img);
 				});
 			} else {	/** 상단 썸네일 */
+				insert_ui.style.display = 'none';
 				const photoTag = `<span class="thumb file_${file.fileNo}">
 								<a href="/file/delete/${file.fileNo}" target="ifrmProcess" onclick="return confirm('정말 삭제하시겠습니까?');">
 									<i class='remove xi-close-min'></i>
@@ -96,5 +99,17 @@ window.addEventListener("DOMContentLoaded", function() {
 		}
 
 		const fileEl = document.querySelector(`.file_${fileNo}`);
-           if (fileEl) fileEl.parentElement.removeChild(fileEl);
+
+		const callback_btn = fileEl.parentElement.parentElement.lastElementChild;
+
+		if (fileEl){
+			console.dir(fileEl);
+			console.dir(fileEl.parentElement);
+			console.log(fileEl.parentElement.fileLocation);
+			console.log(callback_btn);
+			if(callback_btn.tagName='img'){
+				callback_btn.style.display = 'block';
+			}
+			fileEl.parentElement.removeChild(fileEl);
+		}
 	}

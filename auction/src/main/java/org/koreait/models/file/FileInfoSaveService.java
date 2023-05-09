@@ -68,7 +68,7 @@ public class FileInfoSaveService {
      * @return
      */
     public String getFilePath(Long fileNo) {
-        String dirPath = fileUploadPath + "/" + getFileFolder(fileNo);
+        String dirPath = fileUploadPath + getFileFolder(fileNo);
         File dir = new File(dirPath);
         if (!dir.exists()) { // 분산 폴더가 없는 경우는 생성
             dir.mkdir();

@@ -7,13 +7,17 @@ import lombok.RequiredArgsConstructor;
 import org.koreait.commons.Pagination;
 import org.koreait.controllers.users.UserInfo;
 import org.koreait.entities.Categories;
+import org.koreait.entities.FileInfo;
 import org.koreait.entities.Products;
 import org.koreait.models.Category.CategorySaveService;
 import org.koreait.models.Product.ProductDeleteService;
 import org.koreait.models.Product.ProductInfoService;
 import org.koreait.models.Product.ProductListService;
 import org.koreait.models.Product.ProductSaveService;
+import org.koreait.models.file.FileInfoSaveService;
+import org.koreait.models.file.FileInfoService;
 import org.koreait.repositories.CategoryRepository;
+import org.koreait.repositories.FileInfoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -47,12 +51,17 @@ public class ProductController {
     private final ProductSaveService saveService;
     private final CategoryRepository categoryRepository;
     private final CategorySaveService categorySaveService;
+    private final FileInfoRepository fileInfoRepository;
+    private final FileInfoSaveService fileInfoSaveService;
 
 
     @GetMapping("/write") //게시글 작성 페이지 이동
     public String write(Model model){
+        String[] addScript = { "ckeditor/ckeditor", "fileManager", "product/form" };
+        model.addAttribute("addScript", addScript);
+
         ProductForm productForm = new ProductForm();
-        model.addAttribute("productForm",productForm);
+        model.addAttribute("productForm", productForm);
 
         List<Categories> categories = categoryRepository.findAll();
 
@@ -66,18 +75,6 @@ public class ProductController {
         Collections.sort(listCategories);
 
         model.addAttribute("categoryMap", listCategories.stream().collect(Collectors.toMap(Categories::getCateId, Categories::getCateNm)));
-
-
-        return "product/write";
-    }
-
-    @GetMapping("/write/test")
-    public String writeTest(Model model){
-        String[] addScript = { "ckeditor/ckeditor", "fileManager", "product/form",  };
-        model.addAttribute("addScript", addScript);
-
-        ProductForm productForm = new ProductForm();
-        model.addAttribute("productForm", productForm);
 
         return "product/_form";
     }
@@ -126,6 +123,12 @@ public class ProductController {
         Products products = infoService.get(id);
         model.addAttribute("product", products);
 
+        List<FileInfo> fileInfos = fileInfoRepository.findByGidOrderByRegDtAsc(products.getGid());
+        FileInfo thumbnail = fileInfos.get(0);
+
+        String url = fileInfoSaveService.getFileURL(thumbnail.getFileNo());
+
+        model.addAttribute("thumbnail", url);
         return "product/view";
     }
     /**
