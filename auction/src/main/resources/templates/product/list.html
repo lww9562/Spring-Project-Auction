@@ -67,8 +67,12 @@
     color:gray;
 }
 
+.item_border{
+    border:1px solid transparent;
+}
+
 .item_border:hover{
-    border:1px solid #CDCDCD;
+    border:1px solid rgb(255, 225, 187);
 }
 
     </style>
@@ -162,7 +166,6 @@
         </div>
 
         <div class="bottom_link">
-            <a th:href="@{/main}">메인페이지</a>
             <a th:href="@{write}">물품등록</a>
         </div>
 

@@ -162,6 +162,9 @@ public class ProductController {
 
         List<String> cateNmList = categoryRepository.getAllCateNm();
         model.addAttribute("cateNmList", cateNmList);
+
+
+
         return "product/list";
     }
 
