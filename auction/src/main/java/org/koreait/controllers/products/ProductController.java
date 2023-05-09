@@ -30,8 +30,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.print.Pageable;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,6 +63,7 @@ public class ProductController {
                 listCategories.add(category);
             }
         }
+        Collections.sort(listCategories);
 
         model.addAttribute("categoryMap", listCategories.stream().collect(Collectors.toMap(Categories::getCateId, Categories::getCateNm)));
 
@@ -86,7 +89,7 @@ public class ProductController {
                 return "product/update";    // board/write로 쓴 부분 수정
             }
         }
-        return "redirect:/product/list"; //우선 목록 페이지도 있어야 할 것 같아서 목록으로 보냄
+        return "redirect:/product/list?"; //우선 목록 페이지도 있어야 할 것 같아서 목록으로 보냄
     }
 
     @GetMapping("/update/{id}") //수정 페이지 이동
@@ -100,7 +103,7 @@ public class ProductController {
 
     @GetMapping("/view/{id}") //상세 페이지 이동
     public String view(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("addScript", new String[]{"bid_button"});
+        model.addAttribute("addScript", new String[]{"bid_button", "buy_button"});
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserDetails userDetails = (UserDetails)principal;
@@ -139,23 +142,18 @@ public class ProductController {
     */
 
     @GetMapping("/list")
-    public String list(ProductSearch search, Model model, HttpServletRequest request) {
-        System.out.println(search);
-
+    public String list(ProductSearch search, Model model, HttpServletRequest request) throws Exception {
         Page<Products> products = listService.gets(search);
 
         String url = request.getContextPath() + "/product/list";
-        String qs = Arrays.stream(request.getQueryString().split("&")).filter(s -> !s.contains("page")).collect(Collectors.joining("&"));
-
-        url += "/?" + qs;
-        System.out.println("===========================================");
-        System.out.println(qs);
-        System.out.println(url);
 
         Pagination<Products> pagination = new Pagination<>(products, url);
+
         model.addAttribute("products", products.getContent());
         model.addAttribute("pagination", pagination);
 
+        List<String> cateNmList = categoryRepository.getAllCateNm();
+        model.addAttribute("cateNmList", cateNmList);
         return "product/list";
     }
 

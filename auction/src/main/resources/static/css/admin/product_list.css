@@ -1,4 +1,4 @@
-	<style>
+
 		table {
 			margin-left:auto;
 			margin-right:auto;
@@ -20,7 +20,7 @@
 		button{
 			width:100%;
 		}
-	.onoff-switch-container{
+.onoff-switch-container{
   display:inline-block;
   height: 30px;
   position:relative;

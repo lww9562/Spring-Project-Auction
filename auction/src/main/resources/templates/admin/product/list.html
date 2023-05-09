@@ -32,7 +32,7 @@
 			<td th:text="*{baroPrice}"></td>
 			<td th:text="*{endPrice}"></td>
 			<td th:text="*{risingPrice}"></td>
-			<td th:text="*{regDt}"></td>
+			<td th:text="${#temporals.format(products.regDt, 'yyyy-MM-dd HH:mm:ss')}"></td>
 			<td>
 				<input type="checkbox" th:checked="*{stats}" th:data-product-no="*{id}" th:data-product-stats="*{stats}" class="form-check-input">
 			</td>

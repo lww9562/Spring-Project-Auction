@@ -7,10 +7,11 @@
 		<title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
 		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 		<link rel="stylesheet" type="text/css" th:each="cssFile : ${addCss}" th:href="@{/css/{file}.css(file=${cssFile})}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
 		<th:block layout:fragment="addCss"></th:block>
 		<script th:src="@{/js/layer.js}"></script>
 		<script th:src="@{/js/common.js}"></script>
-		<script th:each="jsFile : ${addScript}" th:src="@{/js/{file}.js(file=${jsFile})}"></script>
+		<script th:each ="jsFile : ${addScript}" th:src="@{/js/{file}.js(file=${jsFile})}"></script>
 		<th:block layout:fragment="addScript"></th:block>
 	</head>
 

@@ -28,7 +28,6 @@ html{
 .cate{
 
     display: flex;
-    justify-content: center;
 
 }
 
@@ -47,6 +46,7 @@ ul{
 
 .pagination {
 	justify-content: center;
+	margin:auto;
 }
 
 li{
@@ -137,7 +137,7 @@ li{
 
 
 .product_items{
-    width:calc(33% - 20px);
+    width:calc(25% - 20px);
     margin-left: 0px;
     margin-right: 20px;
     margin-bottom: 40px;
@@ -166,4 +166,7 @@ li{
  display:none;
 }
 
+.list {
+	width : 40%;
 
+}
