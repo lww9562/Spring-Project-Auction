@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+
+    <style>
+        .request_board{
+
+            text-align:center;
+
+        }
+    </style>
+</head>
+<main layout:fragment="content">
+    <div class="request_board">
+
+    <h2>충전요청</h2>
+    <form method="post" th:action="@{/mypage/requestMoney}" autocomplete="off" id = "saveMoney" th:object="${requestMoneyForm}">
+        <dl>
+            <dt><b>신청자</b></dt>
+            <dd>
+                <input type="text" name="userId" th:value="${Id}" style="border:none; text-align:center;" readonly/>
+            </dd>
+        </dl>
+        <br>
+        <dl>
+            <dt>신청 금액</dt>
+            <dd>
+                <input type="text" name="money" th:field="*{money}">
+            </dd>
+        </dl>
+
+        <br>
+        <div class="btns">
+            <button type="submit" id="btn_submit" style="cursor:pointer;">신청</button>
+        </div>
+    </form>
+
+    </div>
+
+
+
+
+
+
+
+</main>
+</html>

@@ -14,6 +14,7 @@
 			width: 100%;
 			border-top: 1px solid #ccc;
 			border-bottom: 1px solid #ccc;
+
 		}
 
 		td {
@@ -32,43 +33,46 @@
 		.form{
 			margin-top:50px;
 			text-align:center;
-		}
+			width : 250px;
 
+		}
+		dl {
+			margin:5px;
+		}
 		.submit_btn{
 			width: 70px;
 		}
+		span{
+			display : flex;
+		}
 	</style>
 </head>
-	<section layout:fragment="content">
-		<form class="form" method="post" th:action="@{/admin/category}" autocomplete="off">
-			<th:block th:replace="~{admin/category/_form::form}"></th:block>
-			<button type="submit" class="submit_btn">등록하기</button>
-		</form>
+<section layout:fragment="content">
+		<span>
+			<table class="category_list">
+				<col width="50"><col width="200"><col width="50"><col width="150">
+				<tr>
+					<th>cateId</th>
+					<th>cateNm</th>
+					<th>orderNo</th>
+					<th>use</th>
+				</tr>
 
-		<br>
-		<br>
-		<br>
+				<tr th:each=" list : ${categoriesList}" th:object="${list}">
+					<td th:text="*{cateId}"></td>
+					<td th:text="*{cateNm}"></td>
+					<td th:text="*{orderNo}"></td>
+					<td>
+						<input type="checkbox" th:checked="*{use}" th:data-cateID="*{cateId}" th:data-use="*{use}" class="form-check-input">
+					</td>
+				</tr>
 
-		<table class="category_list">
-			<col width="50"><col width="200"><col width="50"><col width="150">
-			<tr>
-				<th>cateId</th>
-				<th>cateNm</th>
-				<th>orderNo</th>
-				<th>use</th>
-			</tr>
-
-			<tr th:each=" list : ${categoriesList}" th:object="${list}">
-				<td th:text="*{cateId}"></td>
-				<td th:text="*{cateNm}"></td>
-				<td th:text="*{orderNo}"></td>
-				<td>
-					<input type="checkbox" th:checked="*{use}" th:data-cateID="*{cateId}" th:data-use="*{use}" class="form-check-input">
-				</td>
-			</tr>
-
-		</table>
-
-	</section>
+			</table>
+			<form class="form" method="post" th:action="@{/admin/category}" autocomplete="off">
+				<th:block th:replace="~{admin/category/_form::form}"></th:block>
+				<button type="submit" class="submit_btn">등록하기</button>
+			</form>
+		</span>
+</section>
 
 </html>
