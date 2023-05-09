@@ -183,6 +183,15 @@
         width: 25px;
         height: 25px;
     }
+    .top_button{
+        position: fixed;
+        bottom : 40px;
+        left : calc(95% - 16px);
+        width : 50px;
+        height : 50px;
+        cursor : pointer;
+        display : none;
+    }
 
     .buttonset{
         position : absolute;

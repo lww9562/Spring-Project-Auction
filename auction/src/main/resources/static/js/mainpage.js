@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+
+//progress bar + slide img start
 const slide = document.querySelector(".slide");
 let slideWidth = slide.clientWidth;
 
@@ -153,7 +155,11 @@ slide.addEventListener("mouseout", () => {
     }, 3000);
 
 });
+//progress bar + slide img start end
 
+
+
+//swiper(카테고리) start
 let swipeItems = document.querySelectorAll(".swiper-slide");
 
  var swiper = new Swiper(".mySwiper", {
@@ -174,8 +180,32 @@ let swipeItems = document.querySelectorAll(".swiper-slide");
          },
     });
 
+    //swiper end
 
 
+    //top_button start
+    var backToTop = () => {
+      window.addEventListener('scroll', () => {
+        if (document.querySelector('html').scrollTop > 100) {
+          document.querySelector('.top_button').style.display = "block";
+        } else {
+          document.querySelector('.top_button').style.display = "none";
+        }
+      });
+
+      document.querySelector('.top_button').addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
+        });
+      })
+    };
+    backToTop();
+    //top_button end
+
+
+// carousel 외부 라이브러리 사용 실패시 고쳐서 사용해야 할 코드 S
 //  const carouseInner = document.querySelector('.cate');
 //  const carouseItems = carouseInner.querySelectorAll('.catelist');
 //  const carPrev = document.querySelector('.car-prev');
@@ -199,7 +229,7 @@ let swipeItems = document.querySelectorAll(".swiper-slide");
 //
 //  carPrev.addEventListener('click', () => moveCarousel(-200));
 //  carNext.addEventListener('click', () => moveCarousel(200));
-
+// carousel 외부 라이브러리 사용 실패시 고쳐서 사용해야 할 코드 E
 
 
 
