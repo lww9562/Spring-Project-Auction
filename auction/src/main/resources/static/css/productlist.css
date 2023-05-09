@@ -1,7 +1,5 @@
 html{
-
     margin: 0 150px;
-
 }
 
 
@@ -18,7 +16,7 @@ html{
     top: 22px;
     position: sticky;
     z-index: 10;
-    background-color: #fff;
+    background-color: transparent;
     padding: 8px 0;
 
 
@@ -38,7 +36,7 @@ ul{
     display: flex;
     position: relative;
     gap: 24px;
-    background-color: #fff;
+    background-color: transparent;
     padding: 0 16px;
     height: 100%;
 
@@ -65,7 +63,7 @@ li{
 
 .cateimg{
     border: 0;
-    background-color: #ffffff00;
+    background-color: transparent;
     cursor: pointer;
     min-width: 64px;
     height: 58px;
@@ -88,7 +86,8 @@ li{
     padding-bottom: 16px;
     display:flex;
     justify-content: space-between;
-    border-bottom: 1px solid #f2f4f6;
+    border-bottom: 2px solid #f2f4f6;
+    margin-bottom: 15px;
 }
 
 
@@ -164,9 +163,14 @@ li{
 
 .bottom_link a{
     margin: 10px;
-    padding : 10px;
-    border : 1px solid black;
-    border-radius: 5px;
+    padding : 5px;
+    border : 1px solid #ff7f00;;
+    border-radius: 7px;
+}
+
+.bottom_link a:hover{
+background-color:#ff7f00;
+transition:0.3s;
 }
 
 .hidden_tag{

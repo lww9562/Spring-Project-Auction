@@ -8,7 +8,7 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<style>
-		html{
+html{
 
     margin: 0 150px;
 
@@ -93,7 +93,7 @@
 
 .content {
 	margin:0 auto;
-	width:800px;
+	width:1050px;
 	display:block;
     padding-top: 100px;
     font-size: 18px;
@@ -103,9 +103,10 @@
 
 }
 .content_border{
-border:1px solid #e4e4e4;
+border:1px solid rgba(194, 194, 194, 0.774);
 width:100%;
 height:500px;
+padding: 0 15px 0 15px;
 
 }
 
@@ -245,7 +246,7 @@ cursor:pointer;
 							<strong class="risingPr" th:text="*{risingPrice}">인상 입찰가격</strong><br>
 						</div>
 
-
+						[[${userId}]]
 						<div class="PurchaseButton" th:if="*{stats.toString().equals('true')}">
 							<button id="bid_btn" th:data-userid="${userId}" th:data-productid="${product.id}">입찰</button>
 							<button id="buy_btn" th:data-userid="${userId}" th:data-productid="${product.id}">바로 구매</button>

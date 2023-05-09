@@ -1,6 +1,8 @@
 /** 공통 */
-* {font-family: 'Noto Sans KR', sans-serif; box-sizing : border-box; outline : none;
-    color : #000;}
+*{
+font-family: 'Noto Sans KR', sans-serif; box-sizing : border-box; outline : none;
+    color : #000;
+ }
 
 @font-face {
     font-family: 'Pretendard-Regular';
