@@ -12,6 +12,11 @@
 		<script th:src="@{/js/common.js}"></script>
 		<script th:each="jsFile : ${addScript}" th:src="@{/js/{file}.js(file=${jsFile})}"></script>
 		<th:block layout:fragment="addScript"></th:block>
+		<style>
+			main {
+				margin : 0;
+			}
+		</style>
 	</head>
 
 	<body>

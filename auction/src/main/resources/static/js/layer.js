@@ -48,13 +48,6 @@ koreait.popup = {
 
         isIframe = isIframe?true:false;
 
-		if (width > window.innerWidth) {
-            width = window.innerWidth - 20;
-        }
-
-        if (height > window.innerHeight) {
-            height = window.innerHeight - 20;
-        }
         var left = Math.round((window.innerWidth - width) / 2);
         var top = Math.round((window.innerHeight - height) / 2);
 
