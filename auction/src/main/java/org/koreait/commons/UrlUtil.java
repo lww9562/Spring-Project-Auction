@@ -14,39 +14,22 @@ public class UrlUtil {
 	@Autowired
 	private HttpServletRequest request;
 
-	private static List<String> keys = new ArrayList<>();
+	private List<String> keys;
 
 	public String getPageUrl(String url, int page){
 
-
-		if(url.contains("?")){
-
+		if(url.contains("?")) {
 			String[] urls = url.split("\\?");
-			if(urls.length > 1){
-				keys = Arrays.stream(urls[1].split("&")).map(s->s.split("=")[0]).toList();
+			if (urls.length > 1) {
+				keys = Arrays.stream(urls[1].split("&")).map(s -> s.split("=")[0]).toList();
 			}
-
-		}else{
-
+			url += "&";
+		} else {
 			url += "?";
 		}
 
-
 		String qs = request.getQueryString();
-		//System.out.println("qs : " + qs);
-
 		if (qs != null && !qs.isBlank()){
-
-			if(url.contains("?")){
-//				System.out.println("url = " + url );
-
-				String[] urls = url.split("\\?");
-				String adQs = urls.length > 1 ? urls[1] : null;
-
-				qs = (adQs != null && !adQs.isBlank()) ? adQs + "&" + qs : qs;
-				url += "&";
-			}
-
 			qs = Arrays.stream(qs.split("&"))
 					.filter(s-> !s.contains("page"))
 					.filter(this::keyExists)
@@ -57,42 +40,15 @@ public class UrlUtil {
 			}
 		}
 		url += "page=" + page;
-
 		return url;
 	}
 
-
-	private boolean keyExists(String str){
+	private boolean keyExists(String str) {
 		String key = str.split("=")[0];
-		if(keys != null  &&  keys.contains(key)){
+		if (keys != null && keys.contains(key)) {
 			return false;
 		}
 
 		return true;
 	}
-/*
-	public String getPageUrl(String url, int page, String sort){
-		System.out.println("url : " + url);
-		if(!url.contains("?")){
-			url += "?";
-		}
-
-		String qs = request.getQueryString();
-		System.out.println("qs : " + qs);
-		if (qs != null && !qs.isBlank()){
-			if(qs.contains("sort")){
-				return url+"sort="+sort+"&page="+page;
-			}
-			qs = Arrays.stream(qs.split("&")).filter(s-> !s.contains("page")).collect(Collectors.joining("&"));
-
-			if(!qs.isBlank()){
-				url += qs + "&";
-			}
-		}
-		url += "sort=" + sort + "&page=" + page;
-
-		return url;
-	}
-
- */
 }

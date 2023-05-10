@@ -33,21 +33,28 @@ koreait.popup = {
             isMobile = true;
         }
 
-        width = width || 300;
-        height = height || 300;
+        width = width || 700;
+        height = height || 700;
 
         if (isMobile) {
             if (width > window.innerWidth) {
                 width = window.innerWidth - 20;
             }
 
-            if (height > window.inenerHeight) {
+            if (height > window.innerHeight) {
                 height = window.innerHeight - 20;
             }
         }
 
         isIframe = isIframe?true:false;
 
+		if (width > window.innerWidth) {
+            width = window.innerWidth - 20;
+        }
+
+        if (height > window.innerHeight) {
+            height = window.innerHeight - 20;
+        }
         var left = Math.round((window.innerWidth - width) / 2);
         var top = Math.round((window.innerHeight - height) / 2);
 

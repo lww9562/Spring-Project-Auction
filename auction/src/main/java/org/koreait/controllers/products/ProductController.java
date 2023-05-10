@@ -111,7 +111,7 @@ public class ProductController {
 
     @GetMapping("/view/{id}") //상세 페이지 이동
     public String view(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("addScript", new String[]{"bid_button", "buy_button"});
+        model.addAttribute("addScript", new String[]{"sync_time","bid_button", "buy_button"});
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserDetails userDetails = (UserDetails)principal;
@@ -123,12 +123,6 @@ public class ProductController {
         Products products = infoService.get(id);
         model.addAttribute("product", products);
 
-        List<FileInfo> fileInfos = fileInfoRepository.findByGidOrderByRegDtAsc(products.getGid());
-        FileInfo thumbnail = fileInfos.get(0);
-
-        String url = fileInfoSaveService.getFileURL(thumbnail.getFileNo());
-
-        model.addAttribute("thumbnail", url);
         return "product/view";
     }
     /**

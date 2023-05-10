@@ -77,10 +77,20 @@ public class ProductSaveService {
 
 
         products.setStats(true);
-        updateSuccessService.process(products.getGid());
 
-        FileInfo thumbnail = fileInfoRepository.findByGidOrderByRegDtAsc(products.getGid()).get(0);
-        products.setImgPath(fileInfoSaveService.getFileURL(thumbnail.getFileNo()));
+        try{
+            updateSuccessService.process(products.getGid());
+
+            FileInfo thumbnail = fileInfoRepository.findByGidOrderByRegDtAsc(products.getGid()).get(0);
+            products.setImgPath(fileInfoSaveService.getFileURL(thumbnail.getFileNo()));
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
+        if(products.getImgPath() == null){
+            products.setImgPath("/images/no_img.png");
+        }
+
         products = repository.saveAndFlush(products);
 
         productForm.setId(products.getId());

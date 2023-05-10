@@ -14,6 +14,7 @@ public class CategoryListService {
     private final CategoryRepository repository;
 
     public List<Categories> gets(){
+
         return repository.findAll(Sort.by(Sort.Order.asc("orderNo")));
     }
 }

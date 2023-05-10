@@ -12,8 +12,10 @@
 		<th:block layout:fragment="addCss"></th:block>
 		<script th:src="@{/js/layer.js}"></script>
 		<script th:src="@{/js/common.js}"></script>
+
 <!--		<script defer th:src="@{/js/sync_time.js}"></script>-->
 <!--		<script th:src="@{/js/chat.js}"></script>-->
+    
 		<script th:each ="jsFile : ${addScript}" th:src="@{/js/{file}.js(file=${jsFile})}"></script>
 		<th:block layout:fragment="addScript"></th:block>
 	</head>

@@ -1,6 +1,5 @@
 package org.koreait.config;
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
@@ -12,14 +11,13 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 @RequiredArgsConstructor
 public class WebSocketConfig implements WebSocketConfigurer {
 
-
     private final DataWsHandler handler;
-    private final ChatWsHandler chatWsHandler;
+    private final ChatWsHandler chatHandler;
+
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(handler,"/data").setAllowedOrigins("*");
+        registry.addHandler(handler, "/data").setAllowedOrigins("*");
 
-
-        registry.addHandler(chatWsHandler,"/chat").setAllowedOrigins("*");
+        registry.addHandler(chatHandler, "/chat").setAllowedOrigins("*");
     }
 }
