@@ -61,9 +61,12 @@
 							<strong class="risingPr" th:text="*{risingPrice}">인상 입찰가격</strong><br>
 						</div>
 
-						<ul class="list_ul" th:each="bidder : ${product.bidderList}">
-							<span th:if="${bidderStat.last}" th:text="${bidder.user.userId}">test</span>
-						</ul>
+						<div class="list_ul" th:each="bidder : ${product.bidderList}">
+							<br>
+							<strong>최고입찰자 : </strong>
+							<span th:if="${bidderStat.last}" th:text="${bidder.user.userId}">현재최고입찰자</span>
+						</div>
+
 
 
 						<div class="PurchaseButton" th:if="*{stats.toString().equals('true')}">
