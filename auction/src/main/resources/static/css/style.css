@@ -32,8 +32,18 @@ ul, ol {list-style-type : none; margin : 0; padding : 0;}
 li {margin : 0; padding : 0;}
 dl, dt, dd {margin : 0; padding : 0;}
 a {text-decoration : none; }
-img {border : 0;}
-p {margin : 0;}
+
+img {
+border : 0;
+image-rendering: -moz-crisp-edges; /* Firefox */
+image-rendering: -o-crisp-edges; /* Opera */
+image-rendering: -webkit-optimize-contrast;/* Webkit (non-standard naming) */
+-ms-interpolation-mode: nearest-neighbor; /* IE (non-standard property) */
+}
+
+p {
+margin : 0;
+}
 
 .error {font-size : 0.9rem; color:#F84A71; margin-left:5px;}
 

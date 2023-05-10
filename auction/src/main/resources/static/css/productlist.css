@@ -4,6 +4,7 @@
     position: relative;
     box-sizing: border-box;
     align-items: center;
+    clear:both;
 
 }
 
@@ -13,29 +14,31 @@
     z-index: 10;
     background-color: transparent;
     padding: 8px 0;
+    overflow:hidden;
+    clear:both;
 
 
 
 }
 
 .cate{
-    overflow-x: auto;
     display: flex;
     text-align: center;
     justify-content: center;
+    clear:both;
 
 }
 
-ul{
+.list_ul{
 
-    display: flex;
+    display: inline;
     position: relative;
-    gap: 24px;
     background-color: transparent;
-    padding: 0 16px;
+    padding: 0 10px;
     height: 100%;
 
-    max-width: 992px;
+
+    min-width: 125px;
 
 }
 
@@ -53,6 +56,7 @@ li{
     max-width: 200px;
     vertical-align: middle;
     white-space: normal;
+    clear:both;
 
 }
 
