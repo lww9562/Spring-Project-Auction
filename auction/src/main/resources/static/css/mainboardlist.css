@@ -1,60 +1,4 @@
 
-
-	main{
-    margin: 0 150px;
-
-    }
-
-
-
-    .categorybottom{
-        padding: 0 16px;
-        position: relative;
-        box-sizing: border-box;
-        align-items: center;
-
-    }
-
-    .catewrapper{
-        top: 22px;
-        position: sticky;
-        background-color: transparent;
-        padding: 8px 0;
-        overflow-x: auto;
-        scroll-behavior: smooth;
-    }
-    .catewrapper::-webkit-scrollbar {
-      display: none;
-    }
-
-    .cate{
-        display: flex;
-    }
-
-    .catelist{
-        position : relative;
-        z-index : 1;
-    }
-
-    .car-ctrl{
-        z-index : 2;
-        display : fixed;
-        position : relative;
-        top : 50%;
-        transform : translateY(-50%);
-        background-color : #fff;
-
-    }
-    .car-prev{
-        right : 0%;
-    }
-    .car-next{
-        left : 90%;
-    }
-
-
-
-
     ul{
 
         display: flex;
@@ -81,16 +25,6 @@
 
     }
 
-    .cateimg{
-        border: 0;
-        background-color: transparent;
-        cursor: pointer;
-        min-width: 64px;
-        height: 58px;
-        overflow: hidden;
-
-
-    }
 
     .catemain{
         line-height: 34px;
@@ -126,24 +60,14 @@
         font-size: 14px;
     }
 
-    .menubtn{
-        display: inline;
-        align-items: center;
-        margin-right: 8px;
-        cursor: pointer;
 
-    }
-
-    .menubtn:hover{
-        color:red;
-    }
 
     .maincatelist{
+
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        grid-template-columns: repeat(3, calc(33.3333% - 20px));
         gap: 30px;
 
     }
@@ -185,8 +109,8 @@
     }
 
     svg {
-        width: 25px;
-        height: 25px;
+        width: 10px;
+        height: 10px;
     }
     .top_button{
         position: fixed;
@@ -262,9 +186,17 @@
         list-style: none;
     }
 
+    .product_link label{
+        font-weight:bold;
+    }
+
+.product_link dd{
+    font-size:12px;
+    color:gray;
+}
 
     .product_items{
-        width:calc(33% - 20px);
+        width:calc(25% - 20px);
         margin-left: 0px;
         margin-right: 20px;
         margin-bottom: 40px;
@@ -277,14 +209,7 @@
       object-fit: cover;
     }
 
-	a:link {
-		color: black;
-		text-decoration: none;
-	}
-	a:visited {
-		color: black;
-		text-decoration: none;
-	}
+
 	.board_table {
 		margin-left:auto;
 		margin-right:auto;

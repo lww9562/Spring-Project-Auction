@@ -9,18 +9,20 @@
 }
 
 .catewrapper{
+
+    scroll-behavior: smooth;
     top: 22px;
     position: sticky;
     z-index: 10;
     background-color: transparent;
     padding: 8px 0;
-    overflow:hidden;
+    overflow-x: scroll;
     clear:both;
 
 
     }
 
-.cate::-webkit-scrollbar {
+.catewrapper::-webkit-scrollbar {
       display: none;
     }
 
@@ -46,7 +48,7 @@
     cursor: pointer;
     min-width: 64px;
     height: 58px;
-    overflow: hidden;
+
     color:gray;
     display:block;
 

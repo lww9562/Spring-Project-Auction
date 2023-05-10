@@ -19,12 +19,13 @@ html {
 }
 
 main {
-margin: 0 150px;
+min-width:900px;
+margin: 0 250px;
 padding-top : 20px;
 }
 
 header{
-margin: 0 150px;
+margin: 0 250px;
 }
 
 

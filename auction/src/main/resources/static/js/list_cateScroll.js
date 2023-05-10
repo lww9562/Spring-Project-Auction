@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 */
 
 //.cate라는 클래스를 찾아서 변수로 대입
-const cateScroll = document.querySelector(".cate");
+const cateScroll = document.querySelector(".catewrapper");
 //스크롤 이벤트 값을 저장하고 사용하기 위한 변수
 var nowCateScroll = 0;
 

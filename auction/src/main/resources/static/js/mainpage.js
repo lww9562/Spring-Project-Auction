@@ -142,6 +142,8 @@ slide.addEventListener("touchend", (e) => {
   }
 });
 
+
+
 //슬라이드 루프 시작하기
 let loopInterval = setInterval(() =>{
     nextMove();
@@ -162,6 +164,8 @@ slide.addEventListener("mouseout", () => {
 
 });
 //progress bar + slide img start end
+
+
 
 
 

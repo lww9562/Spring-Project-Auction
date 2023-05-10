@@ -116,7 +116,6 @@
                 <div class="catewrapper">
                     <div class="cate">
                         <ul class="list_ul" th:each="cateNm : ${cateNmList}">
-
                             <li>
                                 <a class="cateimg" th:href="@{/product/list?cateNm=}+${cateNm}" th:text="${cateNm}">전체</a>
                             </li>
