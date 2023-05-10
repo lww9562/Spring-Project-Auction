@@ -55,7 +55,10 @@
                     <td th:text="*{endPrice}"></td>
                     <td th:text="*{risingPrice}"></td>
                     <td th:text="*{regDt}"></td>
-                    <td th:text="*{stats}"></td>
+                    <td>
+                        <span th:if="*{stats}">입찰중</span>
+                        <span th:unless="*{stats}">판매완료</span>
+                    </td>
                     <th:block th:each="bidder : ${product.bidderList}">
                         <td th:if="${bidderStat.last}" th:text="${bidder.user.userId}"></td>
                     </th:block>
