@@ -40,10 +40,11 @@
                     <th class="th2">카테고리</th>
                     <th class="th3">상 품</th>
                     <th class="th4">판매자</th>
-                    <th class="th5">즉시 입찰가</th>
-                    <th class="th6">현재 입찰가</th>
-                    <th class="th7">인상가</th>
-                    <th class="th8">REGDT</th>
+                    <th class="th5">현재 입찰가</th>
+                    <th class="th6">인상가</th>
+                    <th class="th7">REGDT</th>
+                    <th class="th8">물품 상태</th>
+                    <th class="th9">최고입찰자</th>
                 </tr>
 
                 <tr th:each="product : ${bidProducts}" th:object="${product}">
@@ -51,11 +52,16 @@
                     <td th:text="*{categories.cateNm}"></td>
                     <td th:text="*{prSubject}"></td>
                     <td th:text="*{createdBy}"></td>
-                    <td th:text="*{baroPrice}"></td>
                     <td th:text="*{endPrice}"></td>
                     <td th:text="*{risingPrice}"></td>
                     <td th:text="*{regDt}"></td>
-
+                    <td>
+                        <span th:if="*{stats}">입찰중</span>
+                        <span th:unless="*{stats}">판매완료</span>
+                    </td>
+                    <th:block th:each="bidder : ${product.bidderList}">
+                        <td th:if="${bidderStat.last}" th:text="${bidder.user.userId}"></td>
+                    </th:block>
                 </tr>
 
             </table>

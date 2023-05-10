@@ -54,7 +54,8 @@ public class ProductBidService {
         new_users.setMoney(new_users.getMoney()-products.getEndPrice());
         usersRepository.saveAndFlush(new_users);
 
-
+        List<Bidders> bidderList = products.getBidderList();
+        bidderList.add(new_bidders);
 
         biddersList.add(new_bidders);
         products.setBidderList(biddersList);
