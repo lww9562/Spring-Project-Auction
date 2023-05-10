@@ -34,14 +34,15 @@
         <section  th:object="${sellProducts}" class="box">
             <table class="product_list">
                 <tr>
-                    <th>NO</th>
-                    <th>카테고리</th>
-                    <th>상 품</th>
-                    <th>판매자</th>
-                    <th>즉시 입찰가</th>
-                    <th>현재 입찰가</th>
-                    <th>인상가</th>
-                    <th>REGDT</th>
+                    <th class="th1">NO</th>
+                    <th class="th2">카테고리</th>
+                    <th class="th3">상 품</th>
+                    <th class="th4">판매자</th>
+                    <th class="th5">현재 입찰가</th>
+                    <th class="th6">인상가</th>
+                    <th class="th7">REGDT</th>
+                    <th class="th8">물품 상태</th>
+                    <th class="th9">최고입찰자</th>
                 </tr>
 
                 <tr th:each="product : ${sellProducts}" th:object="${product}">
@@ -49,11 +50,19 @@
                     <td th:text="*{categories.cateNm}"></td>
                     <td th:text="*{prSubject}"></td>
                     <td th:text="*{createdBy}"></td>
-                    <td th:text="*{baroPrice}"></td>
                     <td th:text="*{endPrice}"></td>
                     <td th:text="*{risingPrice}"></td>
                     <td th:text="*{regDt}"></td>
-
+                    <td>
+                        <span th:if="*{stats}">입찰중</span>
+                        <span th:unless="*{stats}">판매완료</span>
+                    </td>
+                        <td>
+                            <th:block th:if="${product.bidderList}!= null" th:each="bidder : ${product.bidderList}">
+                                <span th:if="${bidderStat.last}" th:text="${bidder.user.userId}"></span>
+                                <span th:unless="${bidderStat.last}"></span>
+                            </th:block>
+                        </td>
 
                 </tr>
 

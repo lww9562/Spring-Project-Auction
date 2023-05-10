@@ -51,6 +51,7 @@
 
         <div class="maincatelist">
             <div class="product_link">
+
                 <div class="product_items" th:each="board : ${list}" th:classappend ="*{stats} ? product_items : dn" th:object="${board}">
                     <span style="display:none;" th:text="*{id}">물품번호(숨김)</span>
 
@@ -66,6 +67,7 @@
                         </dl>
                     </a>
                 </div>
+
             </div>
         </div>
     </div>
