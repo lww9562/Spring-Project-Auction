@@ -191,6 +191,7 @@ var Scroll_btn_right = document.querySelector(".car-next .car-next-svg");
 
 //이전 버튼에 대한 이벤트 리스너
 Scroll_btn_left.addEventListener("click", () => {
+    resetCateScroll();
      nowCateScroll -= cateScroll.offsetWidth/cate_Scrolling_value;
        cateScroll.scrollTo(nowCateScroll,0);
        resetCateScroll();
@@ -198,6 +199,7 @@ Scroll_btn_left.addEventListener("click", () => {
 
 //다음 버튼에 대한 이벤트 리스너
 Scroll_btn_right.addEventListener("click", () => {
+        resetCateScroll();
        nowCateScroll+=cateScroll.offsetWidth/cate_Scrolling_value;
        cateScroll.scrollTo(nowCateScroll,0);
        resetCateScroll();
