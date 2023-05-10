@@ -79,21 +79,21 @@
         <div class="maincatelist">
             <div class="product_link">
                 <div class="product_items" th:each="board : ${list}" th:object="${board}">
+                    <div th:if="*{stats.toString().equals('true') ? 'item_border' : ''}" class="item_border">
+                        <span style="display:none;" th:text="*{id}">물품번호(숨김)</span>
 
-                    <span style="display:none;" th:text="*{id}">물품번호(숨김)</span>
-
-                    <a th:if="*{stats.toString().equals('true')}" th:href="@{/product/view/{id}(id=*{id})}">
-                        <dl>
-                            <dt><img th:src="@{*{imgPath}}" class="item_img"></dt>
-                            <label>상품이름</label>
-                            <dd class="product_subject" th:text="*{prSubject}">상품이름</dd>
-                            <label>등록가</label>
-                            <dd class="product_price" th:text="*{startPrice}">등록가</dd>
-                            <label>즉시구매가</label>
-                            <dd class="product_price" th:text="*{baroPrice}">즉시구매가</dd>
-                        </dl>
-                    </a>
-                </div>
+                        <a th:href="@{/product/view/{id}(id=*{id})}" >
+                            <dl>
+                                <dt><img th:src="@{*{imgPath}}" class="item_img"></dt>
+                                <label>상품이름</label>
+                                <dd class="product_subject" th:text="*{prSubject}">상품이름</dd>
+                                <label>등록가</label>
+                                <dd class="product_price" th:text="*{startPrice}">등록가</dd>
+                                <label>즉시구매가</label>
+                                <dd class="product_price" th:text="*{baroPrice}">즉시구매가</dd>
+                            </dl>
+                        </a>
+                    </div>
             </div>
         </div>
     </div>

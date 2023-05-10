@@ -173,7 +173,8 @@
 
                 <div class="product_link">
                     <div class="product_items" th:each="board : ${products}" th:object="${board}">
-                        <div th:if="*{stats.toString().equals('true')}" class="item_border">
+
+                            <div th:if="*{stats.toString().equals('true') ? 'item_border' : ''}" class="item_border">
                             <span style="display:none;" th:text="*{id}">물품번호(숨김)</span>
 
                             <a th:href="@{/product/view/{id}(id=*{id})}" >
