@@ -65,7 +65,7 @@ window.addEventListener("DOMContentLoaded", function() {
 				insert_ui.style.display = 'none';
 				const photoTag = `<span class="thumb file_${file.fileNo}">
 								<a href="/file/delete/${file.fileNo}" target="ifrmProcess" onclick="return confirm('정말 삭제하시겠습니까?');">
-									<i class='remove xi-close-min'></i>
+									<i class="remove xi-close-square-o"></i>
 								</a>
 
 								<span class='inner' style="background:url('${file.fileURL}'); background-size:cover;"></span>
