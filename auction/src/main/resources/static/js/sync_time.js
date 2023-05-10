@@ -18,6 +18,3 @@ ws.addEventListener("message", function(e) {
     const date = new Date(data);
     console.log(date);
 });
-/**
-
-*/
