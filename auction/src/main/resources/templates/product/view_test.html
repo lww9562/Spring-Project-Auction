@@ -180,34 +180,34 @@ cursor:pointer;
 
 					<div class="product_area">
 						<div class="product_detail">
-							<div class="ProductName">
-								<span class="pr_Subject">[상품명]</span>
-								<span th:text="*{prSubject}">판매물품 제목</span>
-							</div>
-							<div class="ProductPrice">
+								<div class="ProductName">
+									<span class="pr_Subject">[상품명]</span>
+									<span th:text="*{prSubject}">판매물품 제목</span>
+								</div>
+								<div class="ProductPrice">
 
-								<strong class="expireDate">남은 시간</strong>
+									<strong class="expireDate">남은 시간</strong>
 
-								<div class="time">
-									<span id="d-day-hour">00</span>
-									<span class="col">:</span>
-									<span id="d-day-min">00</span>
-									<span class="col">:</span>
-									<span id="d-day-sec">00</span>
+									<div class="time">
+										<span id="d-day-hour">00</span>
+										<span class="col">:</span>
+										<span id="d-day-min">00</span>
+										<span class="col">:</span>
+										<span id="d-day-sec">00</span>
+									</div>
+
+									<div th:if="*{stats.toString().equals('true')}" class="timer" th:data-regdt="*{regDt}" id="timer">
+									</div>
 								</div>
 
-								<div th:if="*{stats.toString().equals('true')}" class="timer" th:data-regdt="*{regDt}" id="timer">
-								</div>
-							</div>
 
-
-							<div class="CommercialDetail">
-								<div class="section">
-									<b>판매자정보</b><br>
-									<span class="list_title" th:text="*{sellers.user.userNm}">판매자</span><br>
-									<span class="seller_email" th:text="*{sellers.user.email}">이메일주소</span><br>
-									<span class="seller_mobile" th:text="*{sellers.user.mobile}">휴대전화번호</span>
-								</div>
+								<div class="CommercialDetail">
+										<div class="section">
+										<b>판매자정보</b><br>
+										<span class="list_title" th:text="*{sellers.user.userNm}">판매자</span><br>
+										<span class="seller_email" th:text="*{sellers.user.email}">이메일주소</span><br>
+										<span class="seller_mobile" th:text="*{sellers.user.mobile}">휴대전화번호</span>
+										</div>
 							</div>
 						</div>
 						<div class="nowPrice">현재 입찰가 :
@@ -217,11 +217,7 @@ cursor:pointer;
 							<strong class="risingPr" th:text="*{risingPrice}">인상 입찰가격</strong><br>
 						</div>
 
-						<ul class="list_ul" th:each="bidder : ${product.bidderList}">
-							<span th:if="${bidderStat.last}" th:text="${bidder.user.userId}">test</span>
-						</ul>
-
-
+						[[${userId}]]
 						<div class="PurchaseButton" th:if="*{stats.toString().equals('true')}">
 							<button id="bid_btn" th:data-userid="${userId}" th:data-productid="${product.id}">입찰</button>
 							<button id="buy_btn" th:data-userid="${userId}" th:data-productid="${product.id}">바로 구매</button>
@@ -237,8 +233,8 @@ cursor:pointer;
 				<div class="content">
 
 					<div class="content_border">
-						<h2>상품설명</h2><br>
-						<span th:utext="*{prContent}">판매 물품 내용</span>
+					<h2>상품설명</h2><br>
+					<span th:utext="*{prContent}">판매 물품 내용</span>
 					</div>
 
 				</div>
