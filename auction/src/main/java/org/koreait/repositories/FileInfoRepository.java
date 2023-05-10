@@ -10,4 +10,6 @@ public interface FileInfoRepository extends JpaRepository<FileInfo, Long>, Query
     FileInfo findByFileNo(Long fileNo);
 
     List<FileInfo> findByGidOrderByRegDtAsc(String gid);
+    List<FileInfo> deleteBySuccess(Boolean success);
+    List<FileInfo> findBySuccess(Boolean success);
 }
