@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
@@ -6,12 +5,16 @@
       layout:decorate="~{layouts/main}">
 <head>
     <script type="text/javascript" th:src="@{/js/mainpage.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/mainboardlist.css}">
 </head>
 
 <main layout:fragment="content">
-    <div class="container">
 
+    <!-- top button-->
+    <svg class="top_button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path class="black_path" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM135.1 217.4l107.1-99.9c3.8-3.5 8.7-5.5 13.8-5.5s10.1 2 13.8 5.5l107.1 99.9c4.5 4.2 7.1 10.1 7.1 16.3c0 12.3-10 22.3-22.3 22.3H304v96c0 17.7-14.3 32-32 32H240c-17.7 0-32-14.3-32-32V256H150.3C138 256 128 246 128 233.7c0-6.2 2.6-12.1 7.1-16.3z"/></svg>
+
+    <div class="container">
         <div class="slide">
             <img class="slideimg" th:src="@{/files/구구단1.png}">
             <img class="slideimg" th:src="@{/files/다운로드.jpg}">
@@ -32,62 +35,64 @@
 
 
 
-        <h1>게시글 목록</h1>
+        <h1>배너위치</h1>
 
-        <br/><br/><br/>
-        <!-- https://devinus.tistory.com/48 참고해서 슬라이드 완성하기-->
+    <br/><br/><br/>
+    <!-- https://devinus.tistory.com/48 참고해서 슬라이드 완성하기-->
 
-        <div>
-            <div class="categorybottom">
-                <div class="catewrapper">
-                    <div class="cate">
-                        <ul class="catelist" th:each="cateNm : ${cateNmList}">
-                            <li>
-                                <button class="cateimg" th:text="${cateNm}">전체</button>
-                            </li>
-                        </ul>
-                    </div>
-                    <button class="car-ctrl car-prev">Prev</button>
-                    <button class="car-ctrl car-next">Next</button>
+    <div>
+        <div class="categorybottom">
+            <div class="catewrapper">
+                <div class=" cate">
+                    <ul class="catelist" th:each="cateNm : ${cateNmList}">
+                        <li>
+                            <button class="cateimg" th:text="${cateNm}">카테고리</button>
+                        </li>
+                    </ul>
                 </div>
             </div>
+            <button class="car-ctrl car-prev">
+                <svg class="car-prev-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path class="black_path" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/></svg>
+            </button>
+            <button class="car-ctrl car-next">
+                <svg class="car-next-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path class="black_path" d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/></svg>
+            </button>
+        </div>
 
 
-            <div class="catemain">
-                <div class="catefont">품목</div>
-                <ul class="catemenu">
-                    <li class="menubtn">인기순</li>
-                    <li class="menubtn">마감순</li>
-                    <li class="menubtn">최신순</li>
-                    <li class="menubtn">가격순</li>
-                </ul>
-            </div>
+        <div class="catemain">
+            <!-- Products 관련 -->
+            <div class="catefont">품목</div>
+            <ul class="catemenu">
+                <!--공통 엔티티 regdt-->
+                <li class="menubtn">최신순</li>
+            </ul>
+        </div>
 
-            <div class="maincatelist">
-                <div class="product_link">
-                    <div class="product_items" th:each="board : ${list}" th:object="${board}">
+        <div class="maincatelist">
+            <div class="product_link">
+                <div class="product_items" th:each="board : ${list}" th:object="${board}">
 
-                        <span style="display:none;" th:text="*{id}">물품번호(숨김)</span>
+                    <span style="display:none;" th:text="*{id}">물품번호(숨김)</span>
 
-                        <a th:if="*{stats.toString().equals('true')}" th:href="@{/product/view/{id}(id=*{id})}">
-                            <dl>
-                                <dt><img th:src="@{*{imgPath}}" class="item_img"></dt>
-                                <label>상품이름</label>
-                                <dd class="product_subject" th:text="*{prSubject}">상품이름</dd>
-                                <label>등록가</label>
-                                <dd class="product_price" th:text="*{startPrice}">등록가</dd>
-                                <label>즉시구매가</label>
-                                <dd class="product_price" th:text="*{baroPrice}">즉시구매가</dd>
-                            </dl>
-                        </a>
-                    </div>
+                    <a th:if="*{stats.toString().equals('true')}" th:href="@{/product/view/{id}(id=*{id})}">
+                        <dl>
+                            <dt><img th:src="@{*{imgPath}}" class="item_img"></dt>
+                            <label>상품이름</label>
+                            <dd class="product_subject" th:text="*{prSubject}">상품이름</dd>
+                            <label>등록가</label>
+                            <dd class="product_price" th:text="*{startPrice}">등록가</dd>
+                            <label>즉시구매가</label>
+                            <dd class="product_price" th:text="*{baroPrice}">즉시구매가</dd>
+                        </dl>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 <br/>
-<a th:href="@{/main}">메인페이지</a>
 </body>
 </main>
 </html>

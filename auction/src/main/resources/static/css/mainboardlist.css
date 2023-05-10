@@ -18,35 +18,38 @@
     .catewrapper{
         top: 22px;
         position: sticky;
-        z-index: 10;
         background-color: transparent;
         padding: 8px 0;
-        overflow : hidden;
-
-
+        overflow-x: auto;
+        scroll-behavior: smooth;
+    }
+    .catewrapper::-webkit-scrollbar {
+      display: none;
     }
 
     .cate{
         display: flex;
-        justify-content: center;
-        transition : transform 0.5s ease-in-out;
     }
 
     .catelist{
+        position : relative;
+        z-index : 1;
     }
 
     .car-ctrl{
-        position : absolute;
+        z-index : 2;
+        display : fixed;
+        position : relative;
         top : 50%;
         transform : translateY(-50%);
         background-color : #fff;
 
     }
     .car-prev{
-        left : 0;
+        right : 0%;
     }
     .car-next{
-        right : 0;
+        left : 90%;
     }
 
 
@@ -173,9 +176,23 @@
     path{
         fill:white;
     }
+
+    .black_path{
+         fill:black;
+    }
+
     svg {
         width: 25px;
         height: 25px;
+    }
+    .top_button{
+        position: fixed;
+        bottom : 40px;
+        left : calc(95% - 16px);
+        width : 50px;
+        height : 50px;
+        cursor : pointer;
+        display : none;
     }
 
     .buttonset{
