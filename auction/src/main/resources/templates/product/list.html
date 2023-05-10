@@ -76,6 +76,17 @@
     border:1px solid rgb(255, 225, 187);
 }
 
+.bottom_link {
+    float : right;
+}
+
+.bottom_link a{
+    font-family: Pretendard-Regular;
+    border: 1px solid #ffbd59;
+    padding: 9px 16px;
+    border-radius: 5px;
+}
+
     </style>
 </head>
 
@@ -130,21 +141,26 @@
                 <ul class="catemenu">
 <!--                    <li class="menubtn">인기순</li>-->
                     <li class="menubtn">
-                        <a th:href="@{/product/list?sort=regDt ASC&page=1&cateNm=}">마감순</a>
+                        <!--<a th:href="@{/product/list?sort=regDt ASC&page=1&cateNm=}">마감순</a>-->
+                        <a th:href="${@urlUtil.getPageUrl('/product/list?sort=regDt ASC', 1)}">마감순</a>
                         <!-- <a th:href="${@urlUtil.getPageUrl(pagination.baseUrl, 1, 'regDt ASC')}">마감순2</a>-->
                     </li>
                     <li class="menubtn">
-                        <a th:href="@{/product/list?sort=regDt DESC&page=1}">최신순</a>
+                        <!--<a th:href="@{/product/list?sort=regDt DESC&page=1}">최신순</a>-->
+                        <a th:href="${@urlUtil.getPageUrl('/product/list?sort=regDt DESC', 1)}">최신순</a>
                         <!-- <a th:href="${@urlUtil.getPageUrl(pagination.baseUrl, 1, 'regDt DESC')}">최신순2</a>-->
                     </li>
                     <li class="menubtn">
-                        <a th:href="@{/product/list?sort=endPrice DESC&page=1}">높은가격순</a>
+                        <!--<a th:href="@{/product/list?sort=endPrice DESC&page=1}">높은가격순</a>-->
+                        <a th:href="${@urlUtil.getPageUrl('/product/list?sort=endPrice DESC', 1)}">높은가격순</a>
                     </li>
                     <li class="menubtn">
-                        <a th:href="@{/product/list?sort=endPrice ASC&page=1}">낮은가격순</a>
+                        <!--<a th:href="@{/product/list?sort=endPrice ASC&page=1}">낮은가격순</a>-->
+                        <a th:href="${@urlUtil.getPageUrl('/product/list?sort=endPrice ASC', 1)}">최신순</a>
                     </li>
                     <li class="menubtn">
-                        <a th:href="@{/product/list?sort=baroPrice DESC&page=1}">즉시구매순</a>
+                        <!--<a th:href="@{/product/list?sort=baroPrice DESC&page=1}">즉시구매순</a>-->
+                        <a th:href="${@urlUtil.getPageUrl('/product/list?sort=baroPrice DESC', 1)}">최신순</a>
                     </li>
                 </ul>
             </div>
@@ -177,7 +193,7 @@
         </div>
 
         <div class="bottom_link">
-            <a th:href="@{write}">물품등록</a>
+            <a th:href="@{write}" >물품등록</a>
         </div>
 
 
