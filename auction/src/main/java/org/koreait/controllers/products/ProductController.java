@@ -111,7 +111,7 @@ public class ProductController {
 
     @GetMapping("/view/{id}") //상세 페이지 이동
     public String view(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("addScript", new String[]{"sync_time","bid_button", "buy_button"});
+        model.addAttribute("addScript", new String[]{"timer","bid_button", "buy_button"});
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserDetails userDetails = (UserDetails)principal;
@@ -125,6 +125,26 @@ public class ProductController {
 
         return "product/view";
     }
+
+    /*
+    @GetMapping("/view_test/{id}") //상세 페이지 이동
+    public String view_test(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("addScript", new String[]{"bid_button", "buy_button", "timer"});
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDetails userDetails = (UserDetails)principal;
+
+        String userId = userDetails.getUsername();
+
+        model.addAttribute("userId", userId);
+
+        Products products = infoService.get(id);
+        model.addAttribute("product", products);
+
+        return "product/view_test";
+    }
+
+     */
     /**
     @GetMapping("/list") //게시글 목록 이동
     public String list(Model model) {
