@@ -1,12 +1,4 @@
 
-
-	main{
-    margin: 0 150px;
-
-    }
-
-
-
     .categorybottom{
         padding: 0 16px;
         position: relative;
@@ -264,7 +256,7 @@
 
 
     .product_items{
-        width:calc(33% - 20px);
+        width:calc(25% - 20px);
         margin-left: 0px;
         margin-right: 20px;
         margin-bottom: 40px;

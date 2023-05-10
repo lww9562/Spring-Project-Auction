@@ -16,8 +16,7 @@
     padding: 8px 0;
     overflow:hidden;
     clear:both;
-
-
+	scroll-behavior: smooth;
     }
 
 .cate::-webkit-scrollbar {
@@ -27,11 +26,8 @@
 .cate{
     display: flex;
     text-align: center;
-
-    justify-content: center;
     clear:both;
 
-    scroll-behavior: smooth;
 }
 
 
@@ -111,6 +107,7 @@ ul{
 }
 
 .pagination {
+	display:flex;
 	justify-content: center;
 	margin:auto;
 }

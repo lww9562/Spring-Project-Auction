@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 */
 
 //.cate라는 클래스를 찾아서 변수로 대입
-const cateScroll = document.querySelector(".cate");
+const cateScroll = document.querySelector(".catewrapper");
 //스크롤 이벤트 값을 저장하고 사용하기 위한 변수
 var nowCateScroll = 0;
 
@@ -19,13 +19,14 @@ var nowCateScroll = 0;
 var cate_Scrolling_value=3;
 
 //버튼과 스크롤 연동
-var Scroll_btn_left = document.querySelector(".car-prev .car-prev-svg");
-var Scroll_btn_right = document.querySelector(".car-next .car-next-svg");
+var Scroll_btn_left = document.querySelector(".car-prev");
+var Scroll_btn_right = document.querySelector(".car-next");
 
 //이전 버튼에 대한 이벤트 리스너
 Scroll_btn_left.addEventListener("click", () => {
        resetCateScroll();
      nowCateScroll -= cateScroll.offsetWidth/cate_Scrolling_value;
+     console.log(nowCateScroll);
        cateScroll.scrollTo(nowCateScroll,0);
        resetCateScroll();
 });
@@ -34,6 +35,7 @@ Scroll_btn_left.addEventListener("click", () => {
 Scroll_btn_right.addEventListener("click", () => {
         resetCateScroll();
        nowCateScroll+=cateScroll.offsetWidth/cate_Scrolling_value;
+       console.log(nowCateScroll);
        cateScroll.scrollTo(nowCateScroll,0);
        resetCateScroll();
 });
