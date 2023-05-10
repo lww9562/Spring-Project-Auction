@@ -12,9 +12,12 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 public class WebSocketConfig implements WebSocketConfigurer {
 
     private final DataWsHandler handler;
+    private final ChatWsHandler chatHandler;
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry.addHandler(handler, "/data").setAllowedOrigins("*");
+
+        registry.addHandler(chatHandler, "/chat").setAllowedOrigins("*");
     }
 }
