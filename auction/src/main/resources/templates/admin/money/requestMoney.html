@@ -4,7 +4,7 @@
       layout:decorate="~{admin/layouts/main}">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/admin/product_list.css}">
-    <script th:src="@{/js/admin/user.js}"></script>
+    <script th:src="@{/js/admin/money.js}"></script>
     <style>
 
 		table {
@@ -49,21 +49,23 @@
 </head>
 <section layout:fragment="content">
     <table class="money_list">
-        <col width="50"><col width="200"><col width="50"><col width="150">
+        <col width="50"><col width="200"><col width="50"><col width="150"><col width="100">
         <tr>
             <th>No</th>
             <th>UserId</th>
             <th>신청금액</th>
-
+            <th>변경금액</th>
+            <ht>변경</ht>
         </tr>
-
-
 
         <tr th:each=" list : ${requestMonies}" th:object="${list}">
             <td th:text="*{id}"></td>
             <td th:text="*{userId}"></td>
             <td th:text="*{money}"></td>
-
+            <td align="right">
+                <input type="text" th:value="*{money}" th:id="*{id}" th:data-user-Id="*{userId}" class='money'>
+            </td>
+            <td align="center"><button type='button' class="modify">변경</button></td>
         </tr>
 
     </table>

@@ -14,17 +14,21 @@ function updateUserMoney(e) {
 	}
 
 	const trEl = e.currentTarget.parentElement.parentElement;
-    const moneyInput = trEl.querySelector(".money1");
+    const moneyInput = trEl.querySelector(".money");
 
     const money = Number(moneyInput.value);
     const userId = moneyInput.dataset.userId;
+    const id = Number(moneyInput.id);
+    console.log(money);
+    console.log(userId);
+    console.log(id);
+    const params = { userId, money, id };
 
-    const params = { userId, money };
-
-	const url = `/admin/money/money?userId=${userId}&money=${money}`;
+	const url = `/admin/money/money?userId=${userId}&money=${money}&id=${id}`;
 	commonLib.ajaxLoad(url)
 		.then((data) => {
 			console.log(data);
+			location.reload();
 		})
 		.catch((err) => {
 			console.error(err);

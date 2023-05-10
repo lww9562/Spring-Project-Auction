@@ -8,12 +8,15 @@ import org.koreait.models.user.MoneyListService;
 import org.koreait.repositories.ProductRepository;
 import org.koreait.repositories.UsersRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.Collections;
 import java.util.List;
 
@@ -51,6 +54,10 @@ public class AdminController {
 	}
 	@GetMapping("/money")
 	public String requestMoney(Model model){
+		List<Users> userList = usersRepository.findAll();
+
+		model.addAttribute("userList", userList);
+
 		List<RequestMoney> requestMonies = moneyListService.gets();
 		model.addAttribute("requestMonies",requestMonies);
 		return "admin/money/requestMoney";
