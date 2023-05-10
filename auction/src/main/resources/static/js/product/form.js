@@ -71,19 +71,21 @@ window.addEventListener("DOMContentLoaded", function() {
 								<span class='inner' style="background:url('${file.fileURL}'); background-size:cover;"></span>
 								</span>`;
 
+
+
 				const dom = domParser.parseFromString(photoTag, "text/html");
 				const span = dom.querySelector("span");
 				thumbs.appendChild(span);
 				const inner = span.querySelector(".inner");
 				inner.onclick = function() {
 					const url = `/file/view/${file.fileNo}`;
-					let w = 300, h = 300;
+					let w = 700, h = 700;
 					const img = new Image();
 					img.src = file.fileURL;
 					img.onload = function() {
 						if(img.width > 700) {
 							w = 700;
-							h = parseInt(img.width * w / img.height) + 150;
+							h = parseInt(img.height * w / img.width) + 150;
 						}
 						koreait.popup.open(url, "이미지 보기", w, h);
 					};
