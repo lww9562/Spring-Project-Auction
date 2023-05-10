@@ -1,4 +1,4 @@
-	window.addEventListener("DOMContentLoaded", function() {
+window.addEventListener("DOMContentLoaded", function() {
 var all = document.getElementById('all');
 var lastbutton = document.getElementById('lastbutton');
 var newbutton = document.getElementById('newbutton');
@@ -96,14 +96,6 @@ barobutton.addEventListener('click', function(){
     listLastTime.classList.add('hidden_tag');
     listNewPr.classList.add('hidden_tag');
 });
-
-
-
-
-
-
-
-
 
 
   }, false);

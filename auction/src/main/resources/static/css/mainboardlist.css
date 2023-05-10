@@ -1,12 +1,13 @@
-	html{
 
-        margin: 0 150px;
+
+	main{
+    margin: 0 150px;
 
     }
 
 
-    .categorybottom{
 
+    .categorybottom{
         padding: 0 16px;
         position: relative;
         box-sizing: border-box;
@@ -15,25 +16,19 @@
     }
 
     .catewrapper{
-
         top: 22px;
         position: sticky;
-        z-index: 10;
-        background-color: #fff;
+        background-color: transparent;
         padding: 8px 0;
-       overflow-x: auto;
-
-
+        overflow-x: auto;
+        scroll-behavior: smooth;
+    }
+    .catewrapper::-webkit-scrollbar {
+      display: none;
     }
 
     .cate{
-
-        cursor : grab;
         display: flex;
-        justify-content: center;
-        transition : transform 0.5s ease-in-out;
-        /** 카테고리 이미지 아이콘으로 대체할 시 변경 */
-        overflow : visible;
     }
 
     .catelist{
@@ -49,7 +44,6 @@
         transform : translateY(-50%);
         background-color : #fff;
 
-
     }
     .car-prev{
         right : 0%;
@@ -59,19 +53,6 @@
     }
 
 
-    .cateimg{
-            border: 1px solid;
-            background-color: #ffffff00;
-            cursor: pointer;
-            width : 60px;
-            height: 60px;
-            /** 나중에 카테고리를 이미지로 대체할경우 수정 */
-            overflow: visible;
-
-
-        }
-
-
 
 
     ul{
@@ -79,7 +60,7 @@
         display: flex;
         position: relative;
         gap: 24px;
-        background-color: #fff;
+        background-color: transparent;
         padding: 0 16px;
         height: 100%;
 
@@ -100,7 +81,16 @@
 
     }
 
+    .cateimg{
+        border: 0;
+        background-color: transparent;
+        cursor: pointer;
+        min-width: 64px;
+        height: 58px;
+        overflow: hidden;
 
+
+    }
 
     .catemain{
         line-height: 34px;
@@ -112,6 +102,7 @@
         display:flex;
         justify-content: space-between;
         border-bottom: 1px solid #f2f4f6;
+        margin-bottom: 15px;
     }
 
 
@@ -218,7 +209,6 @@
          display : flex;
          align-items : center;
          justify-content : center;
-         position: relative;
          position: relative;
          left : 0px;
          width : 100%;

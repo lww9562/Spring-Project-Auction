@@ -2,6 +2,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 //progress bar + slide img start
+
+/**
+    <div class="slide"> 안에 이미지 파일을 넣으면 자동으로
+    반영되게 되어 있습니다.
+    무언가 슬라이드에 대한 설정을 바꾸는게 아닌 이상
+    여기를 수정하실 필요는 없을것이라 생각합니다...
+*/
 const slide = document.querySelector(".slide");
 let slideWidth = slide.clientWidth;
 
@@ -13,7 +20,6 @@ const maxSlide = slideItems.length;
 
 let currSlide = 1;
 //프로그레스 바를 넣을 예정
-//
 const progressbar = document.querySelector(".progressbar-fill");
 function updateProgress() {
   progressbar.style.width = `${(currSlide / maxSlide) * 100}%`;
@@ -157,61 +163,60 @@ slide.addEventListener("mouseout", () => {
 });
 //progress bar + slide img start end
 
-//carousel
+
+
 
 //swiper(카테고리) start
 
-const cateScroll = document.querySelectorAll(".catewrapper");
-const currentCateScroll = element.scrollLeft;
+/**
+    필요한 클래스 : 전체를 감싸는 클래스 1개
+                    버튼 왼쪽, 오른쪽 클래스 각각 1개
 
-console.log(currentCateScroll);
+*/
 
-var Scroll_btn_left = document.querySelector(".car-prev");
-var Scroll_btn_right = document.querySelector(".car-next");
+//.catewrapper라는 클래스를 찾아서 변수로 대입
+const cateScroll = document.querySelector(".catewrapper");
 
+//스크롤 이벤트 값을 저장하고 사용하기 위한 변수
+var nowCateScroll = 0;
+
+//어떤 버튼이든 3번 누르면 끝쪽으로 가게 설정.
+//이 값을 늘리면 버튼 한번당 이동하는 카테고리 수가 줄어들고,
+//줄이면 한번에 이동하는 카테고리가 많아집니다. (3 기준 1번 누를시 3분의 1 이동)
+var cate_Scrolling_value=3;
+
+//버튼과 스크롤 연동
+var Scroll_btn_left = document.querySelector(".car-prev .car-prev-svg");
+var Scroll_btn_right = document.querySelector(".car-next .car-next-svg");
+
+//이전 버튼에 대한 이벤트 리스너
 Scroll_btn_left.addEventListener("click", () => {
-    cateScroll.scrollTo()
-    console.log("왼쪽!");
-
+     nowCateScroll -= cateScroll.offsetWidth/cate_Scrolling_value;
+       cateScroll.scrollTo(nowCateScroll,0);
+       resetCateScroll();
 });
 
-
+//다음 버튼에 대한 이벤트 리스너
 Scroll_btn_right.addEventListener("click", () => {
-    console.log("오른쪽!");
-
+       nowCateScroll+=cateScroll.offsetWidth/cate_Scrolling_value;
+       cateScroll.scrollTo(nowCateScroll,0);
+       resetCateScroll();
 });
 
+//버튼을 눌렀을때 스크롤 값이 최대, 최소를 넘기는 것을 방지하고,
+//스크롤 값을 올바른 값으로 재배치 하기 위한 콜백함수
+function resetCateScroll(){
+     if(nowCateScroll < 0){
+                cateScroll.scrollTo(0,0);
+                nowCateScroll = 0;
+            }
+     if(nowCateScroll > cateScroll.offsetWidth){
+                cateScroll.scrollTo(cateScroll.offsetWidth,0);
+                nowCateScroll = cateScroll.offsetWidth;
+     }
+}
 
-let swipeItems = document.querySelectorAll(".swiper-slide");
-
-
-
-// var swiper = new Swiper(".mySwiper", {
-//      slidesPerView: swipeItems.length/2,
-//      spaceBetween: 30,
-//    initialSlide: 0,
-//      centeredSlides: true,
-//      /**
-//      //centerInsufficientSlides: true,
-//
-////      centeredSlidesBounds : true,
-////       hashNavigation: {
-////            watchState: true,
-////        },
-//    */
-//      pagination: {
-//        el: ".swiper-pagination",
-//        type:"progressbar",
-//        clickable: true,
-//      },
-//      navigation: {
-//              nextEl: ".swiper-button-next",
-//              prevEl: ".swiper-button-prev",
-//         },
-//    });
-//     console.log(swipeItems);
-
-    //swiper end
+    //swiper(카테고리) end
 
 
     //top_button start
@@ -234,34 +239,6 @@ let swipeItems = document.querySelectorAll(".swiper-slide");
     };
     backToTop();
     //top_button end
-
-
-// carousel 외부 라이브러리 사용 실패시 고쳐서 사용해야 할 코드 S
-//  const carouseInner = document.querySelector('.cate');
-//  const carouseItems = carouseInner.querySelectorAll('.catelist');
-//  const carPrev = document.querySelector('.car-prev');
-//  const carNext = document.querySelector('.car-next');
-//
-//  console.log(carouseItems);
-//
-//  let cateIndex = 0;
-//  const maxOffset = carouseItems[0].scrollWidth - carouseInner.offsetWidth;
-//
-//  function moveCarousel(cateoffset) {
-//    cateIndex += cateoffset;
-//    cateIndex = Math.max(cateIndex, 0);
-//    cateIndex = Math.min(cateIndex, maxOffset);
-//    carouseInner.style.transform = `translateX(-${cateIndex}px)`;
-//
-//    console.log(cateIndex);
-//    console.log(carouseInner.offsetWidth);
-//    console.log(carouseInner.scrollWidth);
-//  }
-//
-//  carPrev.addEventListener('click', () => moveCarousel(-200));
-//  carNext.addEventListener('click', () => moveCarousel(200));
-// carousel 외부 라이브러리 사용 실패시 고쳐서 사용해야 할 코드 E
-
 
 
 });

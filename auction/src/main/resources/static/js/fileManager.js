@@ -42,7 +42,7 @@ koreait.fileManager = {
             }
 
             const xhr = new XMLHttpRequest();
-            xhr.open("POST", "/file/upload");
+            xhr.open("POST", "/file/uploads");
             xhr.setRequestHeader(header, token);
             xhr.send(formData);
             xhr.responseType="json";

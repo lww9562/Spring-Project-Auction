@@ -7,13 +7,17 @@ import lombok.RequiredArgsConstructor;
 import org.koreait.commons.Pagination;
 import org.koreait.controllers.users.UserInfo;
 import org.koreait.entities.Categories;
+import org.koreait.entities.FileInfo;
 import org.koreait.entities.Products;
 import org.koreait.models.Category.CategorySaveService;
 import org.koreait.models.Product.ProductDeleteService;
 import org.koreait.models.Product.ProductInfoService;
 import org.koreait.models.Product.ProductListService;
 import org.koreait.models.Product.ProductSaveService;
+import org.koreait.models.file.FileInfoSaveService;
+import org.koreait.models.file.FileInfoService;
 import org.koreait.repositories.CategoryRepository;
+import org.koreait.repositories.FileInfoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -47,12 +51,17 @@ public class ProductController {
     private final ProductSaveService saveService;
     private final CategoryRepository categoryRepository;
     private final CategorySaveService categorySaveService;
+    private final FileInfoRepository fileInfoRepository;
+    private final FileInfoSaveService fileInfoSaveService;
 
 
     @GetMapping("/write") //게시글 작성 페이지 이동
     public String write(Model model){
+        String[] addScript = { "ckeditor/ckeditor", "fileManager", "product/form" };
+        model.addAttribute("addScript", addScript);
+
         ProductForm productForm = new ProductForm();
-        model.addAttribute("productForm",productForm);
+        model.addAttribute("productForm", productForm);
 
         List<Categories> categories = categoryRepository.findAll();
 
@@ -67,8 +76,7 @@ public class ProductController {
 
         model.addAttribute("categoryMap", listCategories.stream().collect(Collectors.toMap(Categories::getCateId, Categories::getCateNm)));
 
-
-        return "product/write";
+        return "product/_form";
     }
 
     @PostMapping("/save")
@@ -103,7 +111,7 @@ public class ProductController {
 
     @GetMapping("/view/{id}") //상세 페이지 이동
     public String view(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("addScript", new String[]{"bid_button", "buy_button"});
+        model.addAttribute("addScript", new String[]{"sync_time","bid_button", "buy_button"});
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserDetails userDetails = (UserDetails)principal;
@@ -154,6 +162,9 @@ public class ProductController {
 
         List<String> cateNmList = categoryRepository.getAllCateNm();
         model.addAttribute("cateNmList", cateNmList);
+
+
+
         return "product/list";
     }
 

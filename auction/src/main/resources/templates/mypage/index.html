@@ -51,7 +51,9 @@
                 </tr>
                 <tr>
                     <th>통장</th>
-                    <td th:text="${user.money}">userNm</td>
+                    <td>[[${user.money}]] &nbsp;&nbsp;
+                        <button id="requestMoney"  onClick="location.href='/mypage/requestMoney'">충전신청</button>
+                    </td>
                 </tr>
             </table>
     </div>

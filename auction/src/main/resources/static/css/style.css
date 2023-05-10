@@ -1,6 +1,10 @@
 /** 공통 */
-* {font-family: 'Noto Sans KR', sans-serif; box-sizing : border-box; outline : none;
-    color : #000;}
+*{
+font-family: 'Noto Sans KR', sans-serif; box-sizing : border-box; outline : none;
+    color : #000;
+ }
+
+.dn { display: none !important; }
 
 @font-face {
     font-family: 'Pretendard-Regular';
@@ -10,11 +14,20 @@
 }
 
 html {
-	margin: 0 150px;
+
 	font-size : 15px; min-width : 800px
 }
 
-body {margin : 0;}
+main {
+margin: 0 150px;
+padding-top : 20px;
+}
+
+header{
+margin: 0 150px;
+}
+
+
 ul, ol {list-style-type : none; margin : 0; padding : 0;}
 li {margin : 0; padding : 0;}
 dl, dt, dd {margin : 0; padding : 0;}
