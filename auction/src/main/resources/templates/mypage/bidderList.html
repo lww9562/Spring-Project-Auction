@@ -50,7 +50,9 @@
                 <tr th:each="product : ${bidProducts}" th:object="${product}">
                     <td th:text="*{id}"></td>
                     <td th:text="*{categories.cateNm}"></td>
-                    <td th:text="*{prSubject}"></td>
+                    <td>
+                        <a th:href="@{/product/view/{prId}(prId=${product.id})}" th:text="*{prSubject}"></a>
+                    </td>
                     <td th:text="*{createdBy}"></td>
                     <td th:text="*{endPrice}"></td>
                     <td th:text="*{risingPrice}"></td>
