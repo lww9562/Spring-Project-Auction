@@ -5,6 +5,11 @@
       layout:decorate="~{layouts/main}">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/mypage1.css}">
+    <style>
+        th {
+            width : 100px;
+        }
+    </style>
 </head>
 
 <main layout:fragment="content" th:object="${userinfo}">
