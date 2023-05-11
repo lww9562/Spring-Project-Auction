@@ -49,6 +49,17 @@
 				 background-color: rgba( 255, 255, 255, 0.3 );
 				 transition:0.3s;
 			}
+			html {
+				height:100%;
+			}
+			body {
+				height:100%;
+			}
+			footer {
+				bottom:0;
+				position:absolute;
+				width : 100%;
+			}
 		</style>
 	</head>
 
@@ -106,9 +117,11 @@
 		</div>
 	</header>
 		<main>
-			<aside id="sidebar" th:replace="~{admin/outlines/side::menus}"></aside>
+			<div class="wrapper">
+				<aside id="sidebar" th:replace="~{admin/outlines/side::menus}"></aside>
 
-			<section id="main_content" layout:fragment="content"></section>
+				<section id="main_content" layout:fragment="content"></section>
+			</div>
 		</main>
 	<footer th:replace="~{outlines/footer/main::common}"></footer>
 	</body>

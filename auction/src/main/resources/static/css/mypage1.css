@@ -1,19 +1,7 @@
-
-        body{
-            min-height: auto;
-        }
-
-
         main{
             margin: 0;
             min-width:900px;
             padding-top : 20px;
-        }
-
-
-        header{
-        min-width:900px;
-        margin: 0 250px;
         }
 
         .box{
@@ -25,8 +13,7 @@
             margin: 0 auto;
         }
 .wrap{
-  margin : 0 250px;
-  width: 74%;
+  width: 100%;
   display: flex;
   border: 2px solid #ccc;
   height: auto;
@@ -42,31 +29,38 @@
         list-style: none;
       }
       .boxsidebar{
-        /*! position: fixed; */
-        margin: 0;
-        padding: 0;
-        background-color: #ddd;
-        width: 200px;
-        min-height: 100%;
 
-        flex-shrink: 0;
-        padding: 10px;
-
-      }
+              margin: 0;
+              padding: 0;
+              background-color: #ffbd59;
+              width: 200px;
+              min-height: 100%;
+              flex-shrink: 0;
+            }
       .nav-link:hover{
-        background-color: white;
-      }
+              background-color: rgba(255, 243, 222, 0.774);
+            }
       .nav-link{
 
-        display: flex;
-        align-items: center;
-        padding: 25px 12px;
-        border-radius: 8px;
-        text-align: center;
-        background-color: #ddd;
-        text-decoration: none;
-        font-size: 20px;
-      }
+              display: flex;
+              align-items: center;
+              padding: 25px 12px;
+              text-align: center;
+              background-color: #ffbd59;
+              text-decoration: none;
+              font-size: 20px;
+            }
+
+            #a{
+
+                     display: flex;
+                     align-items: center;
+                     padding: 25px 12px;
+                     text-align: center;
+                     background-color: rgba(255, 243, 222, 0.774);
+                     text-decoration: none;
+                     font-size: 20px;
+                  }
 
       .userinfo {
         top: 15%;

@@ -15,20 +15,16 @@ font-family: 'Noto Sans KR', sans-serif; box-sizing : border-box; outline : none
 
 
 html {
-	font-size : 15px; min-width : 800px;
+	font-size : 15px; min-width : 800px; height:100%;
 	background-image: linear-gradient(0deg, rgb(253 227 184 / 77%), rgb(255 254 245 / 77%));
 }
 
-main {
-margin: 0 250px;
-min-width:900px;
-padding-top : 20px;
+body {
+	height:100%;
+	margin : 0 250px;
 }
 
-header{
-min-width:900px;
-margin: 0 250px;
-}
+
 
 
 ul, ol {list-style-type : none; margin : 0; padding : 0;}
@@ -44,9 +40,10 @@ image-rendering: -webkit-optimize-contrast;/* Webkit (non-standard naming) */
 -ms-interpolation-mode: nearest-neighbor; /* IE (non-standard property) */
 }
 
-p {
+p{
 margin : 0;
 }
+
 
 .error {font-size : 0.9rem; color:#F84A71; margin-left:5px;}
 
