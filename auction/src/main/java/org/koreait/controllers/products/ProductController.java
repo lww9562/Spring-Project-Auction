@@ -92,7 +92,7 @@ public class ProductController {
         if (errors.hasErrors()) {
             Long id = productForm.getId();
             if (id == null) {
-                return "product/write";     // board/write로 쓴 부분 수정
+                return "product/_form";     // board/write로 쓴 부분 수정
             } else {
                 return "product/update";    // board/write로 쓴 부분 수정
             }
