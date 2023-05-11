@@ -348,3 +348,21 @@ transition:0.3s;
     padding-left:15px;
     color:#5b636a;
 }
+
+
+
+.item_box{
+            border:1px solid rgb(243 217 174 / 77%);
+            border-radius:7px;
+            box-shadow: 6px 8px 5px #ffb42f;
+            padding:5px;
+        }
+
+.item_box:hover{
+        box-shadow: 6px 5px 5px #ff8920;
+        }
+
+.item_box img{
+            border:none;
+            border-radius:7px;
+        }

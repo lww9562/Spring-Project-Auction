@@ -100,7 +100,7 @@
                         <span style="display:none;" th:text="*{id}">물품번호(숨김)</span>
 
                         <a th:href="@{/product/view/{id}(id=*{id})}" >
-                            <dl>
+                            <dl class="item_box">
                                 <dt><img th:src="@{*{imgPath}}" class="item_img"></dt>
                                 <label>상품이름</label>
                                 <dd class="product_subject" th:text="*{prSubject}">상품이름</dd>

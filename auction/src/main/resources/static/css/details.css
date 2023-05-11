@@ -131,33 +131,51 @@ font-size:1.5rem;
 }
 
 
-.PurchaseButton{
 
-}
-.PurchaseButton button{
-	margin-top:20px;
-	width : 108px;
-	padding : 10px;
-	font-size : 15px;
-	font-weight: 700;
-	border : 1px solid #e4e4e4;
-	background : #ffbd59;;
-	border-radius: 6px;
-	color:white;
-}
-
-#bid_btn:hover{
- cursor:pointer;
- border:1px solid #cc6600;
- background-color:#cc6600;
-}
-#buy_btn:hover{
-cursor:pointer;
- border:1px solid #cc6600;
- background-color:#cc6600;
-}
 
 .content_border img {
 		width : 100%
 
 	}
+
+	.PurchaseButton button{
+    	margin-top:20px;
+    	width : 108px;
+    	padding : 10px;
+    	font-size : 15px;
+    	font-weight: 700;
+    	border : 1px solid #e4e4e4;
+    	background : #ffbd59;;
+    	border-radius: 6px;
+    	color:white;
+    }
+
+    #bid_btn:hover{
+     cursor:pointer;
+     background-image: url(/images/hammer.png);
+     background-repeat: no-repeat;
+     background-size:40px;
+     background-position: center;
+     color:transparent;
+     background-color:#dba049;
+    }
+
+    #bid_btn:active{
+
+
+     background-image: url(/images/hammerSwing3.png);
+     background-repeat: no-repeat;
+     background-size:40px;
+     background-position: center;
+     color:transparent;
+     background-color:#dba049;
+
+    }
+
+
+
+    #buy_btn:hover{
+    cursor:pointer;
+
+     background-color:#dba049;
+    }
