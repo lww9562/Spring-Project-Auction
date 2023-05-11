@@ -62,8 +62,8 @@
 						</div>
 
 						<div class="list_ul" th:each="bidder : ${product.bidderList}">
-							<br>
-							<strong>최고입찰자 : </strong>
+							<br th:if="${bidderStat.last}">
+							<strong th:if="${bidderStat.last}">최고입찰자 : </strong>
 							<span th:if="${bidderStat.last}" th:text="${bidder.user.userId}">현재최고입찰자</span>
 						</div>
 

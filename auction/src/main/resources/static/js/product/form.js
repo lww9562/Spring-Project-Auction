@@ -68,7 +68,7 @@ window.addEventListener("DOMContentLoaded", function() {
 									<i class="remove xi-close-square-o"></i>
 								</a>
 
-								<span class='inner' style="background:url('${file.fileURL}'); background-size:cover;"></span>
+								<span class='inner' style="background:url('${file.fileURL}'); background-size:cover; background-position: center;"></span>
 								</span>`;
 
 
