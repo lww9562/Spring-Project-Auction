@@ -1,1 +1,16 @@
-401 - unAuthorized
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" th:src="@{/js/errorpage_autoredirect.js}"></script>
+</head>
+<main layout:fragment="content">
+    <h1>401 unauthorized</h1>
+    <div>권한이 없습니다.</div>
+    <img th:src="@{/images/500-error-cat.gif}">
+    <div>5초 후, 메인 페이지로 이동합니다.</div>
+</main>
+</html>

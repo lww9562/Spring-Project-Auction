@@ -22,4 +22,13 @@ public class ErrorsController {
 		response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 		return "error/404";
 	}
+
+	@RequestMapping("/500")
+	public String InternalError(){
+		response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+		return "error/500";
+	}
+
+
+
 }
