@@ -5,6 +5,32 @@
       layout:decorate="~{layouts/main}">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/mypage1.css}">
+    <style>
+        .trMenu th {
+            text-align:center;
+        }
+        tr td:first-child{
+            text-align:center;
+        }
+        tr td:nth-child(4){
+            text-align:center;
+        }
+        tr td:nth-child(5){
+            text-align:right;
+        }
+        tr td:nth-child(6){
+            text-align:right;
+        }
+        tr td:nth-child(7){
+            text-align:center;
+        }
+        tr td:nth-child(8){
+            text-align:center;
+        }
+        tr td:nth-child(9){
+            text-align:center;
+        }
+    </style>
 </head>
 
 <main layout:fragment="content">
@@ -34,7 +60,7 @@
         </aside>
         <section  th:object="${bidProducts}"  class="box">
             <table class="product_list">
-
+                <col width="30"><col width="180"><col width="300"><col width="150"><col width="150"><col width="150"><col width="250"><col width="180"><col width="150">
                 <tr class="trMenu">
                     <th class="th1">NO</th>
                     <th class="th2">카테고리</th>
@@ -54,9 +80,9 @@
                         <a th:href="@{/product/view/{prId}(prId=${product.id})}" th:text="*{prSubject}"></a>
                     </td>
                     <td th:text="*{createdBy}"></td>
-                    <td th:text="*{endPrice}"></td>
-                    <td th:text="*{risingPrice}"></td>
-                    <td th:text="*{regDt}"></td>
+                    <td th:text="*{endPrice} + 원"></td>
+                    <td th:text="*{risingPrice} + 원"></td>
+                    <td th:text="${#temporals.format(product.regDt, 'yyyy-MM-dd HH:mm:ss')}"></td>
                     <td>
                         <span th:if="*{stats}">입찰중</span>
                         <span th:unless="*{stats}">판매완료</span>
