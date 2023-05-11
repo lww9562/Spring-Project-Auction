@@ -6,7 +6,9 @@ window.addEventListener("DOMContentLoaded", function() {
 	console.dir(buttonEl);
 
 	buttonEl.addEventListener("click", async function() {
-		if (!confirm("정말 입찰하시겠습니까?")) {
+		var endprice = this.dataset.endprice;
+		console.log(endprice);
+		if (!confirm("현재 입찰가는 " + endprice +"원 입니다. 정말 입찰하시겠습니까?")) {
     		return;
     	}
 		try{

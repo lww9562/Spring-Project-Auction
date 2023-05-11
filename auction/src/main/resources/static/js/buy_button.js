@@ -5,7 +5,8 @@ window.addEventListener("DOMContentLoaded", function() {
 	console.dir(buttonEl);
 
 	buttonEl.addEventListener("click", async function() {
-		if (!confirm("정말 구매하시겠습니까?")) {
+		var baroprice = this.dataset.baroprice;
+		if (!confirm("현재 즉시구매가는 " + baroprice +"원 입니다. 정말 입찰하시겠습니까?")) {
         		return;
         	}
 		try{

@@ -54,11 +54,14 @@
 								</div>
 							</div>
 						</div>
+						<div class="nowPrice">즉시 입찰가 :
+							<strong class="baroPr" th:text="${#numbers.formatInteger(product.baroPrice, 3, 'COMMA') + '원'}" >즉시 판매가격</strong><br>
+						</div>
 						<div class="nowPrice">현재 입찰가 :
-							<strong class="currentPr" th:text="*{endPrice}" >현재 판매가격</strong><br>
+							<strong class="currentPr" th:text="${#numbers.formatInteger(product.endPrice, 3, 'COMMA') + '원'}" >현재 판매가격</strong><br>
 						</div>
 						<div class="risingPrice">인상가 단위 :
-							<strong class="risingPr" th:text="*{risingPrice}">인상 입찰가격</strong><br>
+							<strong class="risingPr" th:text="${#numbers.formatInteger(product.risingPrice, 3, 'COMMA') + '원'}">인상 입찰가격</strong><br>
 						</div>
 
 						<div class="list_ul" th:each="bidder : ${product.bidderList}">
@@ -70,8 +73,8 @@
 
 
 						<div class="PurchaseButton" th:if="*{stats.toString().equals('true')}">
-							<button id="bid_btn" th:data-userid="${userId}" th:data-productid="${product.id}">입찰</button>
-							<button id="buy_btn" th:data-userid="${userId}" th:data-productid="${product.id}">바로 구매</button>
+							<button id="bid_btn" th:data-userid="${userId}" th:data-productid="${product.id}" th:data-endprice="${product.endPrice}">입찰</button>
+							<button id="buy_btn" th:data-userid="${userId}" th:data-productid="${product.id}" th:data-baroprice="${product.baroPrice}">바로 구매</button>
 						</div>
 						<div class="BottomNotice"></div>
 					</div>

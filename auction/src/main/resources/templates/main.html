@@ -61,10 +61,10 @@
                             <dt><img th:src="@{*{imgPath}}" class="item_img"></dt>
                             <label>상품이름</label>
                             <dd class="product_subject" th:text="*{prSubject}">상품이름</dd>
-                            <label>등록가</label>
-                            <dd class="product_price" th:text="*{startPrice}">등록가</dd>
+                            <label>현재 가격</label>
+                            <dd class="product_price" th:text="${#numbers.formatInteger(board.endPrice, 0, 'COMMA') + '원'}"></dd>
                             <label>즉시구매가</label>
-                            <dd class="product_price" th:text="*{baroPrice}">즉시구매가</dd>
+                            <dd class="product_price" th:text="${#numbers.formatInteger(board.baroPrice, 0, 'COMMA') + '원'}">즉시구매가</dd>
                             <label>판매자</label>
                             <dd class="product_price" th:text="*{sellers.user.userId}">판매자</dd>
                         </dl>

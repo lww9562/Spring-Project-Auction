@@ -79,8 +79,8 @@
                         <a th:href="@{/product/view/{prId}(prId=${product.id})}" th:text="*{prSubject}"></a>
                     </td>
                     <td th:text="*{createdBy}"></td>
-                    <td th:text="*{endPrice}"></td>
-                    <td th:text="*{risingPrice}"></td>
+                    <td th:text="${#numbers.formatInteger(product.endPrice, 0, 'COMMA') + '원'}"></td>
+                    <td th:text="${#numbers.formatInteger(product.risingPrice, 0, 'COMMA') + '원'}"></td>
                     <td th:text="${#temporals.format(product.regDt, 'yyyy-MM-dd HH:mm:ss')}"></td>
                     <td>
                         <span th:if="*{stats}">입찰중</span>

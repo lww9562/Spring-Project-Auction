@@ -34,9 +34,9 @@
 			<td th:text="*{categories.cateNm}"></td>
 			<td th:text="*{prSubject}"></td>
 			<td th:text="*{createdBy}"></td>
-			<td th:text="*{baroPrice}"></td>
-			<td th:text="*{endPrice}"></td>
-			<td th:text="*{risingPrice}"></td>
+			<td th:text="${#numbers.formatInteger(products.baroPrice, 0, 'COMMA') + '원'}"></td>
+			<td th:text="${#numbers.formatInteger(products.endPrice, 0, 'COMMA') + '원'}"></td>
+			<td th:text="${#numbers.formatInteger(products.risingPrice, 0, 'COMMA') + '원'}"></td>
 			<td th:text="${#temporals.format(products.regDt, 'yyyy-MM-dd HH:mm:ss')}"></td>
 			<td>
 				<input type="checkbox" th:checked="*{stats}" th:data-product-no="*{id}" th:data-product-stats="*{stats}" class="form-check-input">
