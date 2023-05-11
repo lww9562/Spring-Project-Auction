@@ -47,7 +47,7 @@
 
         margin: 0;
         padding: 0;
-        background-color: #ddd;
+        background-color: #ffbd59;
         width: 200px;
         min-height: 100%;
         flex-shrink: 0;
@@ -62,18 +62,20 @@
         display: flex;
         align-items: center;
         padding: 25px 12px;
-
         text-align: center;
-        background-color: #ddd;
+        background-color: #ffbd59;
         text-decoration: none;
         font-size: 20px;
       }
+
+
+
+
       #a{
 
          display: flex;
          align-items: center;
          padding: 25px 12px;
-
          text-align: center;
          background-color: rgba(255, 243, 222, 0.774);
          text-decoration: none;
@@ -82,7 +84,7 @@
 
       .userinfo {
         top: 15%;
-        background-color: #ddd;
+        background-color: #ffbd59;
         border: 1px #a39485 solid;
         font-size: .9em;
         box-shadow: 0 2px 5px rgba(0,0,0,.25);

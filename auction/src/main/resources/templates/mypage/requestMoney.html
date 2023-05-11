@@ -9,15 +9,19 @@
         .request_board{
 
             text-align:center;
-
+        #wrap{
+        min-height: 100%;
+	position: relative;
+        }
         }
     </style>
 </head>
 <main layout:fragment="content">
     <div class="request_board">
-
+        <div id="wrap">
     <h2>충전요청</h2>
     <form method="post" th:action="@{/mypage/requestMoney}" autocomplete="off" id = "saveMoney" th:object="${requestMoneyForm}">
+
         <dl>
             <dt><b>신청자</b></dt>
             <dd>
@@ -36,8 +40,9 @@
         <div class="btns">
             <button type="submit" id="btn_submit" style="cursor:pointer;">신청</button>
         </div>
-    </form>
 
+    </form>
+        </div>
     </div>
 
 
