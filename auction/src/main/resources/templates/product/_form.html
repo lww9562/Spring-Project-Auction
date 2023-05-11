@@ -17,15 +17,15 @@
 			}
 
 			#thumbs { display: flex; }
-			#thumbs .thumb { position: relative; width: 200px; height: 200px; margin-right: 5px; margin-bottom: 5px; border: 1px solid #d5d5d5; }
-			#thumb_img {display: block; height: 198px; width:auto; cursor:pointer; border: 2px solid #ffbd59; border-radius: 5px; padding : 35px;}
+			#thumbs .thumb { position: relative; width: 400px; height: 400px; margin-right: 5px; margin-bottom: 5px; border: 1px solid #d5d5d5;}
+			#thumb_img {display: block; height: 400px; width:auto; cursor:pointer; border: 2px solid #ffbd59; border-radius: 5px; padding : 35px;}
 			#thumb_img:hover {
 				 opacity:0.3;
 				 transition:0.2s;
 			}
 
 			#thumbs .thumb > a {color : #ffbd59;position: absolute; top: 0; right: 0; cursor: pointer; padding: 2px; font-size: 25px; }
-			#thumbs .thumb > .inner { display: block;  border-radius: 5px; cursor: pointer; height: 198px; border: 2px solid #ffbd59;}
+			#thumbs .thumb > .inner { display: block;  border-radius: 5px; cursor: pointer; height: 398px; border: 2px solid #ffbd59;  align-items:center;}
 
 
 
@@ -35,8 +35,6 @@
 
 input{
     font-family: 'Noto Sans KR','Noto Sans Korean', "Nanum Gothic", sans-serif !important;
-    -webkit-appearance: none;
-    -webkit-border-radius: 0;
     border: 0;
     outline: none;
     font-size: 10px;
@@ -45,16 +43,15 @@ input::placeholder{
   color: #d9d9d9
 }
 .dust-class:not(#text_area){
-  width: 20%;
-  box-sizeing: border-box;
-
+  width: 100%;
   position: relative;
+  text-align:right;
 }
 .dust-class label{
   display: inline-block;
   position: absolute;
   top: -15px;
-  left: 5px;
+  left: 0;
   padding: 5px;
   background-color: transparent;
   font-size: 14px;
@@ -120,9 +117,7 @@ select option {
 	display : inline-block;
 }
 
-.product_detail dl{
-	display: flex;
-}
+
 
 	</style>
 </head>
@@ -165,7 +160,7 @@ select option {
 				<dl>
 					<div class="dust-class">
 						<label th:for="#{product.subject}"><span>* </span>물품명</label>
-						<input type="text" class="txt-input" name="prSubject" th:field="*{prSubject}" placeholder="판매 물품을 입력해주세요." value="dust" style="width:500px;">
+						<input type="text" class="txt-input" name="prSubject" th:field="*{prSubject}" placeholder="판매 물품을 입력해주세요." value="dust" style="width:300px;">
 					</div>
 				</dl>
 				<br>
@@ -174,21 +169,21 @@ select option {
 				<dl>
 					<div class="dust-class">
 						<label th:for="#{product.startPrice}"><span>* </span>시작 가격</label>
-						<input type="text" class="txt-input" name="startPrice" th:field="*{startPrice}" placeholder="경매 시작 가격을 입력해주세요." value="dust" style="text-align:right;">
+						<input type="text" class="txt-input" name="startPrice" th:field="*{startPrice}" placeholder="경매 시작 가격을 입력해주세요." value="dust" style="text-align:right; width : 300px;">
 					</div>
 				</dl>
 
 				<dl>
 					<div class="dust-class">
 						<label th:for="#{product.risingPrice}"><span>* </span>증가액 단위</label>
-						<input type="text" class="txt-input" name="risingPrice" th:field="*{risingPrice}" placeholder="증가할 입찰가를 입력해주세요." value="dust" style="text-align:right;">
+						<input type="text" class="txt-input" name="risingPrice" th:field="*{risingPrice}" placeholder="증가할 입찰가를 입력해주세요." value="dust" style="text-align:right; width : 300px;">
 					</div>
 				</dl>
 
 				<dl>
 					<div class="dust-class">
 						<label th:for="#{product.baroPrice}"><span>* </span>즉시 구매 가격</label>
-						<input type="text" class="txt-input" name="baroPrice" th:field="*{baroPrice}" placeholder="즉시구매 가격을 입력해주세요." value="dust" style="text-align:right;">
+						<input type="text" class="txt-input" name="baroPrice" th:field="*{baroPrice}" placeholder="즉시구매 가격을 입력해주세요." value="dust" style="text-align:right; width : 300px;">
 					</div>
 				</dl>
 			</div>
