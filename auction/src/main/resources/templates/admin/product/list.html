@@ -6,6 +6,11 @@
 <head>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/admin/product_list.css}">
 	<script th:src="@{/js/admin/product_list.js}"></script>
+	<style>
+		.sidebar div:nth-child(2){
+			 background-color: rgba( 255, 255, 255, 0.3 );
+		}
+	</style>
 </head>
 
 <section layout:fragment="content" th:object="${productsList}">

@@ -17,6 +17,7 @@
     <div class="container">
         <div class="slide">
             <img class="slideimg" th:src="@{/images/ttt_banner.png}">
+            <img class="slideimg" th:src="@{/images/intro2.png}">
 <!--            <img class="slideimg" th:src="@{/files/다운로드.jpg}">-->
             <div class="buttonset">
             <button class="backbutton slidebutton">
@@ -64,6 +65,8 @@
                             <dd class="product_price" th:text="*{startPrice}">등록가</dd>
                             <label>즉시구매가</label>
                             <dd class="product_price" th:text="*{baroPrice}">즉시구매가</dd>
+                            <label>판매자</label>
+                            <dd class="product_price" th:text="*{sellers.user.userId}">판매자</dd>
                         </dl>
                     </a>
                 </div>

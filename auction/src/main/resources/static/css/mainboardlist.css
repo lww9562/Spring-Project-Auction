@@ -1,3 +1,60 @@
+	a:link {
+		text-decoration: none;
+	}
+	a:visited {
+		color: black;
+		text-decoration: none;
+	}
+	.board_table {
+		margin-left:auto;
+		margin-right:auto;
+		font-size: 13px;
+		width: 80%;
+		border-top: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+	}
+	.board_table th {
+		text-align: center;
+	}
+	.board_table td {
+		text-align: center;
+	}
+
+	.th_num{
+		width : 50px;
+		text-align:center;
+	}
+
+	.th_subject {
+		width : 400px;
+		text-align:center;
+	}
+
+	.th_writer {
+    	width : 50px;
+    	text-align:right;
+    }
+
+    .th_price {
+    	width : 50px;
+    	text-align:right;
+    }
+
+	.th_regDt{
+		width : 200px;
+		text-align:right;
+	}
+
+	.paging {
+		width : 200px;
+		text-align:center;
+	}
+
+
+
+
+
+
 
     .categorybottom{
         padding: 0 16px;
@@ -27,6 +84,10 @@
         position : relative;
         z-index : 1;
     }
+
+
+
+
 
     .car-ctrl{
         z-index : 2;
@@ -263,58 +324,19 @@
 
     }
 
+    .product_items label {
+        font-weight:bold;
+    }
+
+    .product_items dd {
+            font-size:13px;
+            color:gray;
+        }
+
     .item_img{
       width: 100%;
       height: 165px;
       object-fit: cover;
     }
-
-	a:link {
-		color: black;
-		text-decoration: none;
-	}
-	a:visited {
-		color: black;
-		text-decoration: none;
-	}
-	.board_table {
-		margin-left:auto;
-		margin-right:auto;
-		font-size: 13px;
-		width: 80%;
-		border-top: 1px solid #ccc;
-		border-bottom: 1px solid #ccc;
-	}
-	.board_table th {
-		text-align: center;
-	}
-	.board_table td {
-		text-align: center;
-	}
-
-	.th_num{
-		width : 50px;
-		text-align:center;
-	}
-
-	.th_subject {
-		width : 400px;
-		text-align:center;
-	}
-
-	.th_writer {
-    	width : 50px;
-    	text-align:right;
-    }
-
-    .th_price {
-    	width : 50px;
-    	text-align:right;
-    }
-
-	.th_regDt{
-		width : 200px;
-		text-align:right;
-	}
 
 
