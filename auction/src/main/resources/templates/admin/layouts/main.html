@@ -55,11 +55,7 @@
 			body {
 				height:100%;
 			}
-			footer {
-				bottom:0;
-				position:absolute;
-				width : 100%;
-			}
+
 		</style>
 	</head>
 
@@ -117,7 +113,7 @@
 		</div>
 	</header>
 		<main>
-			<div class="wrapper">
+			<div class="wrapper" style="display:flex;">
 				<aside id="sidebar" th:replace="~{admin/outlines/side::menus}"></aside>
 
 				<section id="main_content" layout:fragment="content"></section>
