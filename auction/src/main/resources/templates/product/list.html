@@ -3,93 +3,12 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/main}">
 <head>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/boardlist.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/productlist.css}">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script th:src="@{/js/search.js}"></script>
     <script th:src="@{/js/list_cateScroll.js}"></script>
     <style>
 
-
-.search {
-	height: 40px;
-	width : 600px;
-	border : 1px solid #ffbd59;
-	background : #ffffff;
-	margin:auto;
-}
-
-#sopt {
-    width:75px;
-    font-size : 14px;
-    height : 100%;
-    padding : 10px;
-    float : left;
-    border : 0px;
-    outline:none;
-    border-right:1px solid #ffbd59;
-}
-
-.search_bar {
-	font-size : 14px;
-	width : 445px;
-	padding : 10px;
-	border : 0px;
-	outline:none;
-	float:left;
-    height : 100%;
-}
-
-.search button{
-	width : 75px;
-	height : 100%;
-	border : 0px;
-	background : #ffbd59;
-	outline:none;
-	float:right;
-	color:#ffffff
-
-}
-#search_btn:hover{
-
-    cursor:pointer;
-    background-color:#ff7f00;
-}
-.catemain {
-    float:none;
-}
-
-.product_items label{
-    font-weight:bold;
-
-}
-
-.product_items dd{
-    color:gray;
-}
-
-.item_border{
-    border:1px solid transparent;
-}
-
-.item_border:hover{
-    border:1px solid rgb(255, 225, 187);
-}
-
-.bottom_link {
-    float : right;
-}
-
-.bottom_link a{
-    font-family: Pretendard-Regular;
-    border: 1px solid #ffbd59;
-    padding: 9px 16px;
-    border-radius: 5px;
-}
-
-.menubtn a{
-    padding-left:15px;
-}
 
     </style>
 </head>
@@ -127,8 +46,14 @@
                         </ul>
                     </div>
                 </div>
-                <button class="car-ctrl car-prev">왼쪽</button>
-                <button class="car-ctrl car-next">오른쪽</button>
+
+                <br>
+
+                <div class="arrow_btn">
+                <button class="car-ctrl car-prev"></button>
+                <button class="car-ctrl car-next"></button>
+                </div>
+
             </div>
             </div>
             <!--카테고리 끝-->
@@ -183,6 +108,8 @@
                                 <dd class="product_price" th:text="*{startPrice}">등록가</dd>
                                 <label>즉시구매가</label>
                                 <dd class="product_price" th:text="*{baroPrice}">즉시구매가</dd>
+                                <label>판매자</label>
+                                <dd class="product_price" th:text="*{sellers.user.userId}">판매자</dd>
                             </dl>
                         </a>
                     </div>
