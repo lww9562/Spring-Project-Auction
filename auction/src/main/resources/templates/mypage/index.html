@@ -8,8 +8,8 @@
     <style>
         th {
             width : 100px;
-        }
     </style>
+
 </head>
 
 <main layout:fragment="content" th:object="${userinfo}">
@@ -17,11 +17,13 @@
     <div class="wrap">
         <aside th:fragment="menus" class="boxsidebar">
             <ul class="list">
-                <li >
-                    <a th:href="@{/mypage}" class="nav-link">
+                <li>
+
+                    <a th:href="@{/mypage}" type="checkbox" class="nav-link"  id="a">
                         <i class="bx bx-home-alt"></i>
                         <span calss="link">회원 정보</span>
                     </a>
+
                 </li>
                 <li>
                     <a th:href="@{/mypage/sellerList}" class="nav-link">
