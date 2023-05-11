@@ -28,22 +28,33 @@ Scroll_btn_left.addEventListener("click", () => {
      nowCateScroll -= cateScroll.offsetWidth/cate_Scrolling_value;
      console.log(nowCateScroll);
        cateScroll.scrollTo(nowCateScroll,0);
+
        resetCateScroll();
 });
 
 //다음 버튼에 대한 이벤트 리스너
 Scroll_btn_right.addEventListener("click", () => {
-        resetCateScroll();
+
+    resetCateScroll();
        nowCateScroll+=cateScroll.offsetWidth/cate_Scrolling_value;
+        console.log("cateScroll.offsetWidth" ,cateScroll.offsetWidth)
        console.log(nowCateScroll);
-       cateScroll.scrollTo(nowCateScroll,0);
-       resetCateScroll();
+
+
+        cateScroll.scrollTo(nowCateScroll,0);
+
+        resetCateScroll();
+
+
+
+
+
 });
 
 //버튼을 눌렀을때 스크롤 값이 최대, 최소를 넘기는 것을 방지하고,
 //스크롤 값을 올바른 값으로 재배치 하기 위한 콜백함수
 function resetCateScroll(){
-     if(nowCateScroll < 0){
+     if(nowCateScroll <= 0){
                 cateScroll.scrollTo(0,0);
                 nowCateScroll = 0;
             }
