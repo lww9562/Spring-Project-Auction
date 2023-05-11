@@ -11,6 +11,7 @@
 		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 		<link rel="stylesheet" type="text/css" th:each="cssFile : ${addCss}" th:href="@{/css/{file}.css(file=${cssFile})}">
 		<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
 		<th:block layout:fragment="addCss"></th:block>
 
 		<script th:src="@{/js/common.js}"></script>
@@ -109,6 +110,7 @@
 
 			<section id="main_content" layout:fragment="content"></section>
 		</main>
+	<footer th:replace="~{outlines/footer/main::common}"></footer>
 	</body>
 
 </html>
