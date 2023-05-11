@@ -57,7 +57,7 @@ public class ProductBidValidator implements RequiredValidator {
 			if(user.equals(biddersList.get(biddersList.size()-1).getUser())){
 				System.out.println(biddersList.get(biddersList.size()-1).getUser());
 				//bidder가 자신이 마지막으로 입찰한 물건에 재입찰할 시 오류 발생
-				throw new BadRequestException("자신이 마지막으로 입찰한 물건에는 입찰하실 수 없습니다!");
+				throw new BadRequestException("현재 최고 입찰자입니다!");
 			}
 		}
 

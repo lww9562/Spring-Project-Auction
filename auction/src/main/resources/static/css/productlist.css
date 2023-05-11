@@ -16,8 +16,7 @@
     padding: 8px 0;
     overflow:hidden;
     clear:both;
-
-
+	scroll-behavior: smooth;
     }
 
 .cate::-webkit-scrollbar {
@@ -27,11 +26,8 @@
 .cate{
     display: flex;
     text-align: center;
-
-    justify-content: center;
     clear:both;
 
-    scroll-behavior: smooth;
 }
 
 
@@ -45,9 +41,10 @@
     background-color: transparent;
     cursor: pointer;
     min-width: 64px;
-    height: 58px;
     overflow: hidden;
-    color:gray;
+    padding:10px 0;
+    font-size:13px;
+    color:#5b636a;
     display:block;
 
 }
@@ -62,7 +59,6 @@
     display: inline;
     position: relative;
     background-color: transparent;
-    padding: 0 10px;
     height: 100%;
 
 
@@ -79,12 +75,42 @@
         background-color : #fff;
 
     }
+
+.arrow_btn{
+    display:flex;
+    justify-content:space-between;
+    height:28px;
+}
+
 .car-prev{
-        right : 0%;
+        background-image: url(/images/left_arrow.png);
+        background-size: 26px;
+        height:inherit;
+        width:28px;
+        padding:10px;
+        border:1px solid #dbdbdb;
+        border-radius:50%;
+        background-color:transparent;
+
     }
+.car-prev:hover{
+        cursor:pointer;
+        background-color:#f9e8ce;
+}
 .car-next{
-        left : 90%;
+        background-image: url(/images/right_arrow.png);
+        background-size: 26px;
+        height:inherit;
+        width:28px;
+        padding:10px;
+        border:1px solid #dbdbdb;
+        border-radius:50%;
+        background-color:transparent;
     }
+.car-next:hover{
+        cursor:pointer;
+        background-color:#f9e8ce;
+}
 
  .black_path{
          fill:black;
@@ -111,6 +137,7 @@ ul{
 }
 
 .pagination {
+	display:flex;
 	justify-content: center;
 	margin:auto;
 }
@@ -233,4 +260,91 @@ transition:0.3s;
 .list {
 	width : 40%;
 
+}
+
+
+
+
+
+
+
+.search {
+	height: 40px;
+	width : 600px;
+	border : 1px solid #ffbd59;
+	background : #ffffff;
+	margin:auto;
+}
+
+#sopt {
+    width:75px;
+    font-size : 14px;
+    height : 100%;
+    padding : 10px;
+    float : left;
+    border : 0px;
+    outline:none;
+    border-right:1px solid #ffbd59;
+}
+
+.search_bar {
+	font-size : 14px;
+	width : 445px;
+	padding : 10px;
+	border : 0px;
+	outline:none;
+	float:left;
+    height : 100%;
+}
+
+.search button{
+	width : 75px;
+	height : 100%;
+	border : 0px;
+	background : #ffbd59;
+	outline:none;
+	float:right;
+	color:#ffffff
+
+}
+#search_btn:hover{
+
+    cursor:pointer;
+    background-color:#ff7f00;
+}
+.catemain {
+    float:none;
+}
+
+.product_items label{
+    font-weight:bold;
+
+}
+
+.product_items dd{
+    color:gray;
+}
+
+.item_border{
+    border:1px solid transparent;
+}
+
+.item_border:hover{
+    border:1px solid rgb(255, 225, 187);
+}
+
+.bottom_link {
+    float : right;
+}
+
+.bottom_link a{
+    font-family: Pretendard-Regular;
+    border: 1px solid #ffbd59;
+    padding: 9px 16px;
+    border-radius: 5px;
+}
+
+.menubtn a{
+    padding-left:15px;
+    color:#5b636a;
 }

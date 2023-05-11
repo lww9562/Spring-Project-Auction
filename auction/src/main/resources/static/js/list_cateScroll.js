@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 */
 
 //.cate라는 클래스를 찾아서 변수로 대입
-const cateScroll = document.querySelector(".cate");
+const cateScroll = document.querySelector(".catewrapper");
 //스크롤 이벤트 값을 저장하고 사용하기 위한 변수
 var nowCateScroll = 0;
 
@@ -19,29 +19,42 @@ var nowCateScroll = 0;
 var cate_Scrolling_value=3;
 
 //버튼과 스크롤 연동
-var Scroll_btn_left = document.querySelector(".car-prev .car-prev-svg");
-var Scroll_btn_right = document.querySelector(".car-next .car-next-svg");
+var Scroll_btn_left = document.querySelector(".car-prev");
+var Scroll_btn_right = document.querySelector(".car-next");
 
 //이전 버튼에 대한 이벤트 리스너
 Scroll_btn_left.addEventListener("click", () => {
        resetCateScroll();
      nowCateScroll -= cateScroll.offsetWidth/cate_Scrolling_value;
+     console.log(nowCateScroll);
        cateScroll.scrollTo(nowCateScroll,0);
+
        resetCateScroll();
 });
 
 //다음 버튼에 대한 이벤트 리스너
 Scroll_btn_right.addEventListener("click", () => {
-        resetCateScroll();
+
+    resetCateScroll();
        nowCateScroll+=cateScroll.offsetWidth/cate_Scrolling_value;
-       cateScroll.scrollTo(nowCateScroll,0);
-       resetCateScroll();
+        console.log("cateScroll.offsetWidth" ,cateScroll.offsetWidth)
+       console.log(nowCateScroll);
+
+
+        cateScroll.scrollTo(nowCateScroll,0);
+
+        resetCateScroll();
+
+
+
+
+
 });
 
 //버튼을 눌렀을때 스크롤 값이 최대, 최소를 넘기는 것을 방지하고,
 //스크롤 값을 올바른 값으로 재배치 하기 위한 콜백함수
 function resetCateScroll(){
-     if(nowCateScroll < 0){
+     if(nowCateScroll <= 0){
                 cateScroll.scrollTo(0,0);
                 nowCateScroll = 0;
             }

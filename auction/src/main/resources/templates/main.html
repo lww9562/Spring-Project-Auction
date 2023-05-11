@@ -17,9 +17,8 @@
     <div class="container">
         <div class="slide">
             <img class="slideimg" th:src="@{/images/ttt_banner.png}">
-            <img class="slideimg" th:src="@{/images/2.png}">
-
-            <!--            <img class="slideimg" th:src="@{/files/다운로드.jpg}">-->
+            <img class="slideimg" th:src="@{/images/intro2.png}">
+<!--            <img class="slideimg" th:src="@{/files/다운로드.jpg}">-->
             <div class="buttonset">
             <button class="backbutton slidebutton">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z"/></svg>
@@ -71,11 +70,8 @@
 
         <div class="catemain">
             <!-- Products 관련 -->
-            <div class="catefont">품목</div>
-            <ul class="catemenu">
-                <!--공통 엔티티 regdt-->
-                <li class="menubtn">최신순</li>
-            </ul>
+            <div class="catefont"><a th:href="@{/product/list?}" style="cursor:pointer;">최근 등록</a></div>
+
         </div>
 
         <div class="maincatelist">
@@ -89,10 +85,12 @@
                             <dt><img th:src="@{*{imgPath}}" class="item_img"></dt>
                             <label>상품이름</label>
                             <dd class="product_subject" th:text="*{prSubject}">상품이름</dd>
-                            <label>등록가</label>
-                            <dd class="product_price" th:text="*{startPrice}">등록가</dd>
+                            <label>현재 가격</label>
+                            <dd class="product_price" th:text="${#numbers.formatInteger(board.endPrice, 0, 'COMMA') + '원'}"></dd>
                             <label>즉시구매가</label>
-                            <dd class="product_price" th:text="*{baroPrice}">즉시구매가</dd>
+                            <dd class="product_price" th:text="${#numbers.formatInteger(board.baroPrice, 0, 'COMMA') + '원'}">즉시구매가</dd>
+                            <label>판매자</label>
+                            <dd class="product_price" th:text="*{sellers.user.userId}">판매자</dd>
                         </dl>
                     </a>
                 </div>

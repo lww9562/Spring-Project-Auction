@@ -3,11 +3,7 @@ package org.koreait.controllers.mypage;
 import lombok.RequiredArgsConstructor;
 import org.koreait.controllers.users.UserInfo;
 import org.koreait.controllers.users.UserInfoService;
-import org.koreait.entities.Bidders;
-import org.koreait.entities.Products;
-import org.koreait.entities.Sellers;
-import org.koreait.entities.Users;
-
+import org.koreait.entities.*;
 
 
 import org.koreait.models.user.RequestMoneyService;
@@ -26,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -79,6 +77,7 @@ public class MypageController {
 
 		Sellers sellers = users.getSeller();
 		List<Products> sellProducts = sellers.getSellProducts();
+		Collections.sort(sellProducts);
 
 		model.addAttribute("sellProducts", sellProducts);
 		return "mypage/sellerList";
@@ -93,6 +92,7 @@ public class MypageController {
 		Bidders bidders = users.getBidder();
 
 		List<Products> bidProducts = bidders.getProductList();
+		Collections.sort(bidProducts);
 
 		model.addAttribute("bidProducts",bidProducts);
 

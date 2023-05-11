@@ -5,6 +5,11 @@
       layout:decorate="~{layouts/main}">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/mypage1.css}">
+    <style>
+        th {
+            width : 100px;
+        }
+    </style>
 </head>
 
 <main layout:fragment="content" th:object="${userinfo}">
@@ -51,7 +56,9 @@
                 </tr>
                 <tr>
                     <th>통장</th>
-                    <td>[[${user.money}]] &nbsp;&nbsp;
+                    <td>
+                        <div th:text="${#numbers.formatInteger(user.money, 3, 'COMMA') + '원'}"
+                        [[${user.money}]] &nbsp;&nbsp;
                         <button id="requestMoney"  onClick="location.href='/mypage/requestMoney'">충전신청</button>
                     </td>
                 </tr>

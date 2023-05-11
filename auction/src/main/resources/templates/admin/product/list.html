@@ -6,6 +6,11 @@
 <head>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/admin/product_list.css}">
 	<script th:src="@{/js/admin/product_list.js}"></script>
+	<style>
+		.sidebar div:nth-child(2){
+			 background-color: rgba( 255, 255, 255, 0.3 );
+		}
+	</style>
 </head>
 
 <section layout:fragment="content" th:object="${productsList}">
@@ -29,9 +34,9 @@
 			<td th:text="*{categories.cateNm}"></td>
 			<td th:text="*{prSubject}"></td>
 			<td th:text="*{createdBy}"></td>
-			<td th:text="*{baroPrice}"></td>
-			<td th:text="*{endPrice}"></td>
-			<td th:text="*{risingPrice}"></td>
+			<td th:text="${#numbers.formatInteger(products.baroPrice, 0, 'COMMA') + '원'}"></td>
+			<td th:text="${#numbers.formatInteger(products.endPrice, 0, 'COMMA') + '원'}"></td>
+			<td th:text="${#numbers.formatInteger(products.risingPrice, 0, 'COMMA') + '원'}"></td>
 			<td th:text="${#temporals.format(products.regDt, 'yyyy-MM-dd HH:mm:ss')}"></td>
 			<td>
 				<input type="checkbox" th:checked="*{stats}" th:data-product-no="*{id}" th:data-product-stats="*{stats}" class="form-check-input">
