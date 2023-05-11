@@ -55,13 +55,13 @@
 							</div>
 						</div>
 						<div class="nowPrice">즉시 입찰가 :
-							<strong class="baroPr" th:text="${#numbers.formatInteger(product.baroPrice, 3, 'COMMA') + '원'}" >즉시 판매가격</strong><br>
+							<strong class="baroPr" th:text="${#numbers.formatInteger(product.baroPrice, 0, 'COMMA') + '원'}" >즉시 판매가격</strong><br>
 						</div>
 						<div class="nowPrice">현재 입찰가 :
-							<strong class="currentPr" th:text="${#numbers.formatInteger(product.endPrice, 3, 'COMMA') + '원'}" >현재 판매가격</strong><br>
+							<strong class="currentPr" th:text="${#numbers.formatInteger(product.endPrice, 0, 'COMMA') + '원'}" >현재 판매가격</strong><br>
 						</div>
 						<div class="risingPrice">인상가 단위 :
-							<strong class="risingPr" th:text="${#numbers.formatInteger(product.risingPrice, 3, 'COMMA') + '원'}">인상 입찰가격</strong><br>
+							<strong class="risingPr" th:text="${#numbers.formatInteger(product.risingPrice, 0, 'COMMA') + '원'}">인상 입찰가격</strong><br>
 						</div>
 
 						<div class="list_ul" th:each="bidder : ${product.bidderList}">

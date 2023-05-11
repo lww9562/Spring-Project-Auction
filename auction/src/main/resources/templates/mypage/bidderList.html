@@ -6,6 +6,51 @@
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/mypage1.css}">
     <style>
+        .warn {
+            color:red;
+            position:absolute;
+           display:block;
+           right:22px;
+           top:25px;
+        }
+
+        .message_wrap{
+        position:relative;
+        min-width:70px;
+        }
+
+        .usID{
+        left:9px;
+        top:22px;
+        position:absolute;
+        z-index:1;
+        }
+
+        .message{
+            display:none;
+            position:absolute;
+            width:190px;
+            height:30px;
+            text-align:center;
+            background-color:white;
+            border:1px solid black;
+            position:relative;
+            color:#F84A71;
+            padding:0 3px;
+        }
+
+        .warn:hover + .message {
+            display: flex;
+            position:absolute;
+            top:2px;
+            right:25px;
+            z-index:10;
+            align-items:center;
+            text-align:center;
+            justify-content:center;
+        }
+
+
         .trMenu th {
             text-align:center;
         }
@@ -58,9 +103,9 @@
                 </li>
             </ul>
         </aside>
-        <section  th:object="${bidProducts}"  class="box">
+        <section  th:object="${bidProducts}"  class="box" >
             <table class="product_list">
-                <col width="30"><col width="180"><col width="300"><col width="150"><col width="150"><col width="150"><col width="250"><col width="180"><col width="150">
+                <col width="30"><col width="250"><col width="300"><col width="150"><col width="150"><col width="150"><col width="250"><col width="180"><col width="150">
                 <tr class="trMenu">
                     <th class="th1">NO</th>
                     <th class="th2">카테고리</th>
@@ -73,7 +118,7 @@
                     <th class="th9">최고입찰자</th>
                 </tr>
 
-                <tr th:each="product : ${bidProducts}" th:object="${product}">
+                <tr th:each="product : ${bidProducts}" th:object="${product}" >
                     <td th:text="*{id}"></td>
                     <td th:text="*{categories.cateNm}"></td>
                     <td>
@@ -87,8 +132,13 @@
                         <span th:if="*{stats}">입찰중</span>
                         <span th:unless="*{stats}">판매완료</span>
                     </td>
+
                     <th:block th:each="bidder : ${product.bidderList}">
-                        <td th:if="${bidderStat.last}" th:text="${bidder.user.userId}"></td>
+                        <td th:if="${bidderStat.last}" class="message_wrap">
+                            <span th:text="${bidder.user.userId}" class="usID" style="position=static; text-align:center;" ></span>
+                            <span th:if="${bidder.user.userId} != ${user.userId}"><i class="warn xi-warning"></i><p class="message">현재 최고입찰자가 아닙니다!</p></span>
+                        </td>
+
                     </th:block>
                 </tr>
 

@@ -8,7 +8,7 @@
         </th:block>
 
         <th:block th:each="p : *{pages}">
-            <li class='page' th:if="${p == pagination.page}" th:classappend="on">
+            <li class='page' th:classappend="on">
                 <a th:href="${@urlUtil.getPageUrl(pagination.baseUrl, p)}" th:text="${p}"></a>
 
             </li>

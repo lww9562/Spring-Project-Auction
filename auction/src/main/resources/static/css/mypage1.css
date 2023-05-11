@@ -110,7 +110,7 @@
         /*! padding-left: 30px; */
       }
 
-      a {
+      a:not(.header_a, .auth_a, .write_btn) {
         color: #73685d;
       }
 

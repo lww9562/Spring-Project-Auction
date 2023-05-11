@@ -94,6 +94,7 @@ public class MypageController {
 		List<Products> bidProducts = bidders.getProductList();
 		Collections.sort(bidProducts);
 
+		model.addAttribute("user", users);
 		model.addAttribute("bidProducts",bidProducts);
 
 		return "mypage/bidderList";
