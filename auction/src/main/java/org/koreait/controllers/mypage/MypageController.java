@@ -87,6 +87,7 @@ public class MypageController {
 	public String bidderList(@AuthenticationPrincipal UserInfo userinfo, Model model){
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails user = (UserDetails)principal;
+
 		Users users = usersRepository.findByUserId(user.getUsername());
 
 		Bidders bidders = users.getBidder();

@@ -47,8 +47,9 @@ public class ProductBuyService {
 
 		buy_user.setMoney(buy_user.getMoney() - products.getBaroPrice());
 		//혹시 몰라 나중을 위해서 우선 경매 리스트 마지막에 추가해둠
-		bidderList.add(buy_user.getBidder());
+		bidderList.add(new_bidder);
 		products.setBidderList(bidderList);
+
 
 		//경매의 종료! - Products 엔티티 단에서 boolean을 통해 경매 true/false 를 나타낼 수 있도록 추가해야될 듯
 		//우선 종료를 알리기 위해, products의 endPrice와 baroPrice를 999999999원으로 변경해두기로 한다.

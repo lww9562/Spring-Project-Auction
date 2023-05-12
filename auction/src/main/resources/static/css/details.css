@@ -17,7 +17,7 @@ margin: 0 150px;
 .saleInfo {
 	display:flex;
 	justify-content: center;
-	min-width:1380px;
+	min-width:1100px;
 }
 
 .saleInfo_wrap{
@@ -82,7 +82,7 @@ margin: 0 150px;
 .content_wrap{
 	display:flex;
 	justify-content: center;
-	min-width:1380px;
+	min-width:1100px;
 
 }
 
