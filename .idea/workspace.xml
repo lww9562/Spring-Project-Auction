@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c2d8d26-eef6-4a5c-9de7-277368e6ca5a" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/auction/src/main/resources/static/js/search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auction/src/main/resources/templates/product/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/auction/src/main/resources/templates/product/list.html" afterDir="false" />
-    </list>
+    <list default="true" id="2c2d8d26-eef6-4a5c-9de7-277368e6ca5a" name="변경" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -185,7 +185,7 @@ select option {
 				<dl>
 					<div class="dust-class">
 						<label th:for="#{product.subject}"><span>* </span>물품명</label>
-						<input type="text" class="txt-input" name="prSubject" th:field="*{prSubject}" placeholder="판매 물품을 입력해주세요." value="dust" style="width:300px;">
+						<input type="text" class="txt-input" name="prSubject" th:field="*{prSubject}" placeholder="판매 물품을 입력해주세요." value="dust" style="width:300px; text-align:left;">
 						<div class='error' th:each="err : ${#fields.errors('prSubject')}" th:text="${err}"></div>
 					</div>
 				</dl>
@@ -195,7 +195,7 @@ select option {
 				<dl>
 					<div class="dust-class">
 						<label th:for="#{product.startPrice}"><span>* </span>시작 가격</label>
-						<input type="text" class="txt-input" name="startPrice" th:field="*{startPrice}" placeholder="경매 시작 가격을 입력해주세요." value="dust" style="text-align:right; width : 300px;">
+						<input type="text" class="txt-input" name="startPrice" th:field="*{startPrice}" placeholder="경매 시작 가격을 입력해주세요." value="dust" style="text-align:left; width : 300px;">
 						<div class='error' th:each="err : ${#fields.errors('startPrice')}" th:text="${err}"></div>
 					</div>
 				</dl>
@@ -203,7 +203,7 @@ select option {
 				<dl>
 					<div class="dust-class">
 						<label th:for="#{product.risingPrice}"><span>* </span>증가액 단위</label>
-						<input type="text" class="txt-input" name="risingPrice" th:field="*{risingPrice}" placeholder="증가할 입찰가를 입력해주세요." value="dust" style="text-align:right; width : 300px;">
+						<input type="text" class="txt-input" name="risingPrice" th:field="*{risingPrice}" placeholder="증가할 입찰가를 입력해주세요." value="dust" style="text-align:left; width : 300px;">
 						<div class='error' th:each="err : ${#fields.errors('risingPrice')}" th:text="${err}"></div>
 					</div>
 				</dl>
@@ -211,7 +211,7 @@ select option {
 				<dl>
 					<div class="dust-class">
 						<label th:for="#{product.baroPrice}"><span>* </span>즉시 구매 가격</label>
-						<input type="text" class="txt-input" name="baroPrice" th:field="*{baroPrice}" placeholder="즉시구매 가격을 입력해주세요." value="dust" style="text-align:right; width : 300px;">
+						<input type="text" class="txt-input" name="baroPrice" th:field="*{baroPrice}" placeholder="즉시구매 가격을 입력해주세요." value="dust" style="text-align:left; width : 300px;">
 						<div class='error' th:each="err : ${#fields.errors('baroPrice')}" th:text="${err}"></div>
 					</div>
 				</dl>

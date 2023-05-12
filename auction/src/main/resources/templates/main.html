@@ -9,6 +9,44 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/mainboardlist.css}">
 
     <style>
+.imagee{
+content: "";
+  background-image: url(images/hammerchar1.png);
+
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  top: 50%;
+  right: 12%;
+  background-size: cover;
+  animation-name: updown;
+  animation-duration: 1.2s;
+  animation-iteration-count: infinite;
+  transition: 1s;
+
+        }
+
+
+.imagee:hover{
+  transform:rotate(-90deg);
+  transition: 0.4s;
+}
+
+
+
+
+@keyframes updown{
+      0%{
+
+     }
+     50%{
+         transform: translateY(15px);
+     }
+     100%{
+
+     }
+  }
+
 
     </style>
 </head>
